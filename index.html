@@ -12,7 +12,7 @@
   --accent:#00c8ff;--accent2:#00ff9d;--warn:#ffd700;--danger:#ff3b5c;
   --text:#c8dde8;--muted:#4a6272;
   --ff:'Segoe UI',Arial,sans-serif;--fm:Consolas,'Courier New',monospace;
-  --max:1180px;
+  --max:none;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -25,12 +25,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   background-image:linear-gradient(rgba(0,200,255,.025) 1px,transparent 1px),
   linear-gradient(90deg,rgba(0,200,255,.025) 1px,transparent 1px);background-size:40px 40px}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 48px;position:relative;z-index:1}
 
 /* ── Header ── */
 header{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border);height:56px;
   background:linear-gradient(90deg,rgba(0,200,255,.07),rgba(8,12,16,.92));backdrop-filter:blur(10px)}
-.hdr{max-width:var(--max);margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;gap:14px}
+.hdr{max-width:var(--max);margin:0 auto;padding:0 48px;height:100%;display:flex;align-items:center;gap:14px}
 .logo{width:34px;height:34px;border:1.5px solid var(--accent);border-radius:6px;display:grid;place-items:center;flex-shrink:0}
 .logo svg{width:18px;height:18px}
 .brand{font-size:17px;font-weight:700;letter-spacing:2.5px;color:#fff;text-transform:uppercase;white-space:nowrap}
@@ -164,6 +164,7 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
 .rv.in{opacity:1;transform:none}
 
 @media (max-width:900px){
+  .wrap,.hdr{padding-left:20px;padding-right:20px}
   .prod{grid-template-columns:1fr;gap:28px}
   .prod.flip .prod-media{order:0}
   .cards{grid-template-columns:1fr}
