@@ -1,0 +1,153 @@
+# ============================================================================
+# GW AUTOMATION — WEBSITE TEXT
+# ============================================================================
+# Edit the words after each field below and save the file — the website
+# reads this file and updates itself. You do not need to touch index.html.
+#
+# RULES:
+#  - Lines starting with # are notes and are ignored.
+#  - "KEY: some text" sets a single field. Keep the KEY exactly as-is.
+#  - Wrap a word in *asterisks* to make it stand out in an accent colour,
+#    e.g.  Get the data *out* of your plant historian.
+#  - Some sections are lists, marked with [SECTION_NAME] ... [/SECTION_NAME].
+#    Inside those, each line is one row, with parts separated by " :: "
+#    (a space, two colons, a space). Keep that exact separator.
+#  - Don't delete the [SECTION_NAME] / [/SECTION_NAME] lines themselves,
+#    and don't rename any KEY — only edit the text after it.
+#  - After editing, changes go live once you commit content.txt to GitHub.
+#    A hard refresh (Ctrl+Shift+R) may be needed to see it, since browsers
+#    cache aggressively.
+# ============================================================================
+
+
+# ── Header / brand ──────────────────────────────────────────────────────
+BRAND_NAME: GW *Automation*
+
+
+# ── Status strip (small line under the header) ─────────────────────────
+# One row, items separated by " :: "
+[STATUS_STRIP]
+PRODUCTS OPERATIONAL :: OPC UA · OPC DA · WinCC :: WINDOWS SERVICE + TRAY :: OFFLINE LICENSING :: NO CLOUD DEPENDENCY
+[/STATUS_STRIP]
+
+
+# ── Hero (top banner) ───────────────────────────────────────────────────
+HERO_EYEBROW: Industrial data tooling
+HERO_TITLE: Get the data *out* of your plant historian.
+HERO_LEDE: GW Automation builds self-contained Windows software interfaces for industrial control systems. No cloud accounts, no per-tag pricing model, security prioritsed — install an MSI on the PC that hosts your information, and extract history, reports and dashboards out of it, through secure encrypted communication.
+CTA_PRIMARY_TEXT: View products
+CTA_SECONDARY_TEXT: Request a trial
+
+
+# ── Products intro section ──────────────────────────────────────────────
+PRODUCTS_EYEBROW: Product line
+PRODUCTS_TITLE: Two products, one problem.
+PRODUCTS_SUB: Plant data is usually stuck — locked behind a proprietary historian, or behind a twenty-year-old DCOM interface nobody wants to touch. One product gets history out. The other gets legacy servers onto a modern protocol.
+
+
+# ── HistorianLink section ───────────────────────────────────────────────
+HL_BADGE_TEXT: Shipping
+HL_TITLE: Historian*Link*
+HL_TAGLINE: OPC UA history · reports · dashboards · alarms
+HL_BODY: Connects as an OPC UA client to a plant historian — Siemens Process Historian, WinCC, or any compliant UA server — and turns its archive into something you can actually use. Browse the tag tree, pull raw history, resample it, and export to Excel or CSV with real quality codes attached.
+
+# Feature list. Each row is "Bold lead-in :: rest of the sentence"
+[HL_FEATURES]
+History export jobs :: raw reads resampled to any interval, millisecond timestamps, plain-English quality column, UTC or local toggle, metadata header block.
+Scheduled reports :: repeatable report definitions written to .xlsx, last five runs kept per report.
+Live dashboards :: tiles with current value and sparkline, polled only while someone is watching.
+Alarm history :: a satellite agent reads the WinCC message archive over OLE DB, the supported route when UA returns BadNotImplemented for event history.
+Trend analyser :: multi-tag chart with severity colouring, presets and a scrubbing ruler.
+Three access levels :: admin on loopback, engineer over TLS, read-only viewer.
+Device trust :: allow-list connections by IP, or IP + MAC with ARP verification.
+Audit trail :: logins, exports, config changes; no credentials, no stack traces.
+[/HL_FEATURES]
+
+HL_CTA_PRIMARY: Request a trial
+HL_CTA_SECONDARY: Technical specs
+
+
+# ── OpcDaLink section ───────────────────────────────────────────────────
+DA_BADGE_TEXT: Field trial
+DA_TITLE: OpcDa*Link*
+DA_TAGLINE: OPC DA → OPC UA bridge
+DA_BODY: Sits in front of a legacy OPC DA server, connects to it as a DA client over DCOM, and re-publishes the whole address space as a modern OPC UA server. Point UaExpert, a new SCADA package, or HistorianLink at the UA endpoint and leave the old server exactly as it is.
+
+[DA_FEATURES]
+Full address-space mirror :: branches become folders, leaves become variables, item IDs carry through as string NodeIds.
+Faithful type mapping :: canonical VARIANT types to UA variant types, DA quality words to UA status codes, item timestamps as source timestamps.
+Read and write :: access rights map to node writability, with writes passed back through to DA.
+Correct COM threading :: a dedicated message-pumped STA thread, because that is the only way DA data-change callbacks ever arrive.
+Big-server mode :: feed it a tag list file and skip browsing entirely on servers with tens of thousands of items.
+Built-in diagnostics :: connection state and item count exposed as UA nodes, plus a web admin page.
+[/DA_FEATURES]
+
+DA_CTA_PRIMARY: Join the field trial
+DA_CTA_SECONDARY: Technical specs
+
+
+# ── Shared platform section ─────────────────────────────────────────────
+PLATFORM_EYEBROW: Shared platform
+PLATFORM_TITLE: Both products are built the same way.
+PLATFORM_SUB: Same installer, same service model, same licensing, same security posture. Learn one, you know both.
+
+# Each row is "Small label :: Card title :: Card description"
+[PLATFORM_CARDS]
+01 / SERVICE :: Windows service + tray :: Runs headless as a service and survives reboots. A tray icon gives operators start, stop and status without opening the admin UI or needing a login.
+02 / INTERFACE :: Browser-based admin :: No client to roll out. The service hosts its own UI on a local port — the same dark, dense, keyboard-friendly interface shown in the screenshots above.
+03 / SECURITY :: Encrypted config at rest :: Credentials and connection settings are encrypted with Windows DPAPI, tied to the machine. Nothing sensitive sits in plain text on disk.
+04 / NETWORK :: TLS where it matters :: Network-facing endpoints run HTTPS with a minimum of TLS 1.2. Admin stays on loopback, where encrypting the traffic would buy nothing.
+05 / LICENSING :: Fully offline activation :: A key tied to your customer ID, validated on the machine. No activation server, no internet, no phone-home — designed for air-gapped plant networks.
+06 / DEPLOYMENT :: Signed MSI install :: A standard MSI your IT team can review, deploy and uninstall cleanly. Silent install supported for managed rollouts.
+[/PLATFORM_CARDS]
+
+
+# ── Specifications table ────────────────────────────────────────────────
+SPECS_EYEBROW: At a glance
+SPECS_TITLE: Technical specifications
+
+# Each row is "Row label :: HistorianLink value :: OpcDaLink value"
+[SPEC_ROWS]
+Role :: OPC UA client :: OPC DA client + OPC UA server
+Talks to :: Process Historian, WinCC, any compliant UA server :: Any OPC DA 2.0 / 3.0 server
+UA security :: Basic256Sha256, Sign or SignAndEncrypt :: Configurable; opens with security disabled for first run
+Data out :: .xlsx, .csv, live dashboard tiles, scheduled reports :: Live UA address space, read and write
+Alarms :: WinCC message archive via OLE DB satellite agent :: Not supported — DA carries no alarm interface
+User roles :: Admin, engineer, viewer :: Single admin account
+Licence prefix :: HLNK-XXXX-XXXX-XXXX-XXXX :: DALK-XXXX-XXXX-XXXX-XXXX
+Platform :: Windows Server 2016+ / Windows 10+ :: Windows Server 2016+ / Windows 10+
+Footprint :: Self-contained; no database server required :: Self-contained; no database server required
+[/SPEC_ROWS]
+
+
+# ── Contact section ─────────────────────────────────────────────────────
+CONTACT_EYEBROW: Get in touch
+CONTACT_TITLE: Trials, quotes and pilot installs.
+CONTACT_SUB: Both products install in minutes on a spare VM. Tell me what historian or DA server you are running and I will send a time-limited key and a short setup note for your specific stack.
+
+# The email used for both the contact box and the "Email GW Automation" button
+CONTACT_EMAIL: hello@gwautomation.com
+
+# Each row is "Label :: Value"
+[CONTACT_ROWS]
+Trial licence :: 30 days, full feature set, no tag limit
+Pilot install :: Remote session, roughly one hour
+Licensing :: Per machine, perpetual, offline activation
+Support :: Direct to the developer, no ticket queue
+Location :: Australia — remote worldwide
+[/CONTACT_ROWS]
+
+# "What to include" bullet list — one line per bullet
+[CONTACT_INCLUDES]
+Historian or DA server make and version
+Rough tag count
+Whether alarm history is in scope
+Any network or air-gap constraints
+[/CONTACT_INCLUDES]
+
+CONTACT_BUTTON_TEXT: Email GW Automation
+
+
+# ── Footer ───────────────────────────────────────────────────────────────
+FOOTER_RIGHTS: ALL RIGHTS RESERVED
+FOOTER_PRODUCTS: HISTORIANLINK · OPCDALINK
