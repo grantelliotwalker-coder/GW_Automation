@@ -195,7 +195,7 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
         <circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/>
       </svg>
     </div>
-    <span class="brand">GW <em>Automation</em></span>
+    <span class="brand" id="txt-brand">GW <em>Automation</em></span>
     <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">≡</button>
     <nav id="nav">
       <a href="#products">Products</a>
@@ -209,29 +209,18 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
 </header>
 
 <div class="strip">
-  <div class="wrap">
-    <span><span class="dot"></span>PRODUCTS OPERATIONAL</span>
-    <span>OPC UA · OPC DA · WinCC</span>
-    <span>WINDOWS SERVICE + TRAY</span>
-    <span>OFFLINE LICENSING</span>
-    <span>NO CLOUD DEPENDENCY</span>
-  </div>
+  <div class="wrap" id="txt-status-strip"></div>
 </div>
 
 <!-- ═══ HERO ═══ -->
 <div class="hero">
   <div class="wrap">
-    <div class="eyebrow">Industrial data tooling</div>
-    <h1>Get the data <em>out</em> of your plant historian.</h1>
-    <p class="lede">
-      GW Automation builds self-contained Windows software interfaces for industrial control systems.
-      No cloud accounts, no per-tag pricing model, security prioritsed — install an MSI on the PC that
-      hosts your information, and extract history, reports and dashboards out of it, through secure
-      encrypted communication.
-    </p>
+    <div class="eyebrow" id="txt-hero-eyebrow"></div>
+    <h1 id="txt-hero-title"></h1>
+    <p class="lede" id="txt-hero-lede"></p>
     <div class="cta-row">
-      <a href="#products" class="btn btn-a">View products</a>
-      <a href="#contact" class="btn btn-g">Request a trial</a>
+      <a href="#products" class="btn btn-a" id="txt-cta-primary"></a>
+      <a href="#contact" class="btn btn-g" id="txt-cta-secondary"></a>
     </div>
   </div>
 </div>
@@ -239,13 +228,9 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
 <!-- ═══ PRODUCTS ═══ -->
 <section id="products">
   <div class="wrap">
-    <div class="st">Product line</div>
-    <h2>Two products, one problem.</h2>
-    <p class="sub">
-      Plant data is usually stuck — locked behind a proprietary historian, or behind a twenty-year-old
-      DCOM interface nobody wants to touch. One product gets history out. The other gets legacy servers
-      onto a modern protocol.
-    </p>
+    <div class="st" id="txt-products-eyebrow"></div>
+    <h2 id="txt-products-title"></h2>
+    <p class="sub" id="txt-products-sub"></p>
   </div>
 </section>
 
@@ -254,27 +239,14 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
   <div class="wrap">
     <div class="prod">
       <div class="prod-copy rv">
-        <span class="badge live"><span class="dot"></span>Shipping</span>
-        <h3>Historian<em>Link</em></h3>
-        <div class="tagline">OPC UA history · reports · dashboards · alarms</div>
-        <p class="body">
-          Connects as an OPC UA client to a plant historian — Siemens Process Historian, WinCC, or any
-          compliant UA server — and turns its archive into something you can actually use. Browse the tag
-          tree, pull raw history, resample it, and export to Excel or CSV with real quality codes attached.
-        </p>
-        <ul class="feat">
-          <li><b>History export jobs</b> — raw reads resampled to any interval, millisecond timestamps, plain-English quality column, UTC or local toggle, metadata header block.</li>
-          <li><b>Scheduled reports</b> — repeatable report definitions written to .xlsx, last five runs kept per report.</li>
-          <li><b>Live dashboards</b> — tiles with current value and sparkline, polled only while someone is watching.</li>
-          <li><b>Alarm history</b> — a satellite agent reads the WinCC message archive over OLE DB, the supported route when UA returns <span style="font-family:var(--fm);color:var(--accent2)">BadNotImplemented</span> for event history.</li>
-          <li><b>Trend analyser</b> — multi-tag chart with severity colouring, presets and a scrubbing ruler.</li>
-          <li><b>Three access levels</b> — admin on loopback, engineer over TLS, read-only viewer.</li>
-          <li><b>Device trust</b> — allow-list connections by IP, or IP + MAC with ARP verification.</li>
-          <li><b>Audit trail</b> — logins, exports, config changes; no credentials, no stack traces.</li>
-        </ul>
+        <span class="badge live" id="txt-hl-badge"><span class="dot"></span><span id="txt-hl-badge-text"></span></span>
+        <h3 id="txt-hl-title"></h3>
+        <div class="tagline" id="txt-hl-tagline"></div>
+        <p class="body" id="txt-hl-body"></p>
+        <ul class="feat" id="txt-hl-features"></ul>
         <div class="cta-row">
-          <a href="#contact" class="btn btn-a">Request a trial</a>
-          <a href="#specs" class="btn btn-g">Technical specs</a>
+          <a href="#contact" class="btn btn-a" id="txt-hl-cta-primary"></a>
+          <a href="#specs" class="btn btn-g" id="txt-hl-cta-secondary"></a>
         </div>
       </div>
 
@@ -331,25 +303,14 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
   <div class="wrap">
     <div class="prod flip">
       <div class="prod-copy rv">
-        <span class="badge beta"><span class="dot" style="background:var(--warn);box-shadow:0 0 6px var(--warn)"></span>Field trial</span>
-        <h3>OpcDa<em>Link</em></h3>
-        <div class="tagline">OPC DA → OPC UA bridge</div>
-        <p class="body">
-          Sits in front of a legacy OPC DA server, connects to it as a DA client over DCOM, and re-publishes
-          the whole address space as a modern OPC UA server. Point UaExpert, a new SCADA package, or
-          HistorianLink at the UA endpoint and leave the old server exactly as it is.
-        </p>
-        <ul class="feat">
-          <li><b>Full address-space mirror</b> — branches become folders, leaves become variables, item IDs carry through as string NodeIds.</li>
-          <li><b>Faithful type mapping</b> — canonical VARIANT types to UA variant types, DA quality words to UA status codes, item timestamps as source timestamps.</li>
-          <li><b>Read and write</b> — access rights map to node writability, with writes passed back through to DA.</li>
-          <li><b>Correct COM threading</b> — a dedicated message-pumped STA thread, because that is the only way DA data-change callbacks ever arrive.</li>
-          <li><b>Big-server mode</b> — feed it a tag list file and skip browsing entirely on servers with tens of thousands of items.</li>
-          <li><b>Built-in diagnostics</b> — connection state and item count exposed as UA nodes, plus a web admin page.</li>
-        </ul>
+        <span class="badge beta" id="txt-da-badge"><span class="dot" style="background:var(--warn);box-shadow:0 0 6px var(--warn)"></span><span id="txt-da-badge-text"></span></span>
+        <h3 id="txt-da-title"></h3>
+        <div class="tagline" id="txt-da-tagline"></div>
+        <p class="body" id="txt-da-body"></p>
+        <ul class="feat" id="txt-da-features"></ul>
         <div class="cta-row">
-          <a href="#contact" class="btn btn-a">Join the field trial</a>
-          <a href="#specs" class="btn btn-g">Technical specs</a>
+          <a href="#contact" class="btn btn-a" id="txt-da-cta-primary"></a>
+          <a href="#specs" class="btn btn-g" id="txt-da-cta-secondary"></a>
         </div>
       </div>
 
@@ -406,104 +367,25 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
 <!-- ═══ PLATFORM ═══ -->
 <section id="platform">
   <div class="wrap">
-    <div class="st">Shared platform</div>
-    <h2>Both products are built the same way.</h2>
-    <p class="sub">
-      Same installer, same service model, same licensing, same security posture. Learn one, you know both.
-    </p>
+    <div class="st" id="txt-platform-eyebrow"></div>
+    <h2 id="txt-platform-title"></h2>
+    <p class="sub" id="txt-platform-sub"></p>
 
-    <div class="cards">
-      <div class="card rv">
-        <div class="num">01 / SERVICE</div>
-        <h4>Windows service + tray</h4>
-        <p>Runs headless as a service and survives reboots. A tray icon gives operators start, stop and status without opening the admin UI or needing a login.</p>
-      </div>
-      <div class="card rv">
-        <div class="num">02 / INTERFACE</div>
-        <h4>Browser-based admin</h4>
-        <p>No client to roll out. The service hosts its own UI on a local port — the same dark, dense, keyboard-friendly interface shown in the screenshots above.</p>
-      </div>
-      <div class="card rv">
-        <div class="num">03 / SECURITY</div>
-        <h4>Encrypted config at rest</h4>
-        <p>Credentials and connection settings are encrypted with Windows DPAPI, tied to the machine. Nothing sensitive sits in plain text on disk.</p>
-      </div>
-      <div class="card rv">
-        <div class="num">04 / NETWORK</div>
-        <h4>TLS where it matters</h4>
-        <p>Network-facing endpoints run HTTPS with a minimum of TLS 1.2. Admin stays on loopback, where encrypting the traffic would buy nothing.</p>
-      </div>
-      <div class="card rv">
-        <div class="num">05 / LICENSING</div>
-        <h4>Fully offline activation</h4>
-        <p>A key tied to your customer ID, validated on the machine. No activation server, no internet, no phone-home — designed for air-gapped plant networks.</p>
-      </div>
-      <div class="card rv">
-        <div class="num">06 / DEPLOYMENT</div>
-        <h4>Signed MSI install</h4>
-        <p>A standard MSI your IT team can review, deploy and uninstall cleanly. Silent install supported for managed rollouts.</p>
-      </div>
-    </div>
+    <div class="cards" id="txt-platform-cards"></div>
   </div>
 </section>
 
 <!-- ═══ SPECS ═══ -->
 <section id="specs">
   <div class="wrap">
-    <div class="st">At a glance</div>
-    <h2>Technical specifications</h2>
+    <div class="st" id="txt-specs-eyebrow"></div>
+    <h2 id="txt-specs-title"></h2>
 
     <table class="spec">
       <thead>
         <tr><th>&nbsp;</th><th>HistorianLink</th><th>OpcDaLink</th></tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Role</td>
-          <td>OPC UA client</td>
-          <td>OPC DA client + OPC UA server</td>
-        </tr>
-        <tr>
-          <td>Talks to</td>
-          <td>Process Historian, WinCC, any compliant UA server</td>
-          <td>Any OPC DA 2.0 / 3.0 server</td>
-        </tr>
-        <tr>
-          <td>UA security</td>
-          <td>Basic256Sha256, Sign or SignAndEncrypt</td>
-          <td>Configurable; opens with security disabled for first run</td>
-        </tr>
-        <tr>
-          <td>Data out</td>
-          <td>.xlsx, .csv, live dashboard tiles, scheduled reports</td>
-          <td>Live UA address space, read and write</td>
-        </tr>
-        <tr>
-          <td>Alarms</td>
-          <td>WinCC message archive via OLE DB satellite agent</td>
-          <td>Not supported — DA carries no alarm interface</td>
-        </tr>
-        <tr>
-          <td>User roles</td>
-          <td>Admin, engineer, viewer</td>
-          <td>Single admin account</td>
-        </tr>
-        <tr>
-          <td>Licence prefix</td>
-          <td><span class="mono">HLNK-XXXX-XXXX-XXXX-XXXX</span></td>
-          <td><span class="mono">DALK-XXXX-XXXX-XXXX-XXXX</span></td>
-        </tr>
-        <tr>
-          <td>Platform</td>
-          <td>Windows Server 2016+ / Windows 10+</td>
-          <td>Windows Server 2016+ / Windows 10+</td>
-        </tr>
-        <tr>
-          <td>Footprint</td>
-          <td>Self-contained; no database server required</td>
-          <td>Self-contained; no database server required</td>
-        </tr>
-      </tbody>
+      <tbody id="txt-spec-rows"></tbody>
     </table>
   </div>
 </section>
@@ -511,32 +393,17 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
 <!-- ═══ CONTACT ═══ -->
 <section id="contact">
   <div class="wrap">
-    <div class="st">Get in touch</div>
-    <h2>Trials, quotes and pilot installs.</h2>
-    <p class="sub">
-      Both products install in minutes on a spare VM. Tell me what historian or DA server you are running
-      and I will send a time-limited key and a short setup note for your specific stack.
-    </p>
+    <div class="st" id="txt-contact-eyebrow"></div>
+    <h2 id="txt-contact-title"></h2>
+    <p class="sub" id="txt-contact-sub"></p>
 
     <div class="contact-grid">
-      <div class="cbox rv">
-        <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:hello@gwautomation.com">hello@gwautomation.com</a></span></div>
-        <div class="row"><span class="k">Trial licence</span><span class="v">30 days, full feature set, no tag limit</span></div>
-        <div class="row"><span class="k">Pilot install</span><span class="v">Remote session, roughly one hour</span></div>
-        <div class="row"><span class="k">Licensing</span><span class="v">Per machine, perpetual, offline activation</span></div>
-        <div class="row"><span class="k">Support</span><span class="v">Direct to the developer, no ticket queue</span></div>
-        <div class="row"><span class="k">Location</span><span class="v">Australia — remote worldwide</span></div>
-      </div>
+      <div class="cbox rv" id="txt-contact-rows"></div>
 
       <div class="cbox rv">
         <div class="k" style="margin-bottom:14px">What to include</div>
-        <ul class="feat" style="margin-top:0">
-          <li>Historian or DA server make and version</li>
-          <li>Rough tag count</li>
-          <li>Whether alarm history is in scope</li>
-          <li>Any network or air-gap constraints</li>
-        </ul>
-        <a href="mailto:hello@gwautomation.com?subject=GW%20Automation%20trial%20request" class="btn btn-a" style="margin-top:22px">Email GW Automation</a>
+        <ul class="feat" style="margin-top:0" id="txt-contact-includes"></ul>
+        <a href="#" id="txt-contact-button" class="btn btn-a" style="margin-top:22px"></a>
       </div>
     </div>
   </div>
@@ -544,8 +411,8 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
 
 <footer>
   <div class="wrap">
-    <span>© <span id="yr">2026</span> GW AUTOMATION · ALL RIGHTS RESERVED</span>
-    <span>HISTORIANLINK · OPCDALINK</span>
+    <span>© <span id="yr">2026</span> <span id="txt-footer-rights"></span></span>
+    <span id="txt-footer-products"></span>
     <span><a href="#products">PRODUCTS</a> · <a href="#contact">CONTACT</a></span>
   </div>
 </footer>
@@ -557,6 +424,191 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
 </div>
 
 <script>
+
+/* ── content.txt loader ──────────────────────────────────────────────
+   Reads content.txt (same folder as this page), parses it, and fills
+   in every element with a txt-* id. See content.txt for the format. */
+
+function escapeHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function withAccent(s){
+  // "Get the data *out* of it" -> Get the data <em>out</em> of it
+  return escapeHtml(s).replace(/\*(.+?)\*/g, '<em>$1</em>');
+}
+
+function parseContentTxt(raw){
+  const fields = {};   // KEY -> string
+  const blocks = {};   // BLOCK_NAME -> array of arrays (split by " :: ")
+  const lines = raw.split(/\r?\n/);
+  let i = 0;
+  while (i < lines.length) {
+    let line = lines[i];
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) { i++; continue; }
+
+    const blockOpen = trimmed.match(/^\[([A-Z0-9_]+)\]$/);
+    if (blockOpen) {
+      const name = blockOpen[1];
+      const rows = [];
+      i++;
+      while (i < lines.length && lines[i].trim() !== '[/' + name + ']') {
+        const rowLine = lines[i];
+        if (rowLine.trim() && !rowLine.trim().startsWith('#')) {
+          rows.push(rowLine.split(' :: ').map(s => s.trim()));
+        }
+        i++;
+      }
+      blocks[name] = rows;
+      i++; // skip the [/NAME] line
+      continue;
+    }
+
+    const kv = line.match(/^([A-Z0-9_]+):\s?(.*)$/);
+    if (kv) {
+      fields[kv[1]] = kv[2];
+    }
+    i++;
+  }
+  return { fields, blocks };
+}
+
+function setText(id, value, opts){
+  const el = document.getElementById(id);
+  if (!el || value === undefined) return;
+  opts = opts || {};
+  if (opts.accent) el.innerHTML = withAccent(value);
+  else el.textContent = value;
+}
+
+function renderContent(data){
+  const f = data.fields, b = data.blocks;
+
+  setText('txt-brand', f.BRAND_NAME, {accent:true});
+
+  // status strip
+  if (b.STATUS_STRIP && b.STATUS_STRIP[0]) {
+    const items = b.STATUS_STRIP[0];
+    const el = document.getElementById('txt-status-strip');
+    if (el) el.innerHTML = items.map((it, idx) =>
+      idx === 0 ? '<span><span class="dot"></span>' + escapeHtml(it) + '</span>'
+                 : '<span>' + escapeHtml(it) + '</span>'
+    ).join('');
+  }
+
+  setText('txt-hero-eyebrow', f.HERO_EYEBROW);
+  setText('txt-hero-title', f.HERO_TITLE, {accent:true});
+  setText('txt-hero-lede', f.HERO_LEDE);
+  setText('txt-cta-primary', f.CTA_PRIMARY_TEXT);
+  setText('txt-cta-secondary', f.CTA_SECONDARY_TEXT);
+
+  setText('txt-products-eyebrow', f.PRODUCTS_EYEBROW);
+  setText('txt-products-title', f.PRODUCTS_TITLE);
+  setText('txt-products-sub', f.PRODUCTS_SUB);
+
+  setText('txt-hl-badge-text', f.HL_BADGE_TEXT);
+  setText('txt-hl-title', f.HL_TITLE, {accent:true});
+  setText('txt-hl-tagline', f.HL_TAGLINE);
+  setText('txt-hl-body', f.HL_BODY);
+  setText('txt-hl-cta-primary', f.HL_CTA_PRIMARY);
+  setText('txt-hl-cta-secondary', f.HL_CTA_SECONDARY);
+  const hlFeat = document.getElementById('txt-hl-features');
+  if (hlFeat && b.HL_FEATURES) {
+    hlFeat.innerHTML = b.HL_FEATURES.map(row =>
+      '<li><b>' + escapeHtml(row[0] || '') + '</b> — ' + escapeHtml(row[1] || '') + '</li>'
+    ).join('');
+  }
+
+  setText('txt-da-badge-text', f.DA_BADGE_TEXT);
+  setText('txt-da-title', f.DA_TITLE, {accent:true});
+  setText('txt-da-tagline', f.DA_TAGLINE);
+  setText('txt-da-body', f.DA_BODY);
+  setText('txt-da-cta-primary', f.DA_CTA_PRIMARY);
+  setText('txt-da-cta-secondary', f.DA_CTA_SECONDARY);
+  const daFeat = document.getElementById('txt-da-features');
+  if (daFeat && b.DA_FEATURES) {
+    daFeat.innerHTML = b.DA_FEATURES.map(row =>
+      '<li><b>' + escapeHtml(row[0] || '') + '</b> — ' + escapeHtml(row[1] || '') + '</li>'
+    ).join('');
+  }
+
+  setText('txt-platform-eyebrow', f.PLATFORM_EYEBROW);
+  setText('txt-platform-title', f.PLATFORM_TITLE);
+  setText('txt-platform-sub', f.PLATFORM_SUB);
+  const cardsEl = document.getElementById('txt-platform-cards');
+  if (cardsEl && b.PLATFORM_CARDS) {
+    cardsEl.innerHTML = b.PLATFORM_CARDS.map(row =>
+      '<div class="card rv">' +
+        '<div class="num">' + escapeHtml(row[0] || '') + '</div>' +
+        '<h4>' + escapeHtml(row[1] || '') + '</h4>' +
+        '<p>' + escapeHtml(row[2] || '') + '</p>' +
+      '</div>'
+    ).join('');
+    cardsEl.querySelectorAll('.rv').forEach(el => observeReveal(el));
+  }
+
+  setText('txt-specs-eyebrow', f.SPECS_EYEBROW);
+  setText('txt-specs-title', f.SPECS_TITLE);
+  const specEl = document.getElementById('txt-spec-rows');
+  if (specEl && b.SPEC_ROWS) {
+    specEl.innerHTML = b.SPEC_ROWS.map(row =>
+      '<tr><td>' + escapeHtml(row[0] || '') + '</td>' +
+      '<td>' + escapeHtml(row[1] || '') + '</td>' +
+      '<td>' + escapeHtml(row[2] || '') + '</td></tr>'
+    ).join('');
+  }
+
+  setText('txt-contact-eyebrow', f.CONTACT_EYEBROW);
+  setText('txt-contact-title', f.CONTACT_TITLE);
+  setText('txt-contact-sub', f.CONTACT_SUB);
+  const email = f.CONTACT_EMAIL || 'hello@gwautomation.com';
+  const rowsEl = document.getElementById('txt-contact-rows');
+  if (rowsEl) {
+    let rowsHtml = '<div class="row"><span class="k">Email</span><span class="v"><a href="mailto:' +
+      escapeHtml(email) + '">' + escapeHtml(email) + '</a></span></div>';
+    if (b.CONTACT_ROWS) {
+      rowsHtml += b.CONTACT_ROWS.map(row =>
+        '<div class="row"><span class="k">' + escapeHtml(row[0] || '') + '</span>' +
+        '<span class="v">' + escapeHtml(row[1] || '') + '</span></div>'
+      ).join('');
+    }
+    rowsEl.innerHTML = rowsHtml;
+  }
+  const inclEl = document.getElementById('txt-contact-includes');
+  if (inclEl && b.CONTACT_INCLUDES) {
+    inclEl.innerHTML = b.CONTACT_INCLUDES.map(row =>
+      '<li>' + escapeHtml(row[0] || '') + '</li>'
+    ).join('');
+  }
+  const btn = document.getElementById('txt-contact-button');
+  if (btn) {
+    btn.textContent = f.CONTACT_BUTTON_TEXT || 'Email GW Automation';
+    btn.href = 'mailto:' + email + '?subject=GW%20Automation%20trial%20request';
+  }
+
+  setText('txt-footer-rights', f.FOOTER_RIGHTS);
+  setText('txt-footer-products', f.FOOTER_PRODUCTS);
+}
+
+let _io;
+function observeReveal(el){
+  if (!_io) return;
+  _io.observe(el);
+}
+
+fetch('content.txt', {cache: 'no-store'})
+  .then(r => {
+    if (!r.ok) throw new Error('content.txt not found (' + r.status + ')');
+    return r.text();
+  })
+  .then(raw => renderContent(parseContentTxt(raw)))
+  .catch(err => {
+    console.error('Could not load content.txt:', err);
+    document.querySelectorAll('[id^="txt-"]').forEach(el => {
+      if (!el.textContent && !el.innerHTML) el.textContent = '';
+    });
+  });
+
 document.getElementById('yr').textContent = new Date().getFullYear();
 
 var btn = document.getElementById('menuBtn'), nav = document.getElementById('nav');
@@ -589,10 +641,10 @@ document.getElementById('lbClose').addEventListener('click', closeLightbox);
 document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLightbox(); });
 
 if ('IntersectionObserver' in window) {
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  _io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); _io.unobserve(en.target); } });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  document.querySelectorAll('.rv').forEach(function(el){ _io.observe(el); });
 } else {
   document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
 }
