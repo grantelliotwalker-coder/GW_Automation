@@ -6,214 +6,30 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GW Automation — Industrial data tools for OPC systems</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-G50p3OQJdzmNSHgmrckkRv9E5DVGNkEspwW0gLrWXBE='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#080c10">
+<title>GW Automation — Data extraction tools for OPC systems</title>
 <meta name="description" content="GW Automation builds Windows-native OPC tooling: HistorianLink for OPC UA history extraction, reporting and dashboards, and OpcDaLink for bridging legacy OPC DA servers to OPC UA.">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" href="assets/favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <link rel="canonical" href="https://opctools.gwstudio.com.au/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GW Automation">
 <meta property="og:url" content="https://opctools.gwstudio.com.au/">
-<meta property="og:title" content="GW Automation — Industrial data tools for OPC systems">
+<meta property="og:title" content="GW Automation — Data extraction tools for OPC systems">
 <meta property="og:description" content="HistorianLink gets history, reports and alarms out of your OPC UA historian. OpcDaLink puts legacy OPC DA servers onto OPC UA. Windows-native, offline licensing, no cloud.">
-<meta property="og:image" content="https://opctools.gwstudio.com.au/assets/hl-analyser.png">
+<meta property="og:image" content="https://opctools.gwstudio.com.au/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="GW Automation - Data extraction tools for OPC systems: HistorianLink and OpcDaLink">
+<meta name="twitter:image" content="https://opctools.gwstudio.com.au/assets/og-card.png">
 <meta name="twitter:card" content="summary_large_image">
 <script>document.documentElement.className+=' js'</script>
-<style>
-:root{
-  --bg:#080c10;--panel:#0d1318;--panel2:#0a1015;--border:#1a2a35;
-  --accent:#00c8ff;--accent2:#00ff9d;--warn:#ffd700;--danger:#ff3b5c;
-  --text:#c8dde8;--muted:#4a6272;
-  --ff:'Segoe UI',Arial,sans-serif;--fm:Consolas,'Courier New',monospace;
-  --max:none;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--ff);font-size:15px;line-height:1.6;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden}
-
-/* scanlines + grid, straight from the product UI */
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.04) 2px,rgba(0,0,0,.04) 4px)}
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:linear-gradient(rgba(0,200,255,.025) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(0,200,255,.025) 1px,transparent 1px);background-size:40px 40px}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 48px;position:relative;z-index:1}
-
-/* ── Header ── */
-header{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border);height:56px;
-  background:linear-gradient(90deg,rgba(0,200,255,.07),rgba(8,12,16,.92));backdrop-filter:blur(10px)}
-.hdr{max-width:var(--max);margin:0 auto;padding:0 48px;height:100%;display:flex;align-items:center;gap:14px}
-.logo{width:34px;height:34px;border:1.5px solid var(--accent);border-radius:6px;display:grid;place-items:center;flex-shrink:0}
-.logo svg{width:18px;height:18px}
-.brand{font-size:17px;font-weight:700;letter-spacing:2.5px;color:#fff;text-transform:uppercase;white-space:nowrap}
-.brand em{color:var(--accent);font-style:normal}
-nav{margin-left:auto;display:flex;align-items:center;gap:4px}
-nav a{color:var(--muted);text-decoration:none;font-size:11px;font-weight:700;letter-spacing:1.5px;
-  text-transform:uppercase;padding:8px 12px;border-bottom:2px solid transparent;transition:.15s}
-nav a:hover{color:var(--accent);border-bottom-color:var(--accent)}
-.menu-btn{display:none;margin-left:auto;background:transparent;border:1px solid var(--border);color:var(--accent);
-  border-radius:4px;padding:6px 11px;font-family:var(--fm);font-size:15px;cursor:pointer}
-
-/* ── Status strip ── */
-.strip{border-bottom:1px solid var(--border);background:rgba(0,0,0,.25);font-family:var(--fm);font-size:10.5px;
-  letter-spacing:1px;color:var(--muted);position:relative;z-index:1}
-.strip .wrap{display:flex;gap:22px;padding-top:7px;padding-bottom:7px;flex-wrap:wrap;align-items:center}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 6px var(--accent2);
-  animation:pulse 2s infinite;display:inline-block;margin-right:6px}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-
-/* ── Hero ── */
-.hero{padding:80px 0 60px;border-bottom:1px solid var(--border);position:relative}
-.eyebrow{font-family:var(--fm);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);
-  margin-bottom:18px;display:flex;align-items:center;gap:9px}
-.eyebrow::before{content:'';width:3px;height:13px;background:var(--accent);border-radius:2px}
-h1{font-size:clamp(30px,5.2vw,52px);line-height:1.12;font-weight:700;color:#fff;letter-spacing:-.5px;max-width:16ch}
-h1 em{color:var(--accent);font-style:normal}
-.lede{margin-top:22px;max-width:62ch;font-size:16.5px;color:var(--text);opacity:.9}
-.cta-row{margin-top:32px;display:flex;gap:10px;flex-wrap:wrap}
-.btn{font-family:var(--ff);font-weight:700;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;
-  border:none;cursor:pointer;border-radius:4px;padding:11px 20px;text-decoration:none;display:inline-block;transition:.2s}
-.btn-a{background:var(--accent);color:#000}.btn-a:hover{background:#33d4ff}
-.btn-g{background:transparent;color:var(--accent);border:1px solid var(--border)}
-.btn-g:hover{border-color:var(--accent);background:rgba(0,200,255,.06)}
-
-/* hero / intro two-column */
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-.hero-media .shot{aspect-ratio:16/10;box-shadow:0 24px 60px rgba(0,0,0,.55)}
-.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
-.pcards{display:grid;gap:12px}
-.pcard{display:block;text-decoration:none;background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:18px 20px;transition:border-color .18s}
-.pcard:hover{border-color:var(--accent)}
-.pcard .pn{font-size:18px;font-weight:700;color:#fff}.pcard .pn em{color:var(--accent);font-style:normal}
-.pcard .pd{font-size:13.5px;color:var(--text);opacity:.8;margin-top:4px}
-.pcard .pt{font-family:var(--fm);font-size:10px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-top:10px}
-/* trial steps */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:38px;counter-reset:st}
-.step{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:22px}
-.step .num{font-family:var(--fm);font-size:28px;color:var(--accent);line-height:1;margin-bottom:14px}
-.step h4{font-size:15px;color:#fff;font-weight:700;margin-bottom:8px}
-.step p{font-size:13.5px;opacity:.8;line-height:1.65}
-.about p+p{margin-top:12px}
-
-/* ── Sections ── */
-section{padding:72px 0;border-bottom:1px solid var(--border);position:relative;z-index:1}
-.st{font-size:10.5px;font-weight:700;letter-spacing:2.5px;color:var(--accent);text-transform:uppercase;
-  margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.st::before{content:'';width:3px;height:12px;background:var(--accent);border-radius:2px}
-h2{font-size:clamp(23px,3.4vw,33px);color:#fff;font-weight:700;letter-spacing:-.3px;line-height:1.2}
-.sub{margin-top:14px;max-width:65ch;color:var(--text);opacity:.85}
-
-/* ── Product ── */
-.prod{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;margin-top:40px}
-.prod.flip .prod-media{order:-1}
-.badge{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:10px;letter-spacing:1.5px;
-  text-transform:uppercase;border:1px solid var(--border);border-radius:3px;padding:3px 9px;color:var(--muted);margin-bottom:14px}
-.badge.live{color:var(--accent2);border-color:rgba(0,255,157,.3);background:rgba(0,255,157,.05)}
-.badge.beta{color:var(--warn);border-color:rgba(255,215,0,.3);background:rgba(255,215,0,.05)}
-h3{font-size:26px;color:#fff;font-weight:700;letter-spacing:.5px}
-h3 em{color:var(--accent);font-style:normal}
-.tagline{font-family:var(--fm);font-size:12px;color:var(--muted);letter-spacing:1px;margin-top:6px;text-transform:uppercase}
-.prod p.body{margin-top:16px;opacity:.9}
-ul.feat{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:9px}
-ul.feat li{font-size:14px;padding-left:22px;position:relative;color:var(--text);opacity:.9}
-ul.feat li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:12px}
-ul.feat li b{color:#fff;font-weight:600}
-
-/* screenshot placeholders */
-.shot{position:relative;background:var(--panel2);border:1px solid var(--border);border-radius:6px;overflow:hidden;
-  aspect-ratio:16/10;transition:border-color .2s;cursor:zoom-in}
-.shot:hover{border-color:var(--accent)}
-.shot img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block;position:relative;z-index:2}
-
-/* ── Lightbox ── */
-#lightbox{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;
-  background:rgba(4,8,10,.92);backdrop-filter:blur(3px);cursor:zoom-out;padding:5vh 4vw}
-#lightbox.open{display:flex}
-#lightbox img{max-width:100%;max-height:100%;border:1px solid var(--border);border-radius:6px;
-  box-shadow:0 20px 70px rgba(0,0,0,.7);cursor:zoom-out;
-  animation:lbIn .18s ease}
-#lightbox .lb-cap{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-family:var(--fm);
-  font-size:11px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;pointer-events:none}
-#lightbox .lb-close{position:absolute;top:18px;right:24px;font-family:var(--fm);font-size:13px;color:var(--muted);
-  border:1px solid var(--border);border-radius:4px;padding:5px 10px;cursor:pointer;background:rgba(13,19,24,.8)}
-#lightbox .lb-close:hover{color:var(--accent);border-color:var(--accent)}
-@keyframes lbIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
-@media (prefers-reduced-motion:reduce){#lightbox img{animation:none}}
-.shot .ph{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:10px;text-align:center;padding:20px;
-  background-image:linear-gradient(rgba(0,200,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,.04) 1px,transparent 1px);
-  background-size:22px 22px}
-.ph .ico{font-family:var(--fm);font-size:24px;color:var(--border)}
-.ph .lbl{font-family:var(--fm);font-size:10.5px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
-.ph .path{font-family:var(--fm);font-size:10px;color:var(--accent);opacity:.6;word-break:break-all}
-.shot-cap{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:1px;
-  text-transform:uppercase;margin-top:8px;text-align:center}
-.shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
-
-/* ── Capability cards ── */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:38px}
-.card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:22px;transition:border-color .18s}
-.card:hover{border-color:var(--accent)}
-.card .num{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:2px;margin-bottom:12px}
-.card h4{font-size:15px;color:#fff;font-weight:700;letter-spacing:.5px;margin-bottom:8px}
-.card p{font-size:13.5px;color:var(--text);opacity:.8;line-height:1.65}
-
-/* ── Architecture ── */
-.arch{margin-top:34px;background:#040810;border:1px solid var(--border);border-radius:6px;padding:24px;overflow-x:auto}
-.arch pre{font-family:var(--fm);font-size:12px;line-height:1.55;color:var(--muted);white-space:pre}
-.arch pre b{color:var(--accent);font-weight:400}
-.arch pre i{color:var(--accent2);font-style:normal}
-
-/* ── Spec table ── */
-.spec{margin-top:34px;width:100%;border-collapse:collapse;font-size:13.5px}
-.spec th{text-align:left;padding:9px 12px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--accent);border-bottom:1px solid var(--border);font-weight:700;background:rgba(0,0,0,.2)}
-.spec td{padding:10px 12px;border-bottom:1px solid rgba(26,42,53,.55);vertical-align:top}
-.spec tr:hover td{background:rgba(0,200,255,.03)}
-.spec td:first-child{color:#fff;font-weight:600;width:30%}
-.spec td .mono{font-family:var(--fm);font-size:12px;color:var(--accent2)}
-
-/* ── Contact ── */
-.contact-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;margin-top:36px;align-items:start}
-.cbox{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:26px}
-.cbox .row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid rgba(26,42,53,.55);
-  font-size:13.5px;flex-wrap:wrap}
-.cbox .row:last-child{border-bottom:none}
-.cbox .k{font-family:var(--fm);font-size:10.5px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
-.cbox .v{color:var(--text)}
-.cbox a:not(.btn){color:var(--accent);text-decoration:none}
-.cbox a:not(.btn):hover{text-decoration:underline}
-
-/* ── Footer ── */
-footer{padding:36px 0;font-family:var(--fm);font-size:11px;color:var(--muted);letter-spacing:1px;position:relative;z-index:1}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
-footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--accent)}
-
-/* reveal */
-.js .rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
-.js .rv.in{opacity:1;transform:none}
-
-@media (max-width:900px){
-  .wrap,.hdr{padding-left:20px;padding-right:20px}
-  .prod{grid-template-columns:1fr;gap:28px}
-  .prod.flip .prod-media{order:0}
-  .cards{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr}
-  .hero-grid,.intro-grid{grid-template-columns:1fr;gap:32px}
-  .steps{grid-template-columns:1fr}
-  nav{display:none}
-  nav.open{display:flex;position:absolute;top:56px;left:0;right:0;flex-direction:column;align-items:stretch;
-    background:var(--panel);border-bottom:1px solid var(--border);padding:6px 12px;gap:0}
-  nav.open a{padding:11px 8px;border-bottom:1px solid rgba(26,42,53,.5)}
-  .menu-btn{display:block}
-  section{padding:52px 0}
-  .hero{padding:56px 0 44px}
-}
-@media (max-width:520px){.shot-grid{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-</style>
+<link rel="stylesheet" href="assets/site.css?v=4">
 </head>
 <body>
 
@@ -234,6 +50,7 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
       <a href="#platform">Platform</a>
       <a href="#specs">Specs</a>
       <a href="#trial">Trial</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -245,9 +62,10 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
 
 <!-- ═══ HERO ═══ -->
 <div class="hero">
+  <canvas id="heroLines" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow" id="txt-hero-eyebrow">Industrial data tooling</div>
+      <div class="eyebrow" id="txt-hero-eyebrow">Data extraction tools for OPC systems</div>
       <h1 id="txt-hero-title">Get the data <em>out</em> of your plant historian.</h1>
       <p class="lede" id="txt-hero-lede">GW Automation builds self-contained Windows software interfaces for industrial control systems. No cloud accounts, no per-tag pricing model, security prioritised — install an MSI on the PC that hosts your information, and extract history, reports and dashboards out of it, through secure encrypted communication.</p>
       <div class="cta-row">
@@ -257,9 +75,9 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
     </div>
     <div class="hero-media">
       <div class="shot">
-        <img src="assets/hl-alarm-analyser.png?v=1" alt="HistorianLink alarm analyser showing alarm counts by source over the last 24 hours" fetchpriority="high">
+        <img src="assets/hl-analyser.png?v=1" alt="HistorianLink data analyser plotting several historian tags over seven days" fetchpriority="high">
       </div>
-      <div class="shot-cap">HistorianLink — alarm analyser</div>
+      <div class="shot-cap">HistorianLink — data analyser</div>
     </div>
   </div>
 </div>
@@ -306,49 +124,19 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
         </div>
       </div>
 
-      <div class="prod-media rv">
-        <!-- SCREENSHOT: main analyser / trend view -->
-        <div class="shot">
-          <div class="ph">
-            <div class="ico">▤</div>
-            <div class="lbl">Screenshot</div>
-            <div class="path">assets/hl-analyser.png</div>
-          </div>
-          <img src="assets/hl-analyser.png?v=1" alt="HistorianLink trend analyser showing multiple tags over a seven day window"
-               loading="lazy" onerror="this.style.display='none'">
+      <div class="prod-media rv viewer" data-viewer>
+        <div class="vtabs" role="tablist" aria-label="HistorianLink screens">
+          <button role="tab" type="button" aria-selected="true" tabindex="0" data-src="assets/hl-dashboard.png?v=1" data-alt="HistorianLink live dashboard tiles">Live dashboard</button>
+          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="assets/hl-analyser.png?v=1" data-alt="HistorianLink data analyser showing multiple tags over a seven day window">Data analyser</button>
+          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="assets/hl-alarm-analyser.png?v=1" data-alt="HistorianLink alarm analyser showing alarm counts by source">Alarm analyser</button>
+          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="assets/hl-export.png?v=1" data-alt="HistorianLink export job queue with progress bars">Export jobs</button>
+          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="assets/hl-alarms.png?v=1" data-alt="HistorianLink alarm history table with severity colouring">Alarm history</button>
+          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="assets/hl-reports.png?v=1" data-alt="HistorianLink scheduled reports configuration">Reports</button>
         </div>
-        <div class="shot-cap">Trend analyser</div>
-
-        <div class="shot-grid">
-          <div>
-            <div class="shot">
-              <div class="ph"><div class="ico">▦</div><div class="lbl">Screenshot</div><div class="path">assets/hl-dashboard.png</div></div>
-              <img src="assets/hl-dashboard.png?v=1" alt="HistorianLink live dashboard tiles" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="shot-cap">Live dashboard</div>
-          </div>
-          <div>
-            <div class="shot">
-              <div class="ph"><div class="ico">▤</div><div class="lbl">Screenshot</div><div class="path">assets/hl-export.png</div></div>
-              <img src="assets/hl-export.png?v=1" alt="HistorianLink export job queue with progress bars" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="shot-cap">Export job queue</div>
-          </div>
-          <div>
-            <div class="shot">
-              <div class="ph"><div class="ico">◫</div><div class="lbl">Screenshot</div><div class="path">assets/hl-alarms.png</div></div>
-              <img src="assets/hl-alarms.png?v=1" alt="HistorianLink alarm history table with severity colouring" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="shot-cap">Alarm history</div>
-          </div>
-          <div>
-            <div class="shot">
-              <div class="ph"><div class="ico">▥</div><div class="lbl">Screenshot</div><div class="path">assets/hl-reports.png</div></div>
-              <img src="assets/hl-reports.png?v=1" alt="HistorianLink scheduled reports configuration" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="shot-cap">Scheduled reports</div>
-          </div>
+        <div class="shot" role="tabpanel">
+          <img src="assets/hl-dashboard.png?v=1" alt="HistorianLink live dashboard tiles" loading="lazy">
         </div>
+        <div class="vhint">Click to enlarge</div>
       </div>
     </div>
   </div>
@@ -377,37 +165,17 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
         </div>
       </div>
 
-      <div class="prod-media rv">
-        <div class="shot">
-          <div class="ph"><div class="ico">▤</div><div class="lbl">Screenshot</div><div class="path">assets/da-dashboard.png</div></div>
-          <img src="assets/da-dashboard.png?v=1" alt="OpcDaLink dashboard showing DA connection status, UA endpoint and mirrored item count"
-               loading="lazy" onerror="this.style.display='none'">
+      <div class="prod-media rv viewer" data-viewer>
+        <div class="vtabs" role="tablist" aria-label="OpcDaLink screens">
+          <button role="tab" type="button" aria-selected="true" tabindex="0" data-src="assets/da-dashboard.png?v=1" data-alt="OpcDaLink dashboard showing DA connection status, UA endpoint and mirrored item count">Dashboard</button>
+          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="assets/da-tags.png?v=1" data-alt="OpcDaLink tags page listing the mirrored DA address space with live values and quality">Tags</button>
+          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="assets/da-settings.png?v=1" data-alt="OpcDaLink settings page with DA connection, UA security and certificate configuration">Settings</button>
+          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="assets/da-logs.png?v=1" data-alt="OpcDaLink activity log showing sessions, writes and quality events">Activity log</button>
         </div>
-        <div class="shot-cap">Dashboard</div>
-
-        <div class="shot-grid">
-          <div>
-            <div class="shot">
-              <div class="ph"><div class="ico">◫</div><div class="lbl">Screenshot</div><div class="path">assets/da-settings.png</div></div>
-              <img src="assets/da-settings.png?v=1" alt="OpcDaLink settings page with DA connection, UA security and certificate configuration" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="shot-cap">Settings</div>
-          </div>
-          <div>
-            <div class="shot">
-              <div class="ph"><div class="ico">▦</div><div class="lbl">Screenshot</div><div class="path">assets/da-tags.png</div></div>
-              <img src="assets/da-tags.png?v=1" alt="OpcDaLink tags page listing the mirrored DA address space with live values and quality" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="shot-cap">Tags</div>
-          </div>
-          <div>
-            <div class="shot">
-              <div class="ph"><div class="ico">▥</div><div class="lbl">Screenshot</div><div class="path">assets/da-logs.png</div></div>
-              <img src="assets/da-logs.png?v=1" alt="OpcDaLink activity log showing sessions, writes and quality events" loading="lazy" onerror="this.style.display='none'">
-            </div>
-            <div class="shot-cap">Activity log</div>
-          </div>
+        <div class="shot" role="tabpanel">
+          <img src="assets/da-dashboard.png?v=1" alt="OpcDaLink dashboard showing DA connection status, UA endpoint and mirrored item count" loading="lazy">
         </div>
+        <div class="vhint">Click to enlarge</div>
       </div>
     </div>
 
@@ -475,10 +243,10 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
   <div class="wrap">
     <div class="st">Trial</div>
     <h2>How a trial works.</h2>
-    <p class="sub">Thirty days, full feature set, no tag limit. Most trials are running the same day.</p>
+    <p class="sub">Free for 90 days, full feature set, no tag limit. Most trials are running the same day.</p>
     <div class="steps">
       <div class="step rv"><div class="num">01</div><h4>Tell me what you run</h4><p>Email the historian or DA server make and version, a rough tag count, and whether alarm history is in scope.</p></div>
-      <div class="step rv"><div class="num">02</div><h4>Get a time-limited key</h4><p>You receive a 30-day licence key and a short setup note written for your specific stack.</p></div>
+      <div class="step rv"><div class="num">02</div><h4>Get a trial key</h4><p>You receive a 90-day trial key and a short setup note written for your specific stack.</p></div>
       <div class="step rv"><div class="num">03</div><h4>Install on a spare VM</h4><p>Run the MSI, enter the key, and it starts as a Windows service. An optional remote pilot session takes roughly an hour.</p></div>
     </div>
   </div>
@@ -494,17 +262,36 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
   </div>
 </section>
 
+<!-- ═══ FAQ ═══ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="st">Questions</div>
+    <h2>Frequently asked questions.</h2>
+    <div class="faq">
+      <details class="rv"><summary>Does HistorianLink change anything on our historian?</summary><p>No. HistorianLink is read-only: it connects as an OPC UA client and only reads tags and history. It never writes values or changes the historian's configuration.</p></details>
+      <details class="rv"><summary>Does OpcDaLink change our OPC DA server?</summary><p>No. It connects as an ordinary OPC DA client and leaves the server's configuration exactly as it is. UA clients can only write to items the DA server already allows writes on.</p></details>
+      <details class="rv"><summary>Does it need internet access?</summary><p>No. Licensing is checked on the machine itself, with no activation server and no phone-home, so both products run on fully air-gapped plant networks.</p></details>
+      <details class="rv"><summary>Where does it get installed?</summary><p>On a Windows PC or server that can reach your historian or DA server: the historian machine itself, or a separate machine on the same network. It runs on Windows Server 2016+ and Windows 10+.</p></details>
+      <details class="rv"><summary>Can it run on a virtual machine?</summary><p>Yes. Both products run happily on a VM, and most trials start on a spare one.</p></details>
+      <details class="rv"><summary>Which historians does HistorianLink work with?</summary><p>Siemens Process Historian, WinCC, and any server that provides history over OPC UA. Alarm history from WinCC is read through a small satellite agent on the WinCC server.</p></details>
+      <details class="rv"><summary>How is it licensed?</summary><p>Per machine, with a perpetual licence and fully offline activation. There's no per-tag pricing. Email for a quote.</p></details>
+      <details class="rv"><summary>What happens after the 90-day trial?</summary><p>You get a permanent licence key for that machine, and everything you set up during the trial carries straight over.</p></details>
+      <details class="rv"><summary>How do updates work?</summary><p>A new version is a new installer run over the top of the old one. Your configuration, licence and reports are kept.</p></details>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ CONTACT ═══ -->
 <section id="contact">
   <div class="wrap">
     <div class="st" id="txt-contact-eyebrow">Get in touch</div>
     <h2 id="txt-contact-title">Trials, quotes and pilot installs.</h2>
-    <p class="sub" id="txt-contact-sub">Both products install in minutes on a spare VM. Tell me what historian or DA server you are running and I will send a time-limited key and a short setup note for your specific stack.</p>
+    <p class="sub" id="txt-contact-sub">Both products install in minutes on a spare VM. Tell me what historian or DA server you are running and I will send a 90-day trial key and a short setup note for your specific stack.</p>
 
     <div class="contact-grid">
       <div class="cbox rv" id="txt-contact-rows">
         <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:gwautomation@gwstudio.com.au">gwautomation@gwstudio.com.au</a></span></div>
-        <div class="row"><span class="k">Trial licence</span><span class="v">30 days, full feature set, no tag limit</span></div>
+        <div class="row"><span class="k">Trial licence</span><span class="v">Free for 90 days, full feature set, no tag limit</span></div>
         <div class="row"><span class="k">Pilot install</span><span class="v">Remote session, roughly one hour</span></div>
         <div class="row"><span class="k">Licensing</span><span class="v">Per machine, perpetual, offline activation</span></div>
         <div class="row"><span class="k">Support</span><span class="v">Direct to the developer, no ticket queue</span></div>
@@ -526,10 +313,33 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
 </section>
 
 <footer>
-  <div class="wrap">
-    <span>© <span id="yr">2026</span> <span id="txt-footer-rights">GW AUTOMATION · ALL RIGHTS RESERVED</span></span>
-    <span id="txt-footer-products">HISTORIANLINK · OPCDALINK</span>
-    <span><a href="#products">PRODUCTS</a> · <a href="#contact">CONTACT</a></span>
+  <div class="wrap fgrid">
+    <div class="fbrand">
+      <div class="row1">
+        <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round"><path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/></svg></div>
+        <span class="brand">GW <em>Automation</em></span>
+      </div>
+      <p>Data extraction tools for OPC systems. Windows-native, offline licensing, no cloud. Built in Australia.</p>
+    </div>
+    <div class="fcol">
+      <h5>Products</h5>
+      <a href="#historianlink">HistorianLink</a>
+      <a href="#opcdalink">OpcDaLink</a>
+      <a href="#platform">Platform</a>
+      <a href="#specs">Specifications</a>
+    </div>
+    <div class="fcol">
+      <h5>Company</h5>
+      <a href="#about">About</a>
+      <a href="#trial">Free trial</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+      <a href="privacy/">Privacy</a>
+    </div>
+  </div>
+  <div class="wrap fbot">
+    <span>© <span id="yr">2026</span> GW AUTOMATION · ALL RIGHTS RESERVED</span>
+    <a href="mailto:gwautomation@gwstudio.com.au">GWAUTOMATION@GWSTUDIO.COM.AU</a>
   </div>
 </footer>
 
@@ -539,48 +349,6 @@ footer a{color:var(--muted);text-decoration:none}footer a:hover{color:var(--acce
   <div class="lb-cap" id="lbCap"></div>
 </div>
 
-<script>
-
-let _io;
-document.getElementById('yr').textContent = new Date().getFullYear();
-
-var btn = document.getElementById('menuBtn'), nav = document.getElementById('nav');
-btn.addEventListener('click', function(){
-  var open = nav.classList.toggle('open');
-  btn.setAttribute('aria-expanded', open);
-});
-nav.addEventListener('click', function(e){ if(e.target.tagName === 'A') nav.classList.remove('open'); });
-
-/* Lightbox — click any screenshot to view full size, click again / Esc / ✕ to close */
-var lb = document.getElementById('lightbox'), lbImg = document.getElementById('lbImg'), lbCap = document.getElementById('lbCap');
-function openLightbox(src, alt, cap){
-  if (!src) return;
-  lbImg.src = src; lbImg.alt = alt || '';
-  lbCap.textContent = cap || '';
-  lb.classList.add('open');
-}
-function closeLightbox(){ lb.classList.remove('open'); lbImg.src = ''; }
-document.querySelectorAll('.shot').forEach(function(shot){
-  shot.addEventListener('click', function(){
-    var img = shot.querySelector('img');
-    if (!img || !img.naturalWidth) return; // no real screenshot loaded yet — nothing to zoom
-    var cap = shot.closest('div').querySelector('.shot-cap');
-    openLightbox(img.src, img.alt, cap ? cap.textContent : '');
-  });
-});
-lb.addEventListener('click', closeLightbox);
-lbImg.addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
-document.getElementById('lbClose').addEventListener('click', closeLightbox);
-document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLightbox(); });
-
-if ('IntersectionObserver' in window) {
-  _io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); _io.unobserve(en.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.rv').forEach(function(el){ _io.observe(el); });
-} else {
-  document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
-}
-</script>
+<script src="assets/site.js?v=3"></script>
 </body>
 </html>

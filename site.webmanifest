@@ -1,0 +1,14 @@
+{
+  "name": "GW Automation",
+  "short_name": "GW Automation",
+  "description": "Data extraction tools for OPC systems: HistorianLink and OpcDaLink.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080c10",
+  "theme_color": "#080c10",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

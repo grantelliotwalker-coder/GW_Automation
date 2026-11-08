@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://opctools.gwstudio.com.au/sitemap.xml
