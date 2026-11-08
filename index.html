@@ -155,7 +155,7 @@
           <li><b>Full address-space mirror</b> — branches become folders, leaves become variables, item IDs carry through as string NodeIds.</li>
           <li><b>Faithful type mapping</b> — canonical VARIANT types to UA variant types, DA quality words to UA status codes, item timestamps as source timestamps.</li>
           <li><b>Read and write</b> — access rights map to node writability, with writes passed back through to DA.</li>
-          <li><b>History on the same nodes</b> — connect an OPC HDA server and UA clients can read history from the same variables that carry the live value.</li>
+          <li><b>History over OPC UA</b> — connect an OPC HDA server and UA clients read its history with standard HistoryRead, from a separate HDA folder in the address space.</li>
           <li><b>Alarms</b> — from OPC AE, an OPC UA server's alarms and conditions, or the WinCC message archive through the OLE DB agent, republished as UA nodes.</li>
           <li><b>No Automation Wrapper</b> — talks to the OPC DA custom interface directly, so there is no <code>OPCDAAuto.dll</code> to track down and register.</li>
           <li><b>Big-server mode</b> — feed it a tag list file and skip browsing entirely on servers with tens of thousands of items.</li>
