@@ -150,12 +150,14 @@
         <span class="badge live" id="txt-da-badge"><span class="dot"></span><span id="txt-da-badge-text">Shipping</span></span>
         <h3 id="txt-da-title">OpcDa<em>Link</em></h3>
         <div class="tagline" id="txt-da-tagline">OPC DA → OPC UA bridge</div>
-        <p class="body" id="txt-da-body">Sits in front of a legacy OPC DA server, connects to it as a DA client over DCOM, and re-publishes the whole address space as a modern OPC UA server. Point UaExpert, a new SCADA package, or HistorianLink at the UA endpoint and leave the old server exactly as it is.</p>
+        <p class="body" id="txt-da-body">Sits in front of a legacy OPC DA server, connects to it as a client over DCOM, and re-publishes the whole address space as a modern OPC UA server, with history from OPC HDA and alarms from OPC AE alongside it. Point UaExpert, a new SCADA package, or HistorianLink at the UA endpoint and leave the old server exactly as it is.</p>
         <ul class="feat" id="txt-da-features">
           <li><b>Full address-space mirror</b> — branches become folders, leaves become variables, item IDs carry through as string NodeIds.</li>
           <li><b>Faithful type mapping</b> — canonical VARIANT types to UA variant types, DA quality words to UA status codes, item timestamps as source timestamps.</li>
           <li><b>Read and write</b> — access rights map to node writability, with writes passed back through to DA.</li>
-          <li><b>Correct COM threading</b> — a dedicated message-pumped STA thread, because that is the only way DA data-change callbacks ever arrive.</li>
+          <li><b>History on the same nodes</b> — connect an OPC HDA server and UA clients can read history from the same variables that carry the live value.</li>
+          <li><b>Alarms</b> — from OPC AE, an OPC UA server's alarms and conditions, or the WinCC message archive through the OLE DB agent, republished as UA nodes.</li>
+          <li><b>No Automation Wrapper</b> — talks to the OPC DA custom interface directly, so there is no <code>OPCDAAuto.dll</code> to track down and register.</li>
           <li><b>Big-server mode</b> — feed it a tag list file and skip browsing entirely on servers with tens of thousands of items.</li>
           <li><b>Built-in diagnostics</b> — connection state and item count exposed as UA nodes, plus a web admin page.</li>
         </ul>
@@ -181,10 +183,10 @@
 
     <div class="arch rv" aria-label="OpcDaLink architecture diagram">
 <pre>  ┌──────────────┐    DCOM    ┌────────────────────────────────────┐   opc.tcp   ┌────────────┐
-  │  <b>OPC DA</b>      │◄──────────►│  <b>OpcDaLink</b> service                │◄───────────►│ UA client  │
-  │  server      │            │   ┌──────────┐   ┌──────────────┐  │             │ UaExpert,  │
-  │  (COM/Win32) │            │   │ DA client│──►│  UA server   │  │             │ SCADA,     │
-  └──────────────┘            │   │ STA pump │◄──│ address space│  │             │ Historian- │
+  │  <b>OPC DA/HDA</b>  │◄──────────►│  <b>OpcDaLink</b> service                 │◄───────────►│ UA client  │
+  │  /AE server  │            │   ┌──────────┐   ┌──────────────┐  │             │ UaExpert,  │
+  │  (COM/Win32) │            │   │ DA/HDA/AE│──►│  UA server   │  │             │ SCADA,     │
+  └──────────────┘            │   │ clients  │◄──│ address space│  │             │ Historian- │
                               │   └──────────┘   └──────────────┘  │             │ Link       │
                               │            │                       │             └────────────┘
                               │       ┌────▼─────┐   http          ┌──────────┐
@@ -225,10 +227,10 @@
       </thead>
       <tbody id="txt-spec-rows">
         <tr><td>Role</td><td>OPC UA client</td><td>OPC DA client + OPC UA server</td></tr>
-        <tr><td>Talks to</td><td>Process Historian, WinCC, any compliant UA server</td><td>Any OPC DA 2.0 / 3.0 server</td></tr>
+        <tr><td>Talks to</td><td>Process Historian, WinCC, any compliant UA server</td><td>Any OPC DA 2.0 / 3.0 server, plus optional OPC HDA and AE servers</td></tr>
         <tr><td>UA security</td><td>Basic256Sha256, Sign or SignAndEncrypt</td><td>Configurable; opens with security disabled for first run</td></tr>
-        <tr><td>Data out</td><td>.xlsx, .csv, live dashboard tiles, scheduled reports</td><td>Live UA address space, read and write</td></tr>
-        <tr><td>Alarms</td><td>WinCC message archive via OLE DB satellite agent</td><td>Not supported — DA carries no alarm interface</td></tr>
+        <tr><td>Data out</td><td>.xlsx, .csv, live dashboard tiles, scheduled reports</td><td>Live UA address space, read and write; history via HDA</td></tr>
+        <tr><td>Alarms</td><td>WinCC message archive via OLE DB satellite agent</td><td>OPC AE, OPC UA alarms and conditions, or the WinCC message archive via the OLE DB agent</td></tr>
         <tr><td>User roles</td><td>Admin, engineer, viewer</td><td>Single admin account</td></tr>
         <tr><td>Licence</td><td>Signed licence file, per site</td><td>Signed licence file, per site</td></tr>
         <tr><td>Platform</td><td>Windows Server 2016+ / Windows 10+</td><td>Windows Server 2016+ / Windows 10+</td></tr>
