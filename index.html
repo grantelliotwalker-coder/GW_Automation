@@ -150,12 +150,14 @@
         <span class="badge live" id="txt-da-badge"><span class="dot"></span><span id="txt-da-badge-text">Shipping</span></span>
         <h3 id="txt-da-title">OpcDa<em>Link</em></h3>
         <div class="tagline" id="txt-da-tagline">OPC DA → OPC UA bridge</div>
-        <p class="body" id="txt-da-body">Sits in front of a legacy OPC DA server, connects to it as a DA client over DCOM, and re-publishes the whole address space as a modern OPC UA server. Point UaExpert, a new SCADA package, or HistorianLink at the UA endpoint and leave the old server exactly as it is.</p>
+        <p class="body" id="txt-da-body">Sits in front of a legacy OPC DA server, connects to it as a client over DCOM, and re-publishes the whole address space as a modern OPC UA server, with history from OPC HDA and alarms from OPC AE alongside it. Point UaExpert, a new SCADA package, or HistorianLink at the UA endpoint and leave the old server exactly as it is.</p>
         <ul class="feat" id="txt-da-features">
           <li><b>Full address-space mirror</b> — branches become folders, leaves become variables, item IDs carry through as string NodeIds.</li>
           <li><b>Faithful type mapping</b> — canonical VARIANT types to UA variant types, DA quality words to UA status codes, item timestamps as source timestamps.</li>
           <li><b>Read and write</b> — access rights map to node writability, with writes passed back through to DA.</li>
-          <li><b>Correct COM threading</b> — a dedicated message-pumped STA thread, because that is the only way DA data-change callbacks ever arrive.</li>
+          <li><b>History on the same nodes</b> — connect an OPC HDA server and UA clients can read history from the same variables that carry the live value.</li>
+          <li><b>Alarms</b> — from OPC AE, an OPC UA server's alarms and conditions, or the WinCC message archive through the OLE DB agent, republished as UA nodes.</li>
+          <li><b>No Automation Wrapper</b> — talks to the OPC DA custom interface directly, so there is no <code>OPCDAAuto.dll</code> to track down and register.</li>
           <li><b>Big-server mode</b> — feed it a tag list file and skip browsing entirely on servers with tens of thousands of items.</li>
           <li><b>Built-in diagnostics</b> — connection state and item count exposed as UA nodes, plus a web admin page.</li>
         </ul>
@@ -181,10 +183,10 @@
 
     <div class="arch rv" aria-label="OpcDaLink architecture diagram">
 <pre>  ┌──────────────┐    DCOM    ┌────────────────────────────────────┐   opc.tcp   ┌────────────┐
-  │  <b>OPC DA</b>      │◄──────────►│  <b>OpcDaLink</b> service                │◄───────────►│ UA client  │
-  │  server      │            │   ┌──────────┐   ┌──────────────┐  │             │ UaExpert,  │
-  │  (COM/Win32) │            │   │ DA client│──►│  UA server   │  │             │ SCADA,     │
-  └──────────────┘            │   │ STA pump │◄──│ address space│  │             │ Historian- │
+  │  <b>OPC DA/HDA</b>  │◄──────────►│  <b>OpcDaLink</b> service                 │◄───────────►│ UA client  │
+  │  /AE server  │            │   ┌──────────┐   ┌──────────────┐  │             │ UaExpert,  │
+  │  (COM/Win32) │            │   │ DA/HDA/AE│──►│  UA server   │  │             │ SCADA,     │
+  └──────────────┘            │   │ clients  │◄──│ address space│  │             │ Historian- │
                               │   └──────────┘   └──────────────┘  │             │ Link       │
                               │            │                       │             └────────────┘
                               │       ┌────▼─────┐   http          ┌──────────┐
@@ -207,7 +209,7 @@
       <div class="card rv"><div class="num">02 / INTERFACE</div><h4>Browser-based admin</h4><p>No client to roll out. The service hosts its own UI on a local port — the same dark, dense, keyboard-friendly interface shown in the screenshots above.</p></div>
       <div class="card rv"><div class="num">03 / SECURITY</div><h4>Encrypted config at rest</h4><p>Credentials and connection settings are encrypted with Windows DPAPI, tied to the machine. Nothing sensitive sits in plain text on disk.</p></div>
       <div class="card rv"><div class="num">04 / NETWORK</div><h4>TLS where it matters</h4><p>Network-facing endpoints run HTTPS with a minimum of TLS 1.2. Admin stays on loopback, where encrypting the traffic would buy nothing.</p></div>
-      <div class="card rv"><div class="num">05 / LICENSING</div><h4>Fully offline activation</h4><p>A key tied to your customer ID, validated on the machine. No activation server, no internet, no phone-home — designed for air-gapped plant networks.</p></div>
+      <div class="card rv"><div class="num">05 / LICENSING</div><h4>Fully offline activation</h4><p>A digitally signed licence file for your site, checked on the machine. No activation server, no internet, no phone-home — designed for air-gapped plant networks.</p></div>
       <div class="card rv"><div class="num">06 / DEPLOYMENT</div><h4>Standard MSI install</h4><p>A standard MSI your IT team can review, deploy and uninstall cleanly. Silent install supported for managed rollouts.</p></div>
     </div>
   </div>
@@ -225,12 +227,12 @@
       </thead>
       <tbody id="txt-spec-rows">
         <tr><td>Role</td><td>OPC UA client</td><td>OPC DA client + OPC UA server</td></tr>
-        <tr><td>Talks to</td><td>Process Historian, WinCC, any compliant UA server</td><td>Any OPC DA 2.0 / 3.0 server</td></tr>
+        <tr><td>Talks to</td><td>Process Historian, WinCC, any compliant UA server</td><td>Any OPC DA 2.0 / 3.0 server, plus optional OPC HDA and AE servers</td></tr>
         <tr><td>UA security</td><td>Basic256Sha256, Sign or SignAndEncrypt</td><td>Configurable; opens with security disabled for first run</td></tr>
-        <tr><td>Data out</td><td>.xlsx, .csv, live dashboard tiles, scheduled reports</td><td>Live UA address space, read and write</td></tr>
-        <tr><td>Alarms</td><td>WinCC message archive via OLE DB satellite agent</td><td>Not supported — DA carries no alarm interface</td></tr>
+        <tr><td>Data out</td><td>.xlsx, .csv, live dashboard tiles, scheduled reports</td><td>Live UA address space, read and write; history via HDA</td></tr>
+        <tr><td>Alarms</td><td>WinCC message archive via OLE DB satellite agent</td><td>OPC AE, OPC UA alarms and conditions, or the WinCC message archive via the OLE DB agent</td></tr>
         <tr><td>User roles</td><td>Admin, engineer, viewer</td><td>Single admin account</td></tr>
-        <tr><td>Licence prefix</td><td>HLNK-XXXX-XXXX-XXXX-XXXX</td><td>DALK-XXXX-XXXX-XXXX-XXXX</td></tr>
+        <tr><td>Licence</td><td>Signed licence file, per site</td><td>Signed licence file, per site</td></tr>
         <tr><td>Platform</td><td>Windows Server 2016+ / Windows 10+</td><td>Windows Server 2016+ / Windows 10+</td></tr>
         <tr><td>Footprint</td><td>Self-contained; no database server required</td><td>Self-contained; no database server required</td></tr>
       </tbody>
@@ -246,7 +248,7 @@
     <p class="sub">Free for 90 days, full feature set, no tag limit. Most trials are running the same day.</p>
     <div class="steps">
       <div class="step rv"><div class="num">01</div><h4>Tell me what you run</h4><p>Email the historian or DA server make and version, a rough tag count, and whether alarm history is in scope.</p></div>
-      <div class="step rv"><div class="num">02</div><h4>Get a trial key</h4><p>You receive a 90-day trial key and a short setup note written for your specific stack.</p></div>
+      <div class="step rv"><div class="num">02</div><h4>Get a trial licence</h4><p>You receive a 90-day trial licence file and a short setup note written for your specific stack.</p></div>
       <div class="step rv"><div class="num">03</div><h4>Install on a spare VM</h4><p>Run the MSI, enter the key, and it starts as a Windows service. An optional remote pilot session takes roughly an hour.</p></div>
     </div>
   </div>
@@ -274,8 +276,8 @@
       <details class="rv"><summary>Where does it get installed?</summary><p>On a Windows PC or server that can reach your historian or DA server: the historian machine itself, or a separate machine on the same network. It runs on Windows Server 2016+ and Windows 10+.</p></details>
       <details class="rv"><summary>Can it run on a virtual machine?</summary><p>Yes. Both products run happily on a VM, and most trials start on a spare one.</p></details>
       <details class="rv"><summary>Which historians does HistorianLink work with?</summary><p>Siemens Process Historian, WinCC, and any server that provides history over OPC UA. Alarm history from WinCC is read through a small satellite agent on the WinCC server.</p></details>
-      <details class="rv"><summary>How is it licensed?</summary><p>Per machine, with a perpetual licence and fully offline activation. There's no per-tag pricing. Email for a quote.</p></details>
-      <details class="rv"><summary>What happens after the 90-day trial?</summary><p>You get a permanent licence key for that machine, and everything you set up during the trial carries straight over.</p></details>
+      <details class="rv"><summary>How is it licensed?</summary><p>Per site, with a perpetual licence and fully offline activation. The licence isn't tied to one computer, so replacing or moving a server doesn't need a new one. There's no per-tag pricing. Email for a quote.</p></details>
+      <details class="rv"><summary>What happens after the 90-day trial?</summary><p>You get a permanent licence for your site. Add it on the admin page and everything you set up during the trial carries straight over, with no reinstall. The software shows how many trial days are left, so it never stops by surprise.</p></details>
       <details class="rv"><summary>How do updates work?</summary><p>A new version is a new installer run over the top of the old one. Your configuration, licence and reports are kept.</p></details>
     </div>
   </div>
@@ -286,14 +288,14 @@
   <div class="wrap">
     <div class="st" id="txt-contact-eyebrow">Get in touch</div>
     <h2 id="txt-contact-title">Trials, quotes and pilot installs.</h2>
-    <p class="sub" id="txt-contact-sub">Both products install in minutes on a spare VM. Tell me what historian or DA server you are running and I will send a 90-day trial key and a short setup note for your specific stack.</p>
+    <p class="sub" id="txt-contact-sub">Both products install in minutes on a spare VM. Tell me what historian or DA server you are running and I will send a 90-day trial licence and a short setup note for your specific stack.</p>
 
     <div class="contact-grid">
       <div class="cbox rv" id="txt-contact-rows">
         <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:gwautomation@gwstudio.com.au">gwautomation@gwstudio.com.au</a></span></div>
         <div class="row"><span class="k">Trial licence</span><span class="v">Free for 90 days, full feature set, no tag limit</span></div>
         <div class="row"><span class="k">Pilot install</span><span class="v">Remote session, roughly one hour</span></div>
-        <div class="row"><span class="k">Licensing</span><span class="v">Per machine, perpetual, offline activation</span></div>
+        <div class="row"><span class="k">Licensing</span><span class="v">Per site, perpetual, offline activation</span></div>
         <div class="row"><span class="k">Support</span><span class="v">Direct to the developer, no ticket queue</span></div>
         <div class="row"><span class="k">Location</span><span class="v">Australia — remote worldwide</span></div>
       </div>
