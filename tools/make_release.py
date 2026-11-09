@@ -124,15 +124,15 @@ def render_page(releases: dict) -> str:
 <meta charset="UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-G50p3OQJdzmNSHgmrckkRv9E5DVGNkEspwW0gLrWXBE=' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-+He5rwAMKHlS60A3KsWW/ahi5Zm/0e7TBwm9i09ghIk=' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#080c10">
 <title>Downloads | GW Automation</title>
 <link rel="icon" href="/assets/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/site.css?v=5">
-<script>document.documentElement.className+=' js'</script>
+<link rel="stylesheet" href="/assets/site.css?v=6">
+<script>(function(d){{d.className+=' js';var t;try{{t=localStorage.getItem('gw-theme')}}catch(e){{}}if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.setAttribute('data-theme',t)}})(document.documentElement)</script>
 </head>
 <body>
 
@@ -149,6 +149,7 @@ def render_page(releases: dict) -> str:
       <a href="/">Home</a>
       <a href="/#contact">Contact</a>
     </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Switch colour theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg></button>
   </div>
 </header>
 
@@ -167,7 +168,7 @@ def render_page(releases: dict) -> str:
   </div>
 </main>
 
-<script src="/assets/site.js?v=3"></script>
+<script src="/assets/site.js?v=4"></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{{"token": "8b0d29eb9cca403e8e6900666772bc1c"}}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

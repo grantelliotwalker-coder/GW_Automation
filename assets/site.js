@@ -93,55 +93,133 @@
     $$('.rv').forEach(function (el) { el.classList.add('in'); });
   }
 
-  /* Hero background - three slow trend lines in the product's chart colours */
-  var cv = $('#heroLines');
-  if (cv && cv.getContext) {
-    var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = 1, running = false, visible = true, last = 0, t0 = performance.now();
-    var series = [
-      { c: '27,161,214', a: 0.42, f: 1.7, p: 0.0, s: 0.050, y: 0.885, amp: 0.045 },
-      { c: '224,179,26', a: 0.32, f: 1.2, p: 2.1, s: 0.035, y: 0.905, amp: 0.040 },
-      { c: '25,201,138', a: 0.36, f: 2.3, p: 4.0, s: 0.065, y: 0.895, amp: 0.045 }
-    ];
-    /* fixed pseudo-random wobble so the lines look like real process data, not pure sines */
-    var noise = []; var seed = 7;
-    for (var i = 0; i < 512; i++) { seed = (seed * 9301 + 49297) % 233280; noise.push(seed / 233280 - 0.5); }
-    function nz(x) { var i0 = Math.floor(x) & 511, f = x - Math.floor(x); return noise[i0] * (1 - f) + noise[(i0 + 1) & 511] * f; }
+  var root = document.documentElement;
+
+  /* ── 3D trend-field background ──────────────────────────────────────────
+     A perspective landscape of process-trend lines, pinned to the viewport so it
+     stays behind the content all the way down the page. It drifts forward on its
+     own, and scrolling pushes the camera further along, so the field flies toward
+     you as you scroll. Static for reduced-motion visitors, paused in hidden tabs. */
+  var redrawBg = function () {};
+  (function () {
+    var cv = document.createElement('canvas');
+    cv.id = 'bg3d'; cv.setAttribute('aria-hidden', 'true');
+    document.body.insertBefore(cv, document.body.firstChild);
+    var ctx = cv.getContext && cv.getContext('2d');
+    if (!ctx) return;
+
+    var small = Math.min(innerWidth, innerHeight) < 700;
+    var ROWS = small ? 20 : 30;          /* depth rows on screen */
+    var STEP = small ? 16 : 12;          /* px between line vertices */
+    var DOT = 1.6;                       /* world units between sample dots */
+    var CAM = 1.5;                       /* camera height above the field */
+    var FRAME = small ? 50 : 33;         /* ms per frame: ~20 fps phone, ~30 fps desktop */
+    var SCROLL = 0.0045;                 /* rows travelled per px scrolled */
+    var PAL = {                          /* the product's trend colours */
+      dark:  { line: ['0,200,255', '224,179,26', '25,201,138'], a: 0.26 },
+      light: { line: ['0,105,150', '150,110,0', '10,125,85'],   a: 0.24 }
+    };
+    var W = 0, H = 0, dpr = 1, raf = 0, last = 0, t0 = performance.now();
+    var scrollPos = window.scrollY || 0;
+
+    /* fixed pseudo-random wobble so the lines read as real process data, not pure sines */
+    var noise = [], seed = 7;
+    for (var k = 0; k < 512; k++) { seed = (seed * 9301 + 49297) % 233280; noise.push(seed / 233280 - 0.5); }
+    function nz(x) { var f = Math.floor(x), u = x - f, i0 = f & 511; u = u * u * (3 - 2 * u);
+      return noise[i0] * (1 - u) + noise[(i0 + 1) & 511] * u; }
+    function field(x, z, t) {
+      return 1.05 * Math.sin(x * 0.21 + z * 0.09 + t * 0.25) * Math.cos(z * 0.16 - x * 0.07)
+           + 0.5 * Math.sin(x * 0.55 - z * 0.31 + t * 0.4)
+           + 0.9 * nz(x * 0.9 + z * 1.7) + 0.5 * nz(x * 2.3 - z * 0.6 + 40);
+    }
+
     function size() {
-      var r = cv.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      W = r.width; H = r.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      W = innerWidth; H = innerHeight;
       cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
+
     function draw(now) {
-      var t = (now - t0) / 1000;
+      var t = reduceMotion ? 0 : (now - t0) / 1000;
+      var target = window.scrollY || 0;
+      scrollPos += (target - scrollPos) * (reduceMotion ? 1 : 0.12);   /* glide, don't jump */
+      var cam = t * 0.5 + (reduceMotion ? 0 : scrollPos * SCROLL);
+      var pal = PAL[root.getAttribute('data-theme') === 'light' ? 'light' : 'dark'];
+      var horizon = H * 0.42, F = Math.min(W, 1400) * 0.75;
+      var z0 = Math.floor(cam), frac = cam - z0;
+
       ctx.clearRect(0, 0, W, H);
-      ctx.lineWidth = 1.6; ctx.lineJoin = 'round';
-      series.forEach(function (sr) {
-        ctx.strokeStyle = 'rgba(' + sr.c + ',' + sr.a + ')';
+      ctx.lineWidth = 1; ctx.lineJoin = 'round';
+      for (var i = ROWS; i >= 1; i--) {                 /* far to near */
+        var wz = z0 + i, d = 1.2 + (i - frac);
+        var n = 1 - d / (ROWS + 1.2); if (n <= 0) continue;
+        var alpha = pal.a * n * n;
+        var col = pal.line[wz % 4 === 1 ? 1 : wz % 4 === 3 ? 2 : 0];   /* mostly cyan, with amber and green rows */
+        var s = F / d;
+        if (horizon + (CAM - 1.6) * s > H + 40) continue;              /* entirely below the screen */
+
+        ctx.strokeStyle = 'rgba(' + col + ',' + alpha.toFixed(3) + ')';
         ctx.beginPath();
-        var step = Math.max(4, W / 260);
-        for (var x = 0; x <= W + step; x += step) {
-          var u = x / W, ph = u * Math.PI * 2 * sr.f + sr.p + t * sr.s * 6;
-          var y = H * (sr.y + sr.amp * Math.sin(ph) + 0.010 * nz(u * 90 + t * sr.s * 40 + sr.p * 10));
-          if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        for (var sx = -STEP; sx <= W + STEP; sx += STEP) {
+          var X = (sx - W / 2) / s;
+          var y = horizon + (CAM - field(X, wz, t) * 0.55) * s;
+          if (sx === -STEP) ctx.moveTo(sx, y); else ctx.lineTo(sx, y);
         }
         ctx.stroke();
-      });
+
+        /* sample dots, fixed in the world so they ride along with their line */
+        ctx.fillStyle = 'rgba(' + col + ',' + Math.min(1, alpha * 1.7).toFixed(3) + ')';
+        var r = 0.6 + 1.8 * n, xm = (W / 2 + 10) / s;
+        for (var X2 = Math.ceil(-xm / DOT) * DOT; X2 <= xm; X2 += DOT) {
+          var px = W / 2 + X2 * s, py = horizon + (CAM - field(X2, wz, t) * 0.55) * s;
+          ctx.fillRect(px - r / 2, py - r / 2, r, r);
+        }
+      }
     }
+
     function frame(now) {
-      if (!running) return;
-      if (now - last > 33) { last = now; draw(now); }  /* ~30 fps is plenty for slow lines */
-      requestAnimationFrame(frame);
+      raf = 0;
+      if (document.hidden) return;
+      if (now - last >= FRAME) { last = now; draw(now); }
+      raf = requestAnimationFrame(frame);
     }
-    function start() { if (!running && visible && !document.hidden && !reduceMotion) { running = true; requestAnimationFrame(frame); } }
-    function stop() { running = false; }
-    size(); draw(performance.now());
-    window.addEventListener('resize', function () { size(); draw(performance.now()); });
-    document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (e) { visible = e[0].isIntersecting; visible ? start() : stop(); }).observe(cv);
-    }
+    function start() { if (!raf && !reduceMotion && !document.hidden) raf = requestAnimationFrame(frame); }
+
+    redrawBg = function () { draw(performance.now()); };
+    size(); redrawBg();
+    window.addEventListener('resize', function () { size(); redrawBg(); });
+    document.addEventListener('visibilitychange', start);
     start();
+  })();
+
+  /* ── Light / dark theme ─────────────────────────────────────────────────
+     The inline script in <head> sets data-theme before first paint (saved choice,
+     else the OS setting). This wires up the toggle and keeps following the OS
+     until the visitor picks a theme themselves. */
+  var tBtn = $('#themeBtn'), tIcon = $('#themeIcon'), tMeta = $('meta[name="theme-color"]');
+  var SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+  var MOON = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+  function curTheme() { return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark'; }
+  function showTheme() {
+    var dark = curTheme() === 'dark';
+    if (tIcon) tIcon.innerHTML = dark ? SUN : MOON;
+    if (tBtn) tBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    if (tMeta) tMeta.setAttribute('content', dark ? '#080c10' : '#eef3f6');
+    redrawBg();
+  }
+  function setTheme(t, remember) {
+    root.setAttribute('data-theme', t); showTheme();
+    if (remember) { try { localStorage.setItem('gw-theme', t); } catch (e) {} }
+  }
+  showTheme();
+  if (tBtn) tBtn.addEventListener('click', function () { setTheme(curTheme() === 'dark' ? 'light' : 'dark', true); });
+  if (window.matchMedia) {
+    var mq = matchMedia('(prefers-color-scheme: light)');
+    var follow = function (e) {
+      var saved = null; try { saved = localStorage.getItem('gw-theme'); } catch (x) {}
+      if (saved !== 'light' && saved !== 'dark') setTheme(e.matches ? 'light' : 'dark', false);
+    };
+    if (mq.addEventListener) mq.addEventListener('change', follow); else if (mq.addListener) mq.addListener(follow);
   }
 })();
