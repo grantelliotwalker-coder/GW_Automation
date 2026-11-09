@@ -95,6 +95,16 @@
 
   var root = document.documentElement;
 
+  /* Status strip: wrap the items and add a hidden copy, so on phones it can loop as a ticker */
+  var strip = $('#txt-status-strip');
+  if (strip && !strip.querySelector('.ticker')) {
+    var tk = document.createElement('div'); tk.className = 'ticker';
+    while (strip.firstChild) tk.appendChild(strip.firstChild);
+    strip.appendChild(tk);
+    var copy = tk.cloneNode(true); copy.setAttribute('aria-hidden', 'true');
+    strip.appendChild(copy);
+  }
+
   /* ── 3D trend-field background ──────────────────────────────────────────
      A perspective landscape of process-trend lines, pinned to the viewport so it
      stays behind the content all the way down the page. It drifts forward on its

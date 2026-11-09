@@ -281,3 +281,26 @@ footer{padding:48px 0 28px;border-top:1px solid var(--border)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 html:not(.js) .theme-btn{display:none}
 footer .wrap.fgrid{display:grid;align-items:start}
+
+/* ── Status strip: one line on phones, scrolling like a SCADA status ticker ──
+   site.js wraps the items in .ticker and adds a hidden copy so the loop is seamless.
+   Desktop: the wrapper is transparent to layout and the copy is hidden. */
+.strip .ticker{display:contents}
+.strip .ticker[aria-hidden]{display:none}
+.strip .wrap > span,.strip .ticker > span{white-space:nowrap;display:inline-flex;align-items:center}
+@media (max-width:900px){
+  .strip .wrap{flex-wrap:nowrap;gap:0;padding-left:0;padding-right:0;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 20px,#000 calc(100% - 20px),transparent);
+            mask-image:linear-gradient(90deg,transparent,#000 20px,#000 calc(100% - 20px),transparent)}
+  .strip .ticker,.strip .ticker[aria-hidden]{display:flex;flex-shrink:0;gap:28px;padding-left:28px;
+    animation:ticker 30s linear infinite}
+  .strip:hover .ticker,.strip:active .ticker{animation-play-state:paused}
+  html:not(.js) .strip .wrap{overflow-x:auto;scrollbar-width:none;padding-left:20px}
+}
+@keyframes ticker{to{transform:translateX(-100%)}}
+/* reduced motion: no scrolling ticker; one line the visitor can swipe instead */
+@media (max-width:900px) and (prefers-reduced-motion:reduce){
+  .strip .wrap{overflow-x:auto;scrollbar-width:none}
+  .strip .wrap::-webkit-scrollbar{display:none}
+  .strip .ticker[aria-hidden]{display:none}
+}
