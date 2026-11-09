@@ -84,7 +84,7 @@ h2{font-size:clamp(23px,3.4vw,33px);color:#fff;font-weight:700;letter-spacing:-.
 .sub{margin-top:14px;max-width:65ch;color:var(--text);opacity:.85}
 
 /* ── Product ── */
-.prod{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;margin-top:40px}
+.prod{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:start;margin-top:40px}
 .prod.flip .prod-media{order:-1}
 .badge{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:10px;letter-spacing:1.5px;
   text-transform:uppercase;border:1px solid var(--border);border-radius:3px;padding:3px 9px;color:var(--muted);margin-bottom:14px}
@@ -232,7 +232,7 @@ footer{padding:48px 0 28px;border-top:1px solid var(--border)}
 
 @media (max-width:900px){
   .wrap,.hdr{padding-left:20px;padding-right:20px}
-  .prod{grid-template-columns:1fr;gap:28px}
+  .prod{grid-template-columns:minmax(0,1fr);gap:28px}
   .prod.flip .prod-media{order:0}
   .cards{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}

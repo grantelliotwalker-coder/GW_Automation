@@ -128,10 +128,10 @@ def render_page(releases: dict) -> str:
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="theme-color" content="#080c10">
-<title>Downloads — GW Automation</title>
+<title>Downloads | GW Automation</title>
 <link rel="icon" href="/assets/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/site.css?v=4">
+<link rel="stylesheet" href="/assets/site.css?v=5">
 <script>document.documentElement.className+=' js'</script>
 </head>
 <body>
