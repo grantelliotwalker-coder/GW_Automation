@@ -138,15 +138,6 @@
   </div>
 </section>
 
-<section id="network">
-  <div class="wrap">
-    <div class="st">Network</div>
-    <h2>Network ports.</h2>
-    <p class="sub">The installer does not create Windows Firewall rules. You open only what you need, restricted to the networks that need it.</p>
-    <table class="spec"><thead><tr><th>Port</th><th>Direction</th><th>Purpose</th></tr></thead><tbody><tr><td>TCP 52742</td><td data-label="Direction">Engineer PCs → HistorianLink host</td><td data-label="Purpose">Engineer interface: jobs, data analyser, reports, dashboards and alarms. HTTPS.</td></tr><tr><td>TCP 52743</td><td data-label="Direction">Viewer devices → HistorianLink host</td><td data-label="Purpose">Read-only dashboard viewer. HTTPS.</td></tr><tr><td>OPC UA port</td><td data-label="Direction">HistorianLink host → historian</td><td data-label="Purpose">OPC UA (opc.tcp) to the historian, for example port 4840. Read-only.</td></tr><tr><td>TCP 52744</td><td data-label="Direction">HistorianLink host → each WinCC OS server</td><td data-label="Purpose">Optional Alarm History Agent, HTTPS. Only for sites using the WinCC alarm history add-on.</td></tr><tr><td>TCP 52741</td><td data-label="Direction">Host itself only</td><td data-label="Purpose">Admin interface, on loopback. No firewall rule is needed and none should be added.</td></tr></tbody></table>
-  </div>
-</section>
-
 <section id="security">
   <div class="wrap">
     <div class="st">Security</div>

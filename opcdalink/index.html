@@ -135,15 +135,6 @@
   </div>
 </section>
 
-<section id="network">
-  <div class="wrap">
-    <div class="st">Network</div>
-    <h2>Network ports.</h2>
-    <p class="sub">Installing OpcDaLink on the DA server machine keeps DCOM off the network entirely.</p>
-    <table class="spec"><thead><tr><th>Port</th><th>Direction</th><th>Purpose</th></tr></thead><tbody><tr><td>TCP 4880</td><td data-label="Direction">UA clients → OpcDaLink machine</td><td data-label="Purpose">The OPC UA server (opc.tcp) that clients connect to. The port is configurable.</td></tr><tr><td>TCP 135 and dynamic RPC</td><td data-label="Direction">OpcDaLink machine → DA server host</td><td data-label="Purpose">DCOM, only when the DA server is on another machine. Installed on the DA server machine itself, OpcDaLink uses local COM and only the UA port needs opening.</td></tr><tr><td>TCP 52780</td><td data-label="Direction">Machine itself only</td><td data-label="Purpose">Admin web interface, on loopback. No firewall rule needed.</td></tr><tr><td>TCP 52781</td><td data-label="Direction">Machine itself only</td><td data-label="Purpose">Internal API between the two services, on loopback and token-authenticated.</td></tr></tbody></table>
-  </div>
-</section>
-
 <section id="security">
   <div class="wrap">
     <div class="st">Security</div>

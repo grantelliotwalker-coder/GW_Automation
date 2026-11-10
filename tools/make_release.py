@@ -55,7 +55,6 @@ PRODUCTS = {
         "quickstart": ["docs/HistorianLink-Quick-Start.pdf"],
         "blurb": "OPC UA historian client: exports, scheduled reports, trend analyser, dashboards and alarm history.",
         "needs": "Windows 10 / Server 2016 or later (64-bit).",
-        "port": "52741",
     },
     "OpcDaLink": {
         "aliases": ("dalk", "da", "opcdalink"),
@@ -66,7 +65,6 @@ PRODUCTS = {
         "quickstart": ["docs/OpcDaLink-Quick-Start.pdf"],
         "blurb": "OPC DA to OPC UA bridge, with OPC HDA history and alarms from OPC AE or OPC UA.",
         "needs": "Windows 10 / Server 2016 or later, on a machine that can reach the OPC DA server over DCOM.",
-        "port": "52780",
     },
 }
 

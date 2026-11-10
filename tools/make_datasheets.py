@@ -64,7 +64,7 @@ SHEETS = [
         facts=[
             ("Role", "OPC DA client and OPC UA server"),
             ("Works with", "OPC DA 2.0 servers, 32-bit or 64-bit, plus optional OPC HDA and AE"),
-            ("UA endpoint", "opc.tcp, port 4880 by default"),
+            ("UA endpoint", "opc.tcp, on a port you choose"),
             ("OPC UA security", "Basic256Sha256, Sign or Sign and Encrypt"),
             ("Administration", "Web interface on the local machine only"),
             ("Platform", "Windows Server 2016+ or Windows 10+, 64-bit"),
