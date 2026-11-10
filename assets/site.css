@@ -2,7 +2,7 @@
 :root{
   --bg:#080c10;--panel:#0d1318;--panel2:#0a1015;--border:#1a2a35;
   --accent:#00c8ff;--accent2:#00ff9d;--warn:#ffd700;--danger:#ff3b5c;
-  --text:#c8dde8;--muted:#4a6272;--head:#fff;
+  --text:#c8dde8;--muted:#7d95a5;--head:#fff;
   --on-accent:#000;--accent-hi:#33d4ff;--accent-soft:rgba(0,200,255,.06);--line:var(--line);
   --tint:rgba(0,0,0,.25);--code-bg:#040810;--hdr1:rgba(0,200,255,.07);--hdr2:rgba(8,12,16,.92);
   --ok-border:rgba(0,255,157,.3);--ok-soft:rgba(0,255,157,.05);--warn-border:rgba(255,215,0,.3);--warn-soft:rgba(255,215,0,.05);
@@ -28,8 +28,6 @@ body{background:transparent;color:var(--text);font-family:var(--ff);font-size:15
   -webkit-font-smoothing:antialiased;overflow-x:hidden}
 
 /* scanlines + grid, straight from the product UI */
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,var(--scan) 2px,var(--scan) 4px)}
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   background-image:linear-gradient(var(--grid) 1px,transparent 1px),
   linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px}
@@ -303,4 +301,57 @@ footer .wrap.fgrid{display:grid;align-items:start}
   .strip .wrap{overflow-x:auto;scrollbar-width:none}
   .strip .wrap::-webkit-scrollbar{display:none}
   .strip .ticker[aria-hidden]{display:none}
+}
+
+/* ── Product sections: intro, then a large screenshot viewer, then features in two columns ── */
+.prod{display:block}
+.prod.flip .prod-media{order:0}
+.prod-head{max-width:820px}
+.prod-media{margin:34px 0 0;max-width:1180px}
+.viewer .shot{aspect-ratio:1920/1030;background:#080c10;cursor:zoom-in}
+.viewer .shot img{object-fit:contain;object-position:top center}
+.viewer .vtabs button{font-size:11px;padding-top:10px;padding-bottom:10px}
+.prod-copy{margin-top:34px;max-width:1180px}
+.prod-copy ul.feat{margin-top:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 48px}
+
+/* ── Architecture diagrams ── */
+.arch{padding:20px 24px 24px}
+.arch-cap{font-family:var(--fm);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.dg{display:block;width:100%;min-width:720px;max-width:1040px;height:auto;margin:0 auto}
+.dg .bx rect{fill:var(--panel);stroke:var(--border);stroke-width:1}
+.dg .bx.hi rect{fill:var(--accent-soft);stroke:var(--accent)}
+.dg .bx.in rect{fill:var(--panel2);stroke:var(--border)}
+.dg text{font-family:var(--ff)}
+.dg .t{fill:var(--head);font-size:13.5px;font-weight:600}
+.dg .s{fill:var(--muted);font-size:11.5px}
+.dg .l{fill:var(--accent);font-family:var(--fm);font-size:10.5px;letter-spacing:.5px}
+.dg line{stroke:var(--muted);stroke-width:1.2}
+.dg .ah{fill:var(--muted)}
+
+/* ── About: text beside the company details ── */
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:start;margin-top:4px}
+.about-grid .cbox{margin-top:14px}
+
+/* ── FAQ: two columns on wide screens ── */
+.faq{max-width:none;border-top:none;display:grid;grid-template-columns:1fr 1fr;gap:0 48px;align-items:start}
+.faq-col{border-top:1px solid var(--border)}
+
+@media (max-width:900px){
+  .prod-copy ul.feat{grid-template-columns:1fr}
+  .about-grid,.faq{grid-template-columns:1fr}
+  .faq-col + .faq-col{border-top:none}
+  .cbox .row{flex-direction:column;gap:3px}
+  .cbox .row .v{text-align:left}
+}
+/* ── Specs on phones: one block per row, each product labelled ── */
+@media (max-width:640px){
+  .spec thead{display:none}
+  .spec,.spec tbody,.spec tr,.spec td{display:block;width:auto}
+  .spec tr{padding:14px 0;border-bottom:1px solid var(--line)}
+  .spec td{border:none;padding:3px 0}
+  .spec td:first-child{width:auto;font-size:15px;margin-bottom:4px}
+  .spec td[data-label]{display:grid;grid-template-columns:104px 1fr;gap:10px}
+  .spec td[data-label]::before{content:attr(data-label);font-family:var(--fm);font-size:10px;letter-spacing:1px;
+    text-transform:uppercase;color:var(--accent);padding-top:3px}
+  .spec tr:hover td{background:none}
 }

@@ -117,7 +117,7 @@ def render_page(releases: dict) -> str:
       <p style="margin-bottom:4px">Contains the installer ({esc(r['msi'])}), the Quick Start guide and the Installation Manual.</p>
       <p style="font-size:12px;word-break:break-all;margin-top:10px">SHA-256: <code>{esc(r['sha256'])}</code></p>
     </div>""")
-    body = "".join(cards) or "<p>No downloads are available right now.</p>"
+    body = "".join(cards) or "<p>No install packs are published here at the moment. Email us and we will send you the current one.</p>"
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -131,7 +131,7 @@ def render_page(releases: dict) -> str:
 <title>Downloads | GW Automation</title>
 <link rel="icon" href="/assets/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/site.css?v=7">
+<link rel="stylesheet" href="/assets/site.css?v=8">
 <script>(function(d){{d.className+=' js';var t;try{{t=localStorage.getItem('gw-theme')}}catch(e){{}}if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.setAttribute('data-theme',t)}})(document.documentElement)</script>
 </head>
 <body>
@@ -163,7 +163,7 @@ def render_page(releases: dict) -> str:
 {body}
     <h2>Checking a download</h2>
     <p>In PowerShell, run <code>Get-FileHash .\\&lt;file&gt;.zip -Algorithm SHA256</code> and compare
-    the result with the SHA-256 above. If they differ, don't install it, and let us know.</p>
+    the result with the SHA-256 listed with the download. If they differ, don't install it, and let us know.</p>
     <p>Questions: <a href="mailto:gwautomation@gwstudio.com.au">gwautomation@gwstudio.com.au</a></p>
   </div>
 </main>
