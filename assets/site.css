@@ -355,3 +355,46 @@ footer .wrap.fgrid{display:grid;align-items:start}
     text-transform:uppercase;color:var(--accent);padding-top:3px}
   .spec tr:hover td{background:none}
 }
+
+/* ── Home: product summaries that link to the full product pages ── */
+.psum{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:center}
+.psum.flip .psum-media{order:-1}
+.psum h3{font-size:clamp(24px,3vw,30px);color:var(--head);margin-top:14px;font-weight:700}
+.psum h3 em{font-style:normal;color:var(--accent)}
+.psum p.body{margin-top:16px;opacity:.9}
+.psum .cta-row{margin-top:26px}
+.psum .shot{aspect-ratio:1920/1030;background:#080c10;cursor:zoom-in;box-shadow:0 24px 60px var(--shadow)}
+.psum .shot img{object-fit:contain;object-position:top center}
+
+/* ── Product pages ── */
+.phero{padding:56px 0 52px;border-bottom:1px solid var(--border)}
+.phero h1{margin-top:16px}
+.phero h1 em{font-style:normal;color:var(--accent)}
+.phero .lede{max-width:70ch}
+.crumb{font-family:var(--fm);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+.crumb a{color:var(--muted);text-decoration:none}.crumb a:hover{color:var(--accent)}
+.crumb span{opacity:.5;margin:0 4px}
+#screens .prod{margin-top:6px}#screens .prod-media{margin-top:22px}
+ul.feat.two{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:12px 48px;max-width:1180px}
+.spec.two td:first-child{width:22%}
+.spec a,.fine a{color:var(--accent)}
+.spec code{font-family:var(--fm);font-size:12px}
+section > .wrap > .arch{margin-top:30px}
+.fine{margin-top:22px;font-size:13px;color:var(--muted)}
+
+/* ── Licence page ── */
+.page strong{color:var(--head);font-weight:600}
+.legal{margin-top:20px;padding:6px 26px 24px;background:var(--panel);border:1px solid var(--border);border-radius:6px}
+.legal h3{font-size:14px;color:var(--head);margin-top:22px;font-weight:600}
+.legal p{margin-top:6px;font-size:14px}
+
+@media (max-width:900px){
+  .psum{grid-template-columns:minmax(0,1fr);gap:28px}
+  .psum.flip .psum-media{order:0}
+  ul.feat.two{grid-template-columns:1fr}
+  .phero{padding:40px 0 38px}
+}
+@media (max-width:640px){
+  .spec.two td:first-child{width:auto}
+  .spec thead + tbody td[data-label]{grid-template-columns:96px 1fr}
+}

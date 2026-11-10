@@ -131,7 +131,7 @@ def render_page(releases: dict) -> str:
 <title>Downloads | GW Automation</title>
 <link rel="icon" href="/assets/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/site.css?v=8">
+<link rel="stylesheet" href="/assets/site.css?v=9">
 <script>(function(d){{d.className+=' js';var t;try{{t=localStorage.getItem('gw-theme')}}catch(e){{}}if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.setAttribute('data-theme',t)}})(document.documentElement)</script>
 </head>
 <body>

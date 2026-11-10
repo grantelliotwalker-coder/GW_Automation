@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="ki7vluGRbvZJBGD0169rjvu5cZpHx4faEcWooFUYq0U">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-+He5rwAMKHlS60A3KsWW/ahi5Zm/0e7TBwm9i09ghIk=' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#080c10">
+<title>OpcDaLink | OPC DA to OPC UA bridge for Windows</title>
+<meta name="description" content="OpcDaLink is a Windows OPC DA to OPC UA bridge. It republishes a legacy OPC DA server, with OPC HDA history and OPC AE alarms, as a modern OPC UA server without changing the original server.">
+<link rel="icon" href="/assets/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="canonical" href="https://opctools.gwstudio.com.au/opcdalink/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GW Automation">
+<meta property="og:url" content="https://opctools.gwstudio.com.au/opcdalink/">
+<meta property="og:title" content="OpcDaLink | OPC DA to OPC UA bridge for Windows">
+<meta property="og:description" content="OpcDaLink is a Windows OPC DA to OPC UA bridge. It republishes a legacy OPC DA server, with OPC HDA history and OPC AE alarms, as a modern OPC UA server without changing the original server.">
+<meta property="og:image" content="https://opctools.gwstudio.com.au/assets/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareApplication", "name": "OpcDaLink", "description": "OpcDaLink is a Windows OPC DA to OPC UA bridge. It republishes a legacy OPC DA server, with OPC HDA history and OPC AE alarms, as a modern OPC UA server without changing the original server.", "softwareVersion": "1.2", "applicationCategory": "BusinessApplication", "operatingSystem": "Windows Server 2016 or later, Windows 10 or later (64-bit)", "url": "https://opctools.gwstudio.com.au/opcdalink/", "screenshot": "https://opctools.gwstudio.com.au/assets/da-dashboard.png", "publisher": {"@type": "Organization", "name": "GW Automation", "url": "https://opctools.gwstudio.com.au/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "GW Automation", "item": "https://opctools.gwstudio.com.au/"}, {"@type": "ListItem", "position": 2, "name": "OpcDaLink", "item": "https://opctools.gwstudio.com.au/opcdalink/"}]}]}</script>
+<link rel="stylesheet" href="/assets/site.css?v=9">
+<script>(function(d){d.className+=' js';var t;try{t=localStorage.getItem('gw-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.setAttribute('data-theme',t)})(document.documentElement)</script>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <div class="logo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round">
+        <path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/>
+        <circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/>
+      </svg>
+    </div>
+    <span class="brand" id="txt-brand">GW <em>Automation</em></span>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">≡</button>
+    <nav id="nav">
+      <a href="/#products">Products</a>
+      <a href="/historianlink/">HistorianLink</a>
+      <a href="/opcdalink/">OpcDaLink</a>
+      <a href="/#platform">Platform</a>
+      <a href="/#specs">Specs</a>
+      <a href="/#trial">Trial</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Switch colour theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg></button>
+  </div>
+</header>
+
+<main>
+<div class="hero phero">
+  <div class="wrap">
+    <div class="crumb"><a href="/">GW Automation</a> <span>/</span> <a href="/#products">Products</a> <span>/</span> OpcDaLink</div>
+    <span class="badge live"><span class="dot"></span><span>Shipping · version 1.2</span></span>
+    <h1>OpcDa<em>Link</em></h1>
+    <div class="tagline">OPC DA → OPC UA bridge</div>
+    <p class="lede">Sits in front of a legacy OPC DA server, connects to it as a client over DCOM, and re-publishes the whole address space as a modern OPC UA server, with history from OPC HDA and alarms from OPC AE alongside it. Point UaExpert, a new SCADA package, or HistorianLink at the UA endpoint and leave the old server exactly as it is.</p>
+    <div class="cta-row">
+      <a href="mailto:gwautomation@gwstudio.com.au?subject=OpcDaLink%20trial%20request" class="btn btn-a">Request a trial</a>
+      <a href="/assets/docs/OpcDaLink-Datasheet.pdf" class="btn btn-g">Download datasheet (PDF)</a>
+    </div>
+  </div>
+</div>
+
+<section id="screens">
+  <div class="wrap">
+    <div class="st">Screens</div>
+    <h2>See it running.</h2>
+    <div class="prod">
+      <div class="prod-media rv viewer" data-viewer>
+        <div class="vtabs" role="tablist" aria-label="OpcDaLink screens">
+          <button role="tab" type="button" aria-selected="true" tabindex="0" data-src="/assets/da-dashboard.png?v=1" data-alt="OpcDaLink dashboard showing DA connection status, UA endpoint and mirrored item count">Dashboard</button>
+          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/da-tags.png?v=1" data-alt="OpcDaLink tags page listing the mirrored DA address space with live values and quality">Tags</button>
+          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/da-settings.png?v=1" data-alt="OpcDaLink settings page with DA connection, UA security and certificate configuration">Settings</button>
+          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/da-logs.png?v=1" data-alt="OpcDaLink activity log showing sessions, writes and quality events">Activity log</button>
+        </div>
+        <div class="shot" role="tabpanel">
+          <img src="/assets/da-dashboard.png?v=1" alt="OpcDaLink dashboard showing DA connection status, UA endpoint and mirrored item count" loading="lazy">
+        </div>
+        <div class="vhint">Click the screenshot to enlarge</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="st">Features</div>
+    <h2>What it does.</h2>
+    <p class="sub">OpcDaLink connects to the DA server as an ordinary client and never changes its configuration. Modern UA clients connect to OpcDaLink and never need to touch DCOM.</p>
+    <ul class="feat two" id="txt-da-features">
+          <li><b>Full address-space mirror:</b> branches become folders, leaves become variables, item IDs carry through as string NodeIds.</li>
+          <li><b>Faithful type mapping:</b> canonical VARIANT types to UA variant types, DA quality words to UA status codes, item timestamps as source timestamps.</li>
+          <li><b>Read and write:</b> access rights map to node writability, with writes passed back through to DA.</li>
+          <li><b>History over OPC UA:</b> connect an OPC HDA server and UA clients read its history with standard HistoryRead, from a separate HDA folder in the address space.</li>
+          <li><b>Alarms:</b> from OPC AE, an OPC UA server's alarms and conditions, or the WinCC message archive through the OLE DB agent, republished as UA nodes.</li>
+          <li><b>No Automation Wrapper:</b> talks to the OPC DA custom interface directly, so there is no <code>OPCDAAuto.dll</code> to track down and register.</li>
+          <li><b>Big-server mode:</b> feed it a tag list file and skip browsing entirely on servers with tens of thousands of items.</li>
+          <li><b>Built-in diagnostics:</b> connection state and item count exposed as UA nodes, plus a web admin page.</li>
+        </ul>
+  </div>
+</section>
+
+<section id="architecture">
+  <div class="wrap">
+    <div class="st">Architecture</div>
+    <h2>How it fits in.</h2>
+    <p class="sub">OpcDaLink installs as two Windows services and a tray icon. The comms engine owns every live connection and keeps serving UA clients while the admin interface is restarted or upgraded.</p>
+    <div class="arch rv"><svg class="dg" viewBox="0 0 960 294" role="img" aria-label="OpcDaLink architecture: the service connects to the legacy OPC DA, HDA and AE server over DCOM and republishes it as an OPC UA server for UA clients, with a web admin page" xmlns="http://www.w3.org/2000/svg"><g class="bx"><rect x="20" y="60" width="200" height="100" rx="5"/><text class="t" x="120" y="95" text-anchor="middle">OPC DA / HDA / AE server</text><text class="s" x="120" y="112" text-anchor="middle">COM / Win32,</text><text class="s" x="120" y="127" text-anchor="middle">left exactly as it is</text></g><g class="bx hi"><rect x="300" y="24" width="380" height="246" rx="5"/></g><text class="t" x="490" y="52" text-anchor="middle">OpcDaLink service</text><g class="bx in"><rect x="322" y="76" width="150" height="68" rx="5"/><text class="t" x="397" y="102" text-anchor="middle">DA / HDA / AE</text><text class="s" x="397" y="119" text-anchor="middle">clients</text></g><g class="bx in"><rect x="508" y="76" width="150" height="68" rx="5"/><text class="t" x="583" y="102" text-anchor="middle">OPC UA server</text><text class="s" x="583" y="119" text-anchor="middle">address space</text></g><g class="bx in"><rect x="415" y="196" width="150" height="50" rx="5"/><text class="t" x="490" y="226" text-anchor="middle">Web admin page</text></g><g class="bx"><rect x="760" y="60" width="180" height="100" rx="5"/><text class="t" x="850" y="95" text-anchor="middle">OPC UA clients</text><text class="s" x="850" y="112" text-anchor="middle">UaExpert, SCADA,</text><text class="s" x="850" y="127" text-anchor="middle">HistorianLink</text></g><g class="bx"><rect x="760" y="196" width="180" height="50" rx="5"/><text class="t" x="850" y="226" text-anchor="middle">Browser</text></g><line x1="226" y1="110" x2="294" y2="110"/><path class="ah" d="M300 110 l-8 -4.5 v9z"/><path class="ah" d="M220 110 l8 -4.5 v9z"/><text class="l" x="260" y="101" text-anchor="middle">DCOM</text><line x1="478" y1="110" x2="502" y2="110"/><path class="ah" d="M508 110 l-8 -4.5 v9z"/><path class="ah" d="M472 110 l8 -4.5 v9z"/><line x1="686" y1="110" x2="754" y2="110"/><path class="ah" d="M760 110 l-8 -4.5 v9z"/><path class="ah" d="M680 110 l8 -4.5 v9z"/><text class="l" x="720" y="101" text-anchor="middle">opc.tcp</text><line x1="571" y1="221" x2="754" y2="221"/><path class="ah" d="M760 221 l-8 -4.5 v9z"/><path class="ah" d="M565 221 l8 -4.5 v9z"/><text class="l" x="720" y="212" text-anchor="middle">http</text></svg></div>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="wrap">
+    <div class="st">Optional sources</div>
+    <h2>More than live values.</h2>
+    <p class="sub">Each optional source connects, reconnects and fails independently of OPC DA, and each publishes into its own folder. All are off by default.</p>
+    <table class="spec"><thead><tr><th>Source</th><th>Published as</th><th>How it works</th></tr></thead><tbody><tr><td>OPC HDA history</td><td data-label="Published as">An HDA folder in the UA address space</td><td data-label="How it works">A UA client's HistoryRead is translated on demand into a raw read against the historian. OpcDaLink stores no history itself, so the answer includes data from before it was installed.</td></tr><tr><td>OPC AE alarms</td><td data-label="Published as">OPC UA Alarms and Conditions</td><td data-label="How it works">Subscribes to an OPC AE server and publishes its conditions, grouped by category, with ConditionRefresh and Acknowledge support.</td></tr><tr><td>OLE DB alarm archive</td><td data-label="Published as">Current alarm state as UA nodes</td><td data-label="How it works">For sources that do not serve their archive over OPC, classic WinCC in particular. Uses the same small alarm agent as HistorianLink.</td></tr><tr><td>OPC UA alarms</td><td data-label="Published as">UA nodes alongside the DA data</td><td data-label="How it works">Connects to another OPC UA server as a standard Alarms and Conditions client and republishes its alarms.</td></tr></tbody></table>
+  </div>
+</section>
+
+<section id="requirements">
+  <div class="wrap">
+    <div class="st">Requirements</div>
+    <h2>System requirements.</h2>
+    <table class="spec two"><tbody><tr><td>Operating system</td><td>64-bit Windows 10 or 11, or Windows Server 2016 or later. Physical and virtual machines are both supported.</td></tr><tr><td>OPC DA server</td><td>An OPC DA 2.0 server, local or remote, including DA 3.0 servers that also expose the DA 2.0 interfaces. 32-bit and 64-bit servers are both supported.</td></tr><tr><td>OPC prerequisites</td><td>The OPC Foundation Core Components Redistributable is required for remote DA servers and recommended in all cases. The old Automation Wrapper (<code>OPCDAAuto.dll</code>) is not required.</td></tr><tr><td>Rights</td><td>Local administrator to install, upgrade or uninstall. DA, HDA and AE calls are made as one Windows account with DCOM rights on the DA server.</td></tr><tr><td>Disk</td><td>About 150 MB for the program. Logs are capped at about 6 MB.</td></tr><tr><td>Memory</td><td>Modest. The current value of every mirrored item is held in memory; the default cap is 50,000 items.</td></tr><tr><td>Database</td><td>None. OpcDaLink is self-contained and does not store history locally.</td></tr><tr><td>Internet</td><td>Not required at any point, including licensing.</td></tr></tbody></table>
+  </div>
+</section>
+
+<section id="network">
+  <div class="wrap">
+    <div class="st">Network</div>
+    <h2>Network ports.</h2>
+    <p class="sub">Installing OpcDaLink on the DA server machine keeps DCOM off the network entirely.</p>
+    <table class="spec"><thead><tr><th>Port</th><th>Direction</th><th>Purpose</th></tr></thead><tbody><tr><td>TCP 4880</td><td data-label="Direction">UA clients → OpcDaLink machine</td><td data-label="Purpose">The OPC UA server (opc.tcp) that clients connect to. The port is configurable.</td></tr><tr><td>TCP 135 and dynamic RPC</td><td data-label="Direction">OpcDaLink machine → DA server host</td><td data-label="Purpose">DCOM, only when the DA server is on another machine. Installed on the DA server machine itself, OpcDaLink uses local COM and only the UA port needs opening.</td></tr><tr><td>TCP 52780</td><td data-label="Direction">Machine itself only</td><td data-label="Purpose">Admin web interface, on loopback. No firewall rule needed.</td></tr><tr><td>TCP 52781</td><td data-label="Direction">Machine itself only</td><td data-label="Purpose">Internal API between the two services, on loopback and token-authenticated.</td></tr></tbody></table>
+  </div>
+</section>
+
+<section id="security">
+  <div class="wrap">
+    <div class="st">Security</div>
+    <h2>Built for plant networks.</h2>
+    <div class="cards"><div class="card rv"><div class="num">01 / UNCHANGED</div><h4>The DA server is left as it is</h4><p>OpcDaLink needs only the access any DA client has. UA clients can write only to items the DA server already allows writes on.</p></div><div class="card rv"><div class="num">02 / OPC UA</div><h4>Sign, or sign and encrypt</h4><p>Basic256Sha256 with messages signed, or signed and encrypted, which is the recommended mode for production. An unsecured mode exists for bench testing only.</p></div><div class="card rv"><div class="num">03 / USERS</div><h4>UA accounts with write control</h4><p>UA users are separate from the admin account. Anonymous logins can be switched off, and each user is read-only unless explicitly allowed to write.</p></div><div class="card rv"><div class="num">04 / ADMIN</div><h4>Administration stays local</h4><p>The admin interface listens on the loopback address only, which keeps the administration surface off the plant network.</p></div><div class="card rv"><div class="num">05 / UPTIME</div><h4>Two services</h4><p>The comms engine keeps serving UA clients while the admin interface is restarted, upgraded or stopped.</p></div><div class="card rv"><div class="num">06 / CONFIG</div><h4>Encrypted at rest</h4><p>Credentials and connection settings are encrypted with Windows DPAPI, tied to the machine. Nothing sensitive sits in plain text on disk.</p></div></div>
+  </div>
+</section>
+
+<section id="licensing">
+  <div class="wrap">
+    <div class="st">Licensing</div>
+    <h2>Licensing and trial.</h2>
+    <table class="spec two"><tbody><tr><td>Model</td><td>One perpetual licence per site, with no per-tag pricing. One licence file covers every OpcDaLink machine at the site.</td></tr><tr><td>Activation</td><td>Fully offline. A digitally signed licence file is added on the admin page and takes effect within a minute, with no restart. No activation server, no internet access, no phone-home.</td></tr><tr><td>Trial</td><td>Free for 90 days with the full feature set and no tag limit. The tray icon warns as a trial nears its end.</td></tr><tr><td>After the trial</td><td>A full licence replaces the trial with no reinstall, and your configuration is kept. Without a valid licence the services keep running but serve no data until one is added.</td></tr><tr><td>Terms</td><td>The software licence agreement is published on the <a href="/licence/">licence page</a>.</td></tr></tbody></table>
+  </div>
+</section>
+
+<section id="next">
+  <div class="wrap">
+    <div class="st">Next step</div>
+    <h2>Try OpcDaLink on your own system.</h2>
+    <p class="sub">Free for 90 days, full feature set, no tag limit. Tell us what you run and we will send the installer, the installation manual and a trial licence for your site.</p>
+    <div class="cta-row">
+      <a href="mailto:gwautomation@gwstudio.com.au?subject=OpcDaLink%20trial%20request" class="btn btn-a">Request a trial</a>
+      <a href="/assets/docs/OpcDaLink-Datasheet.pdf" class="btn btn-g">Download datasheet (PDF)</a>
+      <a href="/historianlink/" class="btn btn-g">See HistorianLink</a>
+    </div>
+    <p class="fine">Software licence terms are on the <a href="/licence/">licence page</a>. Questions go to <a href="mailto:gwautomation@gwstudio.com.au">gwautomation@gwstudio.com.au</a>.</p>
+  </div>
+</section>
+</main>
+
+
+
+<footer>
+  <div class="wrap fgrid">
+    <div class="fbrand">
+      <div class="row1">
+        <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round"><path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/></svg></div>
+        <span class="brand">GW <em>Automation</em></span>
+      </div>
+      <p>Data extraction tools for OPC systems. Windows-native, offline licensing, no cloud. Built in Australia.</p>
+    </div>
+    <div class="fcol">
+      <h5>Products</h5>
+      <a href="/historianlink/">HistorianLink</a>
+      <a href="/opcdalink/">OpcDaLink</a>
+      <a href="/#platform">Platform</a>
+      <a href="/#specs">Specifications</a>
+    </div>
+    <div class="fcol">
+      <h5>Company</h5>
+      <a href="/#about">About</a>
+      <a href="/#trial">Free trial</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/#contact">Contact</a>
+      <a href="/licence/">Licence terms</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+  </div>
+  <div class="wrap fbot">
+    <span>© <span id="yr">2026</span> GW AUTOMATION · ABN 81 848 968 209 · ALL RIGHTS RESERVED</span>
+    <a href="mailto:gwautomation@gwstudio.com.au">GWAUTOMATION@GWSTUDIO.COM.AU</a>
+  </div>
+</footer>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot preview">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕ Close</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-cap" id="lbCap"></div>
+</div>
+
+<script src="/assets/site.js?v=5"></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8b0d29eb9cca403e8e6900666772bc1c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
