@@ -64,7 +64,7 @@ PRODUCTS = {
         "msi_name": lambda v: f"OpcDaLink-{v}-x64.msi",
         "manual": ["docs/OpcDaLink_Installation_Manual.pdf", "docs/OpcDaLink-Installation-Manual.pdf"],
         "quickstart": ["docs/OpcDaLink-Quick-Start.pdf"],
-        "blurb": "OPC DA to OPC UA bridge, with OPC HDA history and alarms from OPC AE, OPC UA or the WinCC archive.",
+        "blurb": "OPC DA to OPC UA bridge, with OPC HDA history and alarms from OPC AE or OPC UA.",
         "needs": "Windows 10 / Server 2016 or later, on a machine that can reach the OPC DA server over DCOM.",
         "port": "52780",
     },

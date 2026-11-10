@@ -21,20 +21,20 @@ SHEETS = [
     dict(
         file="HistorianLink-Datasheet.pdf", name="Historian", version="1.1", shot="hl-analyser.png",
         tagline="OPC UA history, reports, dashboards and alarms",
-        intro="HistorianLink connects as an OPC UA client to a plant historian (Siemens Process Historian, WinCC, or any "
-              "compliant UA server) and turns its archive into data you can work with. Engineers and viewers use it from "
+        intro="HistorianLink connects as an OPC UA client to any plant historian that serves history over OPC "
+              "UA, whatever the vendor, and turns its archive into data you can work with. Engineers and viewers use it from "
               "their own browsers, so there is no client software to roll out.",
         features=[
             ("History export", "Raw or resampled history to .xlsx or .csv, with millisecond timestamps, a plain-English quality column and UTC or local time."),
             ("Scheduled reports", "Repeatable report definitions run daily, weekly or monthly. The last five runs of each are kept."),
             ("Live dashboards", "Tiles with the current value and a sparkline, polled only while someone is watching."),
             ("Trend analyser", "Multi-tag chart with severity colouring, presets and a scrubbing ruler."),
-            ("Alarm history", "WinCC message archive read through a small satellite agent on each OS server."),
+            ("Alarms", "Current alarms over OPC UA, with an optional add-on for WinCC alarm history."),
             ("Access control", "Administrator, engineer and viewer roles, optional device trust and an audit trail."),
         ],
         facts=[
             ("Role", "OPC UA client, read-only"),
-            ("Works with", "Process Historian, WinCC, any server with history over OPC UA"),
+            ("Works with", "Any server that provides history over OPC UA"),
             ("Data out", ".xlsx, .csv, scheduled reports, live dashboards"),
             ("OPC UA security", "Basic256Sha256, Sign or SignAndEncrypt"),
             ("Network users", "HTTPS, TLS 1.2 minimum"),
@@ -58,7 +58,7 @@ SHEETS = [
             ("Faithful type mapping", "VARIANT types to UA types, DA quality to UA status codes, item timestamps as source timestamps."),
             ("Read and write", "Writes pass back to the DA server, only for the UA users you allow."),
             ("History over OPC UA", "Standard HistoryRead translated on demand into OPC HDA reads. No history is stored locally."),
-            ("Alarms", "OPC AE, OPC UA alarms and conditions, or the WinCC message archive, republished as UA nodes."),
+            ("Alarms", "OPC AE or OPC UA alarms and conditions, republished as UA nodes. Optional agent for OLE DB alarm archives."),
             ("Big-server mode", "Feed it a tag list file and skip browsing on servers with tens of thousands of items."),
         ],
         facts=[
