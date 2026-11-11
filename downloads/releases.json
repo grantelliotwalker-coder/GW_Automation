@@ -10,13 +10,13 @@
     "date": "11 November 2026"
   },
   "OpcDaLink": {
-    "version": "1.2.2",
-    "file": "OpcDaLink-1.2.2.zip",
-    "msi": "OpcDaLink-1.2.2-x64.msi",
-    "size": "124.5 MB",
-    "sha256": "E832358E9BF737E7CDB7EFDF74A691A743E4E6BE6265AC84BFD45C426CFCF0AA",
-    "tag": "opcdalink-v1.2.2",
-    "url": "https://github.com/grantelliotwalker-coder/gw_automation/releases/download/opcdalink-v1.2.2/OpcDaLink-1.2.2.zip",
+    "version": "1.2.3",
+    "file": "OpcDaLink-1.2.3.zip",
+    "msi": "OpcDaLink-1.2.3-x64.msi",
+    "size": "124.6 MB",
+    "sha256": "EEE7520D343EA712F8232B938B30E70A27DFED13DAD2706AEB55A07B8A7006E8",
+    "tag": "opcdalink-v1.2.3",
+    "url": "https://github.com/grantelliotwalker-coder/gw_automation/releases/download/opcdalink-v1.2.3/OpcDaLink-1.2.3.zip",
     "date": "12 November 2026"
   }
 }
