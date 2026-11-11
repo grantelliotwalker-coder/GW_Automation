@@ -225,8 +225,9 @@ Hi,
 
 Here's {product} {r['version']}.
 
-Download (installer, Quick Start guide and Installation Manual, {r['size']}):
-{r.get('url') or SITE + '/downloads/' + r['file']}
+Download page ({product} {r['version']}: installer, Quick Start guide and
+Installation Manual, {r['size']}):
+{SITE}/downloads/
 
 SHA-256 (to check the download):
 {r['sha256']}
