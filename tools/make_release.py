@@ -9,19 +9,26 @@ What it does
   1. Finds the built MSI and the installation manual in the product repo
      (by default the folders next to this website repo:
      ..\\opcua-historian and ..\\opcua-DAtaBridge; change with --repo).
-  2. Builds downloads\\<Product>-<version>.zip containing:
+  2. Builds release-packs\\<Product>-<version>.zip (not committed) containing:
         the MSI, the Quick Start PDF and the Installation Manual PDF.
-  3. Removes that product's older zip from downloads\\ (only the latest
-     version is offered; old ones stay in git history).
+  3. Uploads the zip to a GitHub Release of this repo (tag e.g.
+     historianlink-v1.1.0) with the GitHub CLI, gh. Release files can be
+     up to 2 GB, so the pack size doesn't matter, and the zips don't bloat
+     the website repo.
   4. Records the release in downloads\\releases.json and rebuilds the
-     hidden page downloads\\index.html and downloads\\SHA256SUMS.txt.
+     hidden page downloads\\index.html and downloads\\SHA256SUMS.txt,
+     linking to the Release file.
   5. Prints a ready-to-send email (download link + checksum). Attach the
      site's .lic file from gwlicence.py to that email.
 
-Then publish:
+Then publish the page:
     git add downloads
     git commit -m "Release HistorianLink 1.1.0"
     git push
+
+One-time setup for the upload: install the GitHub CLI
+(winget install GitHub.cli), open a new Command Prompt, run gh auth login.
+--no-upload builds the zip and page only, and prints how to upload by hand.
 
 The page is hidden, not secret: it isn't linked from the site, it's
 excluded from search engines (noindex + robots.txt) and it's not in the
@@ -40,10 +47,15 @@ import zipfile
 from pathlib import Path
 
 SITE      = "https://opctools.gwstudio.com.au"
+GH_REPO   = "grantelliotwalker-coder/gw_automation"
 WEB_ROOT  = Path(__file__).resolve().parent.parent
 DL_DIR    = WEB_ROOT / "downloads"
+PACK_DIR  = WEB_ROOT / "release-packs"     # git-ignored
 RELEASES  = DL_DIR / "releases.json"
-MAX_MB    = 95          # GitHub refuses files over 100 MB
+
+
+def asset_url(tag: str, file: str) -> str:
+    return f"https://github.com/{GH_REPO}/releases/download/{tag}/{file}"
 
 PRODUCTS = {
     "HistorianLink": {
@@ -105,7 +117,7 @@ def render_page(releases: dict) -> str:
         r = releases.get(product)
         if not r:
             continue
-        url = f"/downloads/{r['file']}"
+        url = r.get("url") or f"/downloads/{r['file']}"
         cards.append(f"""
     <div class="cbox" style="margin-bottom:22px">
       <h2 style="margin-top:0">{esc(product)} <span style="color:var(--muted,#7a8a99);font-weight:400">{esc(r['version'])}</span></h2>
@@ -173,6 +185,32 @@ def render_page(releases: dict) -> str:
 """
 
 
+def upload(path: Path, tag: str, title: str) -> None:
+    """Create the GitHub Release (or replace its file) with the gh CLI."""
+    import shutil
+    import subprocess
+    gh = shutil.which("gh")
+    if not gh:
+        sys.exit("The GitHub CLI (gh) isn't installed. One-time setup:\n"
+                 "  winget install GitHub.cli\n"
+                 "  (open a new Command Prompt)  gh auth login\n"
+                 "Or run again with --no-upload and upload the zip by hand.")
+    exists = subprocess.run([gh, "release", "view", tag, "--repo", GH_REPO],
+                            capture_output=True).returncode == 0
+    if exists:
+        cmd = [gh, "release", "upload", tag, str(path), "--repo", GH_REPO, "--clobber"]
+    else:
+        cmd = [gh, "release", "create", tag, str(path), "--repo", GH_REPO,
+               "--title", title, "--notes",
+               f"{title} install pack: installer, Quick Start guide and Installation Manual. "
+               "Needs a licence file from GW Automation."]
+    print(f"  uploading to GitHub Release {tag} ...")
+    r = subprocess.run(cmd)
+    if r.returncode != 0:
+        sys.exit("Upload failed (see above). If gh isn't signed in, run: gh auth login")
+    print(f"  uploaded: {asset_url(tag, path.name)}")
+
+
 def write_outputs(releases: dict) -> None:
     RELEASES.write_text(json.dumps(releases, indent=2) + "\n", encoding="utf-8")
     (DL_DIR / "index.html").write_text(render_page(releases), encoding="utf-8")
@@ -188,7 +226,7 @@ Hi,
 Here's {product} {r['version']}.
 
 Download (installer, Quick Start guide and Installation Manual, {r['size']}):
-{SITE}/downloads/{r['file']}
+{r.get('url') or SITE + '/downloads/' + r['file']}
 
 SHA-256 (to check the download):
 {r['sha256']}
@@ -214,6 +252,8 @@ def main(argv=None):
     ap.add_argument("--repo", help="product repo folder (default: sibling folder)")
     ap.add_argument("--msi", help="MSI path (default: found in the repo's dist folder)")
     ap.add_argument("--manual", help="manual PDF path (default: found in the repo's docs folder)")
+    ap.add_argument("--no-upload", action="store_true",
+                    help="build the zip and page only; upload the zip by hand")
     args = ap.parse_args(argv)
 
     product = product_for(args.product)
@@ -225,8 +265,10 @@ def main(argv=None):
     qs      = first_existing(repo, info["quickstart"], "Quick Start PDF")
 
     DL_DIR.mkdir(exist_ok=True)
+    PACK_DIR.mkdir(exist_ok=True)
     zip_name = f"{product}-{version}.zip"
-    out = DL_DIR / zip_name
+    out = PACK_DIR / zip_name
+    tag = f"{product.lower()}-v{version}"
     msi_name = info["msi_name"](version)
     manual_name = f"{product} Installation Manual.pdf"
     qs_name = f"{product} Quick Start.pdf"
@@ -239,27 +281,32 @@ def main(argv=None):
         z.write(qs, qs_name)
         z.write(manual, manual_name)
     size = out.stat().st_size
-    if size > MAX_MB * 1_000_000:
-        out.unlink()
-        sys.exit(f"The zip is {human_size(size)}; GitHub only takes files under 100 MB. "
-                 "Use a Nuitka build or host this release elsewhere.")
+    digest = sha256(out)
+    print(f"  {zip_name}: {human_size(size)}, SHA-256 {digest}")
 
-    for old in DL_DIR.glob(f"{product}-*.zip"):
+    if args.no_upload:
+        print(f"\nNot uploaded (--no-upload). To upload by hand: on GitHub open {GH_REPO} >")
+        print(f"  Releases > Draft a new release, tag {tag}, attach {out}, Publish.")
+    else:
+        upload(out, tag, f"{product} {version}")
+
+    # older packs: only the latest is offered (old Releases stay on GitHub)
+    for old in list(DL_DIR.glob(f"{product}-*.zip")) + list(PACK_DIR.glob(f"{product}-*.zip")):
         if old.name != zip_name:
             old.unlink()
-            print(f"  removed older {old.name}")
+            print(f"  removed older local {old.name}")
 
     releases = json.loads(RELEASES.read_text(encoding="utf-8")) if RELEASES.exists() else {}
     releases[product] = {
         "version": version, "file": zip_name, "msi": msi_name,
-        "size": human_size(size), "sha256": sha256(out),
+        "size": human_size(size), "sha256": digest,
+        "tag": tag, "url": asset_url(tag, zip_name),
         "date": dt.date.today().strftime("%-d %B %Y") if sys.platform != "win32"
                 else dt.date.today().strftime("%#d %B %Y"),
     }
     write_outputs(releases)
     r = releases[product]
-    print(f"  {zip_name}: {r['size']}, SHA-256 {r['sha256']}")
-    print("\nNext:")
+    print("\nNext (publishes the page):")
     print(f'  git add downloads && git commit -m "Release {product} {version}" && git push')
     print(f"\nDownload page: {SITE}/downloads/")
     print("\n" + "-" * 72 + "\nEmail to send (attach the site's .lic file):\n" + "-" * 72)
