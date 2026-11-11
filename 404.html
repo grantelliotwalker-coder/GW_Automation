@@ -18,53 +18,55 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="/assets/site.css?v=9">
+<link rel="stylesheet" href="/assets/site.css?v=10">
 <script>(function(d){d.className+=' js';var t;try{t=localStorage.getItem('gw-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.setAttribute('data-theme',t)})(document.documentElement)</script>
 </head>
 <body>
 
 <header>
   <div class="hdr">
-    <div class="logo" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round">
-        <path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/>
-        <circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/>
-      </svg>
+    <a class="home" href="/" aria-label="GW Automation home">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round">
+          <path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/>
+          <circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/>
+        </svg>
+      </div>
+      <span class="brand" id="txt-brand">GW <em>Automation</em></span>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">≡</button>
+      <nav id="nav">
+        <a href="/#products">Products</a>
+        <a href="/historianlink/">HistorianLink</a>
+        <a href="/opcdalink/">OpcDaLink</a>
+        <a href="/#platform">Platform</a>
+        <a href="/#specs">Specs</a>
+        <a href="/#trial">Trial</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Switch colour theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg></button>
     </div>
-    <span class="brand" id="txt-brand">GW <em>Automation</em></span>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">≡</button>
-    <nav id="nav">
-      <a href="/#products">Products</a>
-      <a href="/historianlink/">HistorianLink</a>
-      <a href="/opcdalink/">OpcDaLink</a>
-      <a href="/#platform">Platform</a>
-      <a href="/#specs">Specs</a>
-      <a href="/#trial">Trial</a>
-      <a href="/#faq">FAQ</a>
-      <a href="/#contact">Contact</a>
-    </nav>
-    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Switch colour theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg></button>
-  </div>
-</header>
+  </header>
 
-<main class="page">
-  <div class="wrap">
-    <div class="big404">404</div>
-    <h1 style="margin-top:18px">Signal lost.</h1>
-    <p>That page isn't here. It may have moved, or the link may be wrong.</p>
-    <div class="cta-row">
-      <a href="/" class="btn btn-a">Back to the home page</a>
-      <a href="/#contact" class="btn btn-g">Contact</a>
+  <main class="page">
+    <div class="wrap">
+      <div class="big404">404</div>
+      <h1 style="margin-top:18px">Signal lost.</h1>
+      <p>That page isn't here. It may have moved, or the link may be wrong.</p>
+      <div class="cta-row">
+        <a href="/" class="btn btn-a">Back to the home page</a>
+        <a href="/#contact" class="btn btn-g">Contact</a>
+      </div>
     </div>
-  </div>
-</main>
+  </main>
 
-<footer>
-  <div class="wrap fgrid">
-    <div class="fbrand">
-      <div class="row1">
-        <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round"><path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/></svg></div>
-        <span class="brand">GW <em>Automation</em></span>
+  <footer>
+    <div class="wrap fgrid">
+      <div class="fbrand">
+        <div class="row1">
+          <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round"><path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/></svg></div>
+          <span class="brand">GW <em>Automation</em></span>
+    </a>
       </div>
       <p>Data extraction tools for OPC systems. Windows-native, offline licensing, no cloud. Built in Australia.</p>
     </div>

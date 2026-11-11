@@ -141,20 +141,22 @@ def render_page(releases: dict) -> str:
 <title>Downloads | GW Automation</title>
 <link rel="icon" href="/assets/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/site.css?v=9">
+<link rel="stylesheet" href="/assets/site.css?v=10">
 <script>(function(d){{d.className+=' js';var t;try{{t=localStorage.getItem('gw-theme')}}catch(e){{}}if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.setAttribute('data-theme',t)}})(document.documentElement)</script>
 </head>
 <body>
 
 <header>
   <div class="hdr">
-    <div class="logo" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round">
-        <path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/>
-        <circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/>
-      </svg>
-    </div>
-    <span class="brand">GW <em>Automation</em></span>
+    <a class="home" href="/" aria-label="GW Automation home">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round">
+          <path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/>
+          <circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/>
+        </svg>
+      </div>
+      <span class="brand">GW <em>Automation</em></span>
+    </a>
     <nav id="nav">
       <a href="/">Home</a>
       <a href="/#contact">Contact</a>

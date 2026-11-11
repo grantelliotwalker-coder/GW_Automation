@@ -26,161 +26,163 @@
 <meta property="og:image" content="https://opctools.gwstudio.com.au/assets/og-card.png">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "SoftwareApplication", "name": "HistorianLink", "description": "HistorianLink is a Windows OPC UA client that exports history from any OPC UA historian to Excel and CSV, with scheduled reports, live dashboards and alarms.", "softwareVersion": "1.1", "applicationCategory": "BusinessApplication", "operatingSystem": "Windows Server 2016 or later, Windows 10 or later (64-bit)", "url": "https://opctools.gwstudio.com.au/historianlink/", "screenshot": "https://opctools.gwstudio.com.au/assets/hl-analyser.png", "publisher": {"@type": "Organization", "name": "GW Automation", "url": "https://opctools.gwstudio.com.au/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "GW Automation", "item": "https://opctools.gwstudio.com.au/"}, {"@type": "ListItem", "position": 2, "name": "HistorianLink", "item": "https://opctools.gwstudio.com.au/historianlink/"}]}]}</script>
-<link rel="stylesheet" href="/assets/site.css?v=9">
+<link rel="stylesheet" href="/assets/site.css?v=10">
 <script>(function(d){d.className+=' js';var t;try{t=localStorage.getItem('gw-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.setAttribute('data-theme',t)})(document.documentElement)</script>
 </head>
 <body>
 
 <header>
   <div class="hdr">
-    <div class="logo" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round">
-        <path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/>
-        <circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/>
-      </svg>
+    <a class="home" href="/" aria-label="GW Automation home">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round">
+          <path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/>
+          <circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/>
+        </svg>
+      </div>
+      <span class="brand" id="txt-brand">GW <em>Automation</em></span>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">≡</button>
+      <nav id="nav">
+        <a href="/#products">Products</a>
+        <a href="/historianlink/">HistorianLink</a>
+        <a href="/opcdalink/">OpcDaLink</a>
+        <a href="/#platform">Platform</a>
+        <a href="/#specs">Specs</a>
+        <a href="/#trial">Trial</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Switch colour theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg></button>
     </div>
-    <span class="brand" id="txt-brand">GW <em>Automation</em></span>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">≡</button>
-    <nav id="nav">
-      <a href="/#products">Products</a>
-      <a href="/historianlink/">HistorianLink</a>
-      <a href="/opcdalink/">OpcDaLink</a>
-      <a href="/#platform">Platform</a>
-      <a href="/#specs">Specs</a>
-      <a href="/#trial">Trial</a>
-      <a href="/#faq">FAQ</a>
-      <a href="/#contact">Contact</a>
-    </nav>
-    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Switch colour theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg></button>
-  </div>
-</header>
+  </header>
 
-<main>
-<div class="hero phero">
-  <div class="wrap">
-    <div class="crumb"><a href="/">GW Automation</a> <span>/</span> <a href="/#products">Products</a> <span>/</span> HistorianLink</div>
-    <span class="badge live"><span class="dot"></span><span>Shipping · version 1.1</span></span>
-    <h1>Historian<em>Link</em></h1>
-    <div class="tagline">OPC UA history · reports · dashboards · alarms</div>
-    <p class="lede">Connects as an OPC UA client to any plant historian that serves history over OPC UA, whatever the vendor, and turns its archive into data you can work with. Browse the tag tree, pull raw history, resample it, and export to Excel or CSV with real quality codes attached.</p>
-    <div class="cta-row">
-      <a href="mailto:gwautomation@gwstudio.com.au?subject=HistorianLink%20trial%20request" class="btn btn-a">Request a trial</a>
-      <a href="/assets/docs/HistorianLink-Datasheet.pdf" class="btn btn-g">Download datasheet (PDF)</a>
-    </div>
-  </div>
-</div>
-
-<section id="screens">
-  <div class="wrap">
-    <div class="st">Screens</div>
-    <h2>See it running.</h2>
-    <div class="prod">
-      <div class="prod-media rv viewer" data-viewer>
-        <div class="vtabs" role="tablist" aria-label="HistorianLink screens">
-          <button role="tab" type="button" aria-selected="true" tabindex="0" data-src="/assets/hl-dashboard.png?v=1" data-alt="HistorianLink live dashboard tiles">Live dashboard</button>
-          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-analyser.png?v=1" data-alt="HistorianLink data analyser showing multiple tags over a seven day window">Data analyser</button>
-          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-alarm-analyser.png?v=1" data-alt="HistorianLink alarm analyser showing alarm counts by source">Alarm analyser</button>
-          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-export.png?v=1" data-alt="HistorianLink export job queue with progress bars">Export jobs</button>
-          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-alarms.png?v=1" data-alt="HistorianLink alarm history table with severity colouring">Alarm history</button>
-          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-reports.png?v=1" data-alt="HistorianLink scheduled reports configuration">Reports</button>
-          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-viewer.png?v=1" data-alt="HistorianLink read-only viewer showing a plant overview dashboard of live tag values">Read-only viewer</button>
-          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-connection.png?v=1" data-alt="HistorianLink connection page with discovered OPC UA endpoints, the client certificate and a trusted connection result">Connection setup</button>
-          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-users.png?v=1" data-alt="HistorianLink users page listing admin, engineer, alarms-only and viewer accounts with their roles">Users and roles</button>
-          <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-devices.png?v=1" data-alt="HistorianLink device trust page with one device pending approval and five trusted devices">Device trust</button>
-        </div>
-        <div class="shot" role="tabpanel">
-          <img src="/assets/hl-dashboard.png?v=1" alt="HistorianLink live dashboard tiles" loading="lazy">
-        </div>
-        <div class="vhint">Click the screenshot to enlarge</div>
+  <main>
+  <div class="hero phero">
+    <div class="wrap">
+      <div class="crumb"><a href="/">GW Automation</a> <span>/</span> <a href="/#products">Products</a> <span>/</span> HistorianLink</div>
+      <span class="badge live"><span class="dot"></span><span>Shipping · version 1.1</span></span>
+      <h1>Historian<em>Link</em></h1>
+      <div class="tagline">OPC UA history · reports · dashboards · alarms</div>
+      <p class="lede">Connects as an OPC UA client to any plant historian that serves history over OPC UA, whatever the vendor, and turns its archive into data you can work with. Browse the tag tree, pull raw history, resample it, and export to Excel or CSV with real quality codes attached.</p>
+      <div class="cta-row">
+        <a href="mailto:gwautomation@gwstudio.com.au?subject=HistorianLink%20trial%20request" class="btn btn-a">Request a trial</a>
+        <a href="/assets/docs/HistorianLink-Datasheet.pdf" class="btn btn-g">Download datasheet (PDF)</a>
       </div>
     </div>
   </div>
-</section>
 
-<section id="features">
-  <div class="wrap">
-    <div class="st">Features</div>
-    <h2>What it does.</h2>
-    <p class="sub">HistorianLink runs on a Windows machine that can reach your historian. Engineers and viewers use it from their own browsers, so there is no client software to roll out.</p>
-    <ul class="feat two" id="txt-hl-features">
-          <li><b>History export jobs:</b> raw reads resampled to any interval, millisecond timestamps, plain-English quality column, UTC or local toggle, metadata header block.</li>
-          <li><b>Scheduled reports:</b> repeatable report definitions written to .xlsx, last five runs kept per report.</li>
-          <li><b>Live dashboards:</b> tiles with current value and sparkline, polled only while someone is watching.</li>
-          <li><b>Current alarms:</b> live alarms read over OPC UA from the historian, or from a separate alarm server if you have one.</li>
-          <li><b>Alarm history (optional WinCC add-on):</b> a satellite agent reads the WinCC message archive over OLE DB, the supported route when UA returns BadNotImplemented for event history.</li>
-          <li><b>Trend analyser:</b> multi-tag chart with severity colouring, presets and a scrubbing ruler.</li>
-          <li><b>Three access levels:</b> admin on loopback, engineer over TLS, read-only viewer.</li>
-          <li><b>Device trust:</b> allow-list connections by IP, or IP + MAC with ARP verification.</li>
-          <li><b>Audit trail:</b> logins, exports, config changes; no credentials, no stack traces.</li>
-        </ul>
-  </div>
-</section>
-
-<section id="architecture">
-  <div class="wrap">
-    <div class="st">Architecture</div>
-    <h2>How it fits in.</h2>
-    <p class="sub">One Windows service talks OPC UA to the historian and serves three separate web interfaces. Where WinCC alarm history is wanted, an optional agent on each OS server supplies it.</p>
-    <div class="arch rv"><svg class="dg" viewBox="0 0 960 294" role="img" aria-label="HistorianLink architecture: the service reads history from any plant historian over OPC UA and, optionally, alarm history from a WinCC message archive through a satellite agent, then serves browsers over HTTPS and writes Excel and CSV files" xmlns="http://www.w3.org/2000/svg"><g class="bx"><rect x="20" y="34" width="200" height="92" rx="5"/><text class="t" x="120" y="65" text-anchor="middle">Plant historian</text><text class="s" x="120" y="82" text-anchor="middle">any server with history</text><text class="s" x="120" y="97" text-anchor="middle">over OPC UA</text></g><g class="bx"><rect x="20" y="180" width="180" height="80" rx="5"/><text class="t" x="110" y="212" text-anchor="middle">WinCC message archive</text><text class="s" x="110" y="229" text-anchor="middle">optional alarm history</text></g><g class="bx"><rect x="276" y="190" width="118" height="60" rx="5"/><text class="t" x="335" y="225" text-anchor="middle">Satellite agent</text></g><g class="bx hi"><rect x="450" y="24" width="250" height="246" rx="5"/></g><text class="t" x="575" y="52" text-anchor="middle">HistorianLink service</text><g class="bx in"><rect x="472" y="70" width="206" height="40" rx="5"/><text class="t" x="575" y="95" text-anchor="middle">History export jobs</text></g><g class="bx in"><rect x="472" y="118" width="206" height="40" rx="5"/><text class="t" x="575" y="143" text-anchor="middle">Scheduled reports</text></g><g class="bx in"><rect x="472" y="166" width="206" height="40" rx="5"/><text class="t" x="575" y="191" text-anchor="middle">Live dashboards</text></g><g class="bx in"><rect x="472" y="214" width="206" height="40" rx="5"/><text class="t" x="575" y="239" text-anchor="middle">Alarm history</text></g><g class="bx"><rect x="780" y="34" width="160" height="92" rx="5"/><text class="t" x="860" y="65" text-anchor="middle">Browser</text><text class="s" x="860" y="82" text-anchor="middle">admin, engineer,</text><text class="s" x="860" y="97" text-anchor="middle">read-only viewer</text></g><g class="bx"><rect x="780" y="180" width="160" height="80" rx="5"/><text class="t" x="860" y="205" text-anchor="middle">Files</text><text class="s" x="860" y="222" text-anchor="middle">.xlsx and .csv exports,</text><text class="s" x="860" y="237" text-anchor="middle">scheduled reports</text></g><line x1="226" y1="80" x2="444" y2="80"/><path class="ah" d="M450 80 l-8 -4.5 v9z"/><path class="ah" d="M220 80 l8 -4.5 v9z"/><text class="l" x="335" y="71" text-anchor="middle">OPC UA · read-only</text><line x1="200" y1="220" x2="270" y2="220"/><path class="ah" d="M276 220 l-8 -4.5 v9z"/><text class="l" x="238" y="211" text-anchor="middle">OLE DB</text><line x1="394" y1="220" x2="444" y2="220"/><path class="ah" d="M450 220 l-8 -4.5 v9z"/><line x1="706" y1="80" x2="774" y2="80"/><path class="ah" d="M780 80 l-8 -4.5 v9z"/><path class="ah" d="M700 80 l8 -4.5 v9z"/><text class="l" x="740" y="71" text-anchor="middle">HTTPS</text><line x1="700" y1="220" x2="774" y2="220"/><path class="ah" d="M780 220 l-8 -4.5 v9z"/></svg></div>
-  </div>
-</section>
-
-<section id="package">
-  <div class="wrap">
-    <div class="st">In the package</div>
-    <h2>What you receive.</h2>
-    <p class="sub">Only the MSI is needed on every site. The WinCC components are optional add-ons for sites that want alarm history from a WinCC message archive.</p>
-    <table class="spec"><thead><tr><th>Component</th><th>Installed on</th><th>Purpose</th></tr></thead><tbody><tr><td>HistorianLink MSI</td><td data-label="Installed on">HistorianLink host</td><td data-label="Purpose">Installs the HistorianLink service and the tray app. The only component every site needs.</td></tr><tr><td>Alarm History Agent</td><td data-label="Installed on">Each WinCC OS server</td><td data-label="Purpose">Optional add-on for WinCC sites. Serves the WinCC message archive to HistorianLink over HTTPS.</td></tr><tr><td>OPC UA diagnostic tool</td><td data-label="Installed on">Any machine that can reach the OPC UA server</td><td data-label="Purpose">Console tool that runs individual OPC UA tests (endpoints, certificate, browse, history, alarms) outside the service.</td></tr><tr><td>WinCC OLE DB probe</td><td data-label="Installed on">A WinCC OS server</td><td data-label="Purpose">Optional, for WinCC sites. Console tool that checks the WinCC OLE DB provider and message archive directly.</td></tr><tr><td>Alarm Analyser</td><td data-label="Installed on">An engineering workstation</td><td data-label="Purpose">Optional desktop app that queries an Alarm History Agent directly for deep alarm analysis and CSV export.</td></tr><tr><td>Documentation</td><td data-label="Installed on">&nbsp;</td><td data-label="Purpose">A Quick Start guide and the full Installation and Commissioning Manual.</td></tr></tbody></table>
-  </div>
-</section>
-
-<section id="requirements">
-  <div class="wrap">
-    <div class="st">Requirements</div>
-    <h2>System requirements.</h2>
-    <table class="spec two"><tbody><tr><td>Operating system</td><td>Windows Server 2016 or later, or Windows 10 or later, 64-bit. Physical or virtual.</td></tr><tr><td>Rights</td><td>Local administrator to install. The service then runs as LocalSystem.</td></tr><tr><td>Other software</td><td>None. HistorianLink is self-contained: no database server, no .NET or Python runtime, no internet access.</td></tr><tr><td>Memory</td><td>A host with 4 GB or more free is comfortable for typical use. Export jobs are built in memory, capped at 200 MB of held output.</td></tr><tr><td>Disk</td><td>Program files are small. Allow space for report outputs (the last five runs of each report) and the audit log.</td></tr><tr><td>Clock</td><td>Keep the host clock synchronised (domain time or NTP). Certificate checks and scheduled reports depend on it.</td></tr><tr><td>Browsers</td><td>Any current Chromium-based browser, Firefox or Safari on engineer and viewer devices.</td></tr><tr><td>Historian</td><td>Any server that provides history over OPC UA, whatever the vendor.</td></tr></tbody></table>
-  </div>
-</section>
-
-<section id="security">
-  <div class="wrap">
-    <div class="st">Security</div>
-    <h2>Built for plant networks.</h2>
-    <div class="cards"><div class="card rv"><div class="num">01 / READ-ONLY</div><h4>Never writes to the historian</h4><p>HistorianLink connects as an OPC UA client and only browses tags and reads values and history. It never writes values or changes the historian's configuration.</p></div><div class="card rv"><div class="num">02 / INTERFACES</div><h4>Three separate interfaces</h4><p>Admin, engineer and viewer each run on their own port. The admin page listens on loopback only and is never reachable on the engineer port.</p></div><div class="card rv"><div class="num">03 / OPC UA</div><h4>Signed and encrypted sessions</h4><p>Basic256Sha256 with SignAndEncrypt by default, with Aes128_Sha256_RsaOaep and Aes256_Sha256_RsaPss also supported. The historian administrator trusts HistorianLink's certificate explicitly.</p></div><div class="card rv"><div class="num">04 / TLS</div><h4>HTTPS for network users</h4><p>The engineer and viewer interfaces run over HTTPS with a minimum of TLS 1.2, enabled during commissioning.</p></div><div class="card rv"><div class="num">05 / ACCESS</div><h4>Roles and device trust</h4><p>Administrator, engineer and viewer roles, with an optional allow-list of devices by IP, or by IP and MAC address on the same subnet.</p></div><div class="card rv"><div class="num">06 / RECORDS</div><h4>Audit trail and encrypted config</h4><p>Logins, exports and configuration changes are logged. Credentials and connection settings are encrypted with Windows DPAPI, tied to the machine.</p></div></div>
-  </div>
-</section>
-
-<section id="licensing">
-  <div class="wrap">
-    <div class="st">Licensing</div>
-    <h2>Licensing and trial.</h2>
-    <table class="spec two"><tbody><tr><td>Model</td><td>One perpetual licence per site, with no per-tag pricing. The licence is not tied to a machine, so rebuilding or moving the host does not need a new one.</td></tr><tr><td>Activation</td><td>Fully offline. Each site gets a digitally signed licence file that is added on the admin page. No activation server, no internet access, no phone-home.</td></tr><tr><td>Trial</td><td>Free for 90 days with the full feature set and no tag limit. The software shows the days left, and warns daily in the last 14.</td></tr><tr><td>After the trial</td><td>A full licence replaces the trial with no reinstall, and everything set up during the trial is kept. If a trial ends first, nothing configured is lost: features pause until a licence is added.</td></tr><tr><td>Terms</td><td>The software licence agreement is published on the <a href="/licence/">licence page</a>.</td></tr></tbody></table>
-  </div>
-</section>
-
-<section id="next">
-  <div class="wrap">
-    <div class="st">Next step</div>
-    <h2>Try HistorianLink on your own system.</h2>
-    <p class="sub">Free for 90 days, full feature set, no tag limit. Tell us what you run and we will send the installer, the installation manual and a trial licence for your site.</p>
-    <div class="cta-row">
-      <a href="mailto:gwautomation@gwstudio.com.au?subject=HistorianLink%20trial%20request" class="btn btn-a">Request a trial</a>
-      <a href="/assets/docs/HistorianLink-Datasheet.pdf" class="btn btn-g">Download datasheet (PDF)</a>
-      <a href="/opcdalink/" class="btn btn-g">See OpcDaLink</a>
+  <section id="screens">
+    <div class="wrap">
+      <div class="st">Screens</div>
+      <h2>See it running.</h2>
+      <div class="prod">
+        <div class="prod-media rv viewer" data-viewer>
+          <div class="vtabs" role="tablist" aria-label="HistorianLink screens">
+            <button role="tab" type="button" aria-selected="true" tabindex="0" data-src="/assets/hl-dashboard.png?v=1" data-alt="HistorianLink live dashboard tiles">Live dashboard</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-analyser.png?v=1" data-alt="HistorianLink data analyser showing multiple tags over a seven day window">Data analyser</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-alarm-analyser.png?v=1" data-alt="HistorianLink alarm analyser showing alarm counts by source">Alarm analyser</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-export.png?v=1" data-alt="HistorianLink export job queue with progress bars">Export jobs</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-alarms.png?v=1" data-alt="HistorianLink alarm history table with severity colouring">Alarm history</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-reports.png?v=1" data-alt="HistorianLink scheduled reports configuration">Reports</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-viewer.png?v=1" data-alt="HistorianLink read-only viewer showing a plant overview dashboard of live tag values">Read-only viewer</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-connection.png?v=1" data-alt="HistorianLink connection page with discovered OPC UA endpoints, the client certificate and a trusted connection result">Connection setup</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-users.png?v=1" data-alt="HistorianLink users page listing admin, engineer, alarms-only and viewer accounts with their roles">Users and roles</button>
+            <button role="tab" type="button" aria-selected="false" tabindex="-1" data-src="/assets/hl-devices.png?v=1" data-alt="HistorianLink device trust page with one device pending approval and five trusted devices">Device trust</button>
+          </div>
+          <div class="shot" role="tabpanel">
+            <img src="/assets/hl-dashboard.png?v=1" alt="HistorianLink live dashboard tiles" loading="lazy">
+          </div>
+          <div class="vhint">Click the screenshot to enlarge</div>
+        </div>
+      </div>
     </div>
-    <p class="fine">Software licence terms are on the <a href="/licence/">licence page</a>. Questions go to <a href="mailto:gwautomation@gwstudio.com.au">gwautomation@gwstudio.com.au</a>.</p>
-  </div>
-</section>
-</main>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="st">Features</div>
+      <h2>What it does.</h2>
+      <p class="sub">HistorianLink runs on a Windows machine that can reach your historian. Engineers and viewers use it from their own browsers, so there is no client software to roll out.</p>
+      <ul class="feat two" id="txt-hl-features">
+            <li><b>History export jobs:</b> raw reads resampled to any interval, millisecond timestamps, plain-English quality column, UTC or local toggle, metadata header block.</li>
+            <li><b>Scheduled reports:</b> repeatable report definitions written to .xlsx, last five runs kept per report.</li>
+            <li><b>Live dashboards:</b> tiles with current value and sparkline, polled only while someone is watching.</li>
+            <li><b>Current alarms:</b> live alarms read over OPC UA from the historian, or from a separate alarm server if you have one.</li>
+            <li><b>Alarm history (optional WinCC add-on):</b> a satellite agent reads the WinCC message archive over OLE DB, the supported route when UA returns BadNotImplemented for event history.</li>
+            <li><b>Trend analyser:</b> multi-tag chart with severity colouring, presets and a scrubbing ruler.</li>
+            <li><b>Three access levels:</b> admin on loopback, engineer over TLS, read-only viewer.</li>
+            <li><b>Device trust:</b> allow-list connections by IP, or IP + MAC with ARP verification.</li>
+            <li><b>Audit trail:</b> logins, exports, config changes; no credentials, no stack traces.</li>
+          </ul>
+    </div>
+  </section>
+
+  <section id="architecture">
+    <div class="wrap">
+      <div class="st">Architecture</div>
+      <h2>How it fits in.</h2>
+      <p class="sub">One Windows service talks OPC UA to the historian and serves three separate web interfaces. Where WinCC alarm history is wanted, an optional agent on each OS server supplies it.</p>
+      <div class="arch rv"><svg class="dg" viewBox="0 0 960 294" role="img" aria-label="HistorianLink architecture: the service reads history from any plant historian over OPC UA and, optionally, alarm history from a WinCC message archive through a satellite agent, then serves browsers over HTTPS and writes Excel and CSV files" xmlns="http://www.w3.org/2000/svg"><g class="bx"><rect x="20" y="34" width="200" height="92" rx="5"/><text class="t" x="120" y="65" text-anchor="middle">Plant historian</text><text class="s" x="120" y="82" text-anchor="middle">any server with history</text><text class="s" x="120" y="97" text-anchor="middle">over OPC UA</text></g><g class="bx"><rect x="20" y="180" width="180" height="80" rx="5"/><text class="t" x="110" y="212" text-anchor="middle">WinCC message archive</text><text class="s" x="110" y="229" text-anchor="middle">optional alarm history</text></g><g class="bx"><rect x="276" y="190" width="118" height="60" rx="5"/><text class="t" x="335" y="225" text-anchor="middle">Satellite agent</text></g><g class="bx hi"><rect x="450" y="24" width="250" height="246" rx="5"/></g><text class="t" x="575" y="52" text-anchor="middle">HistorianLink service</text><g class="bx in"><rect x="472" y="70" width="206" height="40" rx="5"/><text class="t" x="575" y="95" text-anchor="middle">History export jobs</text></g><g class="bx in"><rect x="472" y="118" width="206" height="40" rx="5"/><text class="t" x="575" y="143" text-anchor="middle">Scheduled reports</text></g><g class="bx in"><rect x="472" y="166" width="206" height="40" rx="5"/><text class="t" x="575" y="191" text-anchor="middle">Live dashboards</text></g><g class="bx in"><rect x="472" y="214" width="206" height="40" rx="5"/><text class="t" x="575" y="239" text-anchor="middle">Alarm history</text></g><g class="bx"><rect x="780" y="34" width="160" height="92" rx="5"/><text class="t" x="860" y="65" text-anchor="middle">Browser</text><text class="s" x="860" y="82" text-anchor="middle">admin, engineer,</text><text class="s" x="860" y="97" text-anchor="middle">read-only viewer</text></g><g class="bx"><rect x="780" y="180" width="160" height="80" rx="5"/><text class="t" x="860" y="205" text-anchor="middle">Files</text><text class="s" x="860" y="222" text-anchor="middle">.xlsx and .csv exports,</text><text class="s" x="860" y="237" text-anchor="middle">scheduled reports</text></g><line x1="226" y1="80" x2="444" y2="80"/><path class="ah" d="M450 80 l-8 -4.5 v9z"/><path class="ah" d="M220 80 l8 -4.5 v9z"/><text class="l" x="335" y="71" text-anchor="middle">OPC UA · read-only</text><line x1="200" y1="220" x2="270" y2="220"/><path class="ah" d="M276 220 l-8 -4.5 v9z"/><text class="l" x="238" y="211" text-anchor="middle">OLE DB</text><line x1="394" y1="220" x2="444" y2="220"/><path class="ah" d="M450 220 l-8 -4.5 v9z"/><line x1="706" y1="80" x2="774" y2="80"/><path class="ah" d="M780 80 l-8 -4.5 v9z"/><path class="ah" d="M700 80 l8 -4.5 v9z"/><text class="l" x="740" y="71" text-anchor="middle">HTTPS</text><line x1="700" y1="220" x2="774" y2="220"/><path class="ah" d="M780 220 l-8 -4.5 v9z"/></svg></div>
+    </div>
+  </section>
+
+  <section id="package">
+    <div class="wrap">
+      <div class="st">In the package</div>
+      <h2>What you receive.</h2>
+      <p class="sub">Only the MSI is needed on every site. The WinCC components are optional add-ons for sites that want alarm history from a WinCC message archive.</p>
+      <table class="spec"><thead><tr><th>Component</th><th>Installed on</th><th>Purpose</th></tr></thead><tbody><tr><td>HistorianLink MSI</td><td data-label="Installed on">HistorianLink host</td><td data-label="Purpose">Installs the HistorianLink service and the tray app. The only component every site needs.</td></tr><tr><td>Alarm History Agent</td><td data-label="Installed on">Each WinCC OS server</td><td data-label="Purpose">Optional add-on for WinCC sites. Serves the WinCC message archive to HistorianLink over HTTPS.</td></tr><tr><td>OPC UA diagnostic tool</td><td data-label="Installed on">Any machine that can reach the OPC UA server</td><td data-label="Purpose">Console tool that runs individual OPC UA tests (endpoints, certificate, browse, history, alarms) outside the service.</td></tr><tr><td>WinCC OLE DB probe</td><td data-label="Installed on">A WinCC OS server</td><td data-label="Purpose">Optional, for WinCC sites. Console tool that checks the WinCC OLE DB provider and message archive directly.</td></tr><tr><td>Alarm Analyser</td><td data-label="Installed on">An engineering workstation</td><td data-label="Purpose">Optional desktop app that queries an Alarm History Agent directly for deep alarm analysis and CSV export.</td></tr><tr><td>Documentation</td><td data-label="Installed on">&nbsp;</td><td data-label="Purpose">A Quick Start guide and the full Installation and Commissioning Manual.</td></tr></tbody></table>
+    </div>
+  </section>
+
+  <section id="requirements">
+    <div class="wrap">
+      <div class="st">Requirements</div>
+      <h2>System requirements.</h2>
+      <table class="spec two"><tbody><tr><td>Operating system</td><td>Windows Server 2016 or later, or Windows 10 or later, 64-bit. Physical or virtual.</td></tr><tr><td>Rights</td><td>Local administrator to install. The service then runs as LocalSystem.</td></tr><tr><td>Other software</td><td>None. HistorianLink is self-contained: no database server, no .NET or Python runtime, no internet access.</td></tr><tr><td>Memory</td><td>A host with 4 GB or more free is comfortable for typical use. Export jobs are built in memory, capped at 200 MB of held output.</td></tr><tr><td>Disk</td><td>Program files are small. Allow space for report outputs (the last five runs of each report) and the audit log.</td></tr><tr><td>Clock</td><td>Keep the host clock synchronised (domain time or NTP). Certificate checks and scheduled reports depend on it.</td></tr><tr><td>Browsers</td><td>Any current Chromium-based browser, Firefox or Safari on engineer and viewer devices.</td></tr><tr><td>Historian</td><td>Any server that provides history over OPC UA, whatever the vendor.</td></tr></tbody></table>
+    </div>
+  </section>
+
+  <section id="security">
+    <div class="wrap">
+      <div class="st">Security</div>
+      <h2>Built for plant networks.</h2>
+      <div class="cards"><div class="card rv"><div class="num">01 / READ-ONLY</div><h4>Never writes to the historian</h4><p>HistorianLink connects as an OPC UA client and only browses tags and reads values and history. It never writes values or changes the historian's configuration.</p></div><div class="card rv"><div class="num">02 / INTERFACES</div><h4>Three separate interfaces</h4><p>Admin, engineer and viewer each run on their own port. The admin page listens on loopback only and is never reachable on the engineer port.</p></div><div class="card rv"><div class="num">03 / OPC UA</div><h4>Signed and encrypted sessions</h4><p>Basic256Sha256 with SignAndEncrypt by default, with Aes128_Sha256_RsaOaep and Aes256_Sha256_RsaPss also supported. The historian administrator trusts HistorianLink's certificate explicitly.</p></div><div class="card rv"><div class="num">04 / TLS</div><h4>HTTPS for network users</h4><p>The engineer and viewer interfaces run over HTTPS with a minimum of TLS 1.2, enabled during commissioning.</p></div><div class="card rv"><div class="num">05 / ACCESS</div><h4>Roles and device trust</h4><p>Administrator, engineer and viewer roles, with an optional allow-list of devices by IP, or by IP and MAC address on the same subnet.</p></div><div class="card rv"><div class="num">06 / RECORDS</div><h4>Audit trail and encrypted config</h4><p>Logins, exports and configuration changes are logged. Credentials and connection settings are encrypted with Windows DPAPI, tied to the machine.</p></div></div>
+    </div>
+  </section>
+
+  <section id="licensing">
+    <div class="wrap">
+      <div class="st">Licensing</div>
+      <h2>Licensing and trial.</h2>
+      <table class="spec two"><tbody><tr><td>Model</td><td>One perpetual licence per site, with no per-tag pricing. The licence is not tied to a machine, so rebuilding or moving the host does not need a new one.</td></tr><tr><td>Activation</td><td>Fully offline. Each site gets a digitally signed licence file that is added on the admin page. No activation server, no internet access, no phone-home.</td></tr><tr><td>Trial</td><td>Free for 90 days with the full feature set and no tag limit. The software shows the days left, and warns daily in the last 14.</td></tr><tr><td>After the trial</td><td>A full licence replaces the trial with no reinstall, and everything set up during the trial is kept. If a trial ends first, nothing configured is lost: features pause until a licence is added.</td></tr><tr><td>Terms</td><td>The software licence agreement is published on the <a href="/licence/">licence page</a>.</td></tr></tbody></table>
+    </div>
+  </section>
+
+  <section id="next">
+    <div class="wrap">
+      <div class="st">Next step</div>
+      <h2>Try HistorianLink on your own system.</h2>
+      <p class="sub">Free for 90 days, full feature set, no tag limit. Tell us what you run and we will send the installer, the installation manual and a trial licence for your site.</p>
+      <div class="cta-row">
+        <a href="mailto:gwautomation@gwstudio.com.au?subject=HistorianLink%20trial%20request" class="btn btn-a">Request a trial</a>
+        <a href="/assets/docs/HistorianLink-Datasheet.pdf" class="btn btn-g">Download datasheet (PDF)</a>
+        <a href="/opcdalink/" class="btn btn-g">See OpcDaLink</a>
+      </div>
+      <p class="fine">Software licence terms are on the <a href="/licence/">licence page</a>. Questions go to <a href="mailto:gwautomation@gwstudio.com.au">gwautomation@gwstudio.com.au</a>.</p>
+    </div>
+  </section>
+  </main>
 
 
 
-<footer>
-  <div class="wrap fgrid">
-    <div class="fbrand">
-      <div class="row1">
-        <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round"><path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/></svg></div>
-        <span class="brand">GW <em>Automation</em></span>
+  <footer>
+    <div class="wrap fgrid">
+      <div class="fbrand">
+        <div class="row1">
+          <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round"><path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/></svg></div>
+          <span class="brand">GW <em>Automation</em></span>
+    </a>
       </div>
       <p>Data extraction tools for OPC systems. Windows-native, offline licensing, no cloud. Built in Australia.</p>
     </div>

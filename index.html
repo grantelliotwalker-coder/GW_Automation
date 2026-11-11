@@ -31,274 +31,276 @@
 <meta name="twitter:card" content="summary_large_image">
 <script>(function(d){d.className+=' js';var t;try{t=localStorage.getItem('gw-theme')}catch(e){}if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.setAttribute('data-theme',t)})(document.documentElement)</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://opctools.gwstudio.com.au/#org", "name": "GW Automation", "url": "https://opctools.gwstudio.com.au/", "logo": "https://opctools.gwstudio.com.au/icon-512.png", "email": "gwautomation@gwstudio.com.au", "taxID": "81 848 968 209", "identifier": {"@type": "PropertyValue", "propertyID": "ABN", "value": "81848968209"}, "address": {"@type": "PostalAddress", "addressCountry": "AU"}}, {"@type": "WebSite", "name": "GW Automation", "url": "https://opctools.gwstudio.com.au/", "publisher": {"@id": "https://opctools.gwstudio.com.au/#org"}}, {"@type": "SoftwareApplication", "name": "HistorianLink", "description": "OPC UA client that gets history, reports, dashboards and alarm history out of any plant historian that serves history over OPC UA, with export to Excel and CSV.", "applicationCategory": "BusinessApplication", "operatingSystem": "Windows Server 2016 or later, Windows 10 or later", "url": "https://opctools.gwstudio.com.au/historianlink/", "screenshot": "https://opctools.gwstudio.com.au/assets/hl-analyser.png", "publisher": {"@id": "https://opctools.gwstudio.com.au/#org"}, "softwareVersion": "1.1"}, {"@type": "SoftwareApplication", "name": "OpcDaLink", "description": "OPC DA to OPC UA bridge that republishes a legacy OPC DA server, with OPC HDA history and OPC AE alarms, as a modern OPC UA server without changing the original server.", "applicationCategory": "BusinessApplication", "operatingSystem": "Windows Server 2016 or later, Windows 10 or later", "url": "https://opctools.gwstudio.com.au/opcdalink/", "screenshot": "https://opctools.gwstudio.com.au/assets/da-dashboard.png", "publisher": {"@id": "https://opctools.gwstudio.com.au/#org"}, "softwareVersion": "1.2"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does HistorianLink change anything on our historian?", "acceptedAnswer": {"@type": "Answer", "text": "No. HistorianLink is read-only: it connects as an OPC UA client and only reads tags and history. It never writes values or changes the historian's configuration."}}, {"@type": "Question", "name": "Does OpcDaLink change our OPC DA server?", "acceptedAnswer": {"@type": "Answer", "text": "No. It connects as an ordinary OPC DA client and leaves the server's configuration exactly as it is. UA clients can only write to items the DA server already allows writes on."}}, {"@type": "Question", "name": "Does it need internet access?", "acceptedAnswer": {"@type": "Answer", "text": "No. Licensing is checked on the machine itself, with no activation server and no phone-home, so both products run on fully air-gapped plant networks."}}, {"@type": "Question", "name": "Where does it get installed?", "acceptedAnswer": {"@type": "Answer", "text": "On a Windows PC or server that can reach your historian or DA server: the historian machine itself, or a separate machine on the same network. It runs on Windows Server 2016+ and Windows 10+."}}, {"@type": "Question", "name": "Can it run on a virtual machine?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Both products are supported on virtual machines, and most trials start on a spare one."}}, {"@type": "Question", "name": "Which historians does HistorianLink work with?", "acceptedAnswer": {"@type": "Answer", "text": "Any server that provides history over OPC UA, whatever the vendor. Siemens Process Historian and WinCC are two examples. Current alarms are read over OPC UA as well. For WinCC sites, an optional satellite agent adds alarm history from the message archive."}}, {"@type": "Question", "name": "How is it licensed?", "acceptedAnswer": {"@type": "Answer", "text": "One perpetual licence per site, with fully offline activation and no per-tag pricing: the price doesn't change with the size of your system. The licence isn't tied to one computer, so replacing or moving a server doesn't need a new one. Email us for a quote."}}, {"@type": "Question", "name": "What happens after the 90-day trial?", "acceptedAnswer": {"@type": "Answer", "text": "You get a permanent licence for your site. Add it on the admin page and everything you set up during the trial carries straight over, with no reinstall. The software shows how many trial days are left, so it never stops by surprise."}}, {"@type": "Question", "name": "Is there an installation manual?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, a full installation and commissioning manual for each product, covering planning, firewall rules, security hardening, upgrades and troubleshooting. It's sent with every trial, or email to request a copy for your IT or security team to review first."}}, {"@type": "Question", "name": "How do updates work?", "acceptedAnswer": {"@type": "Answer", "text": "A new version is a new installer run over the top of the old one. Your configuration, licence and reports are kept."}}]}]}</script>
-<link rel="stylesheet" href="assets/site.css?v=9">
+<link rel="stylesheet" href="assets/site.css?v=10">
 </head>
 <body>
 
 <header>
   <div class="hdr">
-    <div class="logo" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round">
-        <path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/>
-        <circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/>
-      </svg>
-    </div>
-    <span class="brand" id="txt-brand">GW <em>Automation</em></span>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">≡</button>
-    <nav id="nav">
-      <a href="#products">Products</a>
-      <a href="/historianlink/">HistorianLink</a>
-      <a href="/opcdalink/">OpcDaLink</a>
-      <a href="#platform">Platform</a>
-      <a href="#specs">Specs</a>
-      <a href="#trial">Trial</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Switch colour theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg></button>
-  </div>
-</header>
-
-<div class="strip">
-  <div class="wrap" id="txt-status-strip"><span>OPC UA · OPC DA · OPC HDA · OPC AE</span><span>WINDOWS SERVICE + TRAY</span><span>OFFLINE LICENSING</span><span>NO CLOUD DEPENDENCY</span><span>90-DAY FREE TRIAL</span><span>BUILT IN AUSTRALIA</span></div>
-</div>
-
-<!-- ═══ HERO ═══ -->
-<div class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow" id="txt-hero-eyebrow">Data extraction tools for OPC systems</div>
-      <h1 id="txt-hero-title">Get the data <em>out</em> of your plant historian.</h1>
-      <p class="lede" id="txt-hero-lede">GW Automation builds Windows software that gets data out of industrial control systems. Install an MSI on a machine that can reach your historian or OPC server, then export history, schedule reports and watch live dashboards from a browser. No cloud accounts, no per-tag pricing, and nothing leaves your network.</p>
-      <div class="cta-row">
-        <a href="#products" class="btn btn-a" id="txt-cta-primary">View products</a>
-        <a href="#contact" class="btn btn-g" id="txt-cta-secondary">Request a trial</a>
+    <a class="home" href="/" aria-label="GW Automation home">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round">
+          <path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/>
+          <circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/>
+        </svg>
       </div>
+      <span class="brand" id="txt-brand">GW <em>Automation</em></span>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">≡</button>
+      <nav id="nav">
+        <a href="#products">Products</a>
+        <a href="/historianlink/">HistorianLink</a>
+        <a href="/opcdalink/">OpcDaLink</a>
+        <a href="#platform">Platform</a>
+        <a href="#specs">Specs</a>
+        <a href="#trial">Trial</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Switch colour theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg></button>
     </div>
-    <div class="hero-media">
-      <div class="shot">
-        <img src="assets/hl-analyser.png?v=1" alt="HistorianLink data analyser plotting several historian tags over seven days" fetchpriority="high">
-      </div>
-      <div class="shot-cap">HistorianLink: data analyser</div>
-    </div>
-  </div>
-</div>
+  </header>
 
-<!-- ═══ PRODUCTS ═══ -->
-<section id="products">
-  <div class="wrap">
-    <div class="intro-grid">
+  <div class="strip">
+    <div class="wrap" id="txt-status-strip"><span>OPC UA · OPC DA · OPC HDA · OPC AE</span><span>WINDOWS SERVICE + TRAY</span><span>OFFLINE LICENSING</span><span>NO CLOUD DEPENDENCY</span><span>90-DAY FREE TRIAL</span><span>BUILT IN AUSTRALIA</span></div>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+    <div class="wrap hero-grid">
       <div>
-        <div class="st" id="txt-products-eyebrow">Product line</div>
-        <h2 id="txt-products-title">Two products, one problem.</h2>
-        <p class="sub" id="txt-products-sub">Plant data is usually stuck: locked inside a proprietary historian, or behind a twenty-year-old DCOM interface that modern systems cannot reach. One product gets history out. The other gets legacy servers onto a modern protocol.</p>
-      </div>
-      <div class="pcards">
-        <a class="pcard" href="#historianlink"><div class="pn">Historian<em>Link</em></div><div class="pd">Gets history, reports, dashboards and alarm history out of an OPC UA historian.</div><div class="pt">OPC UA client · Shipping</div></a>
-        <a class="pcard" href="#opcdalink"><div class="pn">OpcDa<em>Link</em></div><div class="pd">Puts a legacy OPC DA server onto OPC UA without touching the original server.</div><div class="pt">OPC DA → OPC UA bridge · Shipping</div></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── HistorianLink ── -->
-<section id="historianlink">
-  <div class="wrap">
-    <div class="psum">
-      <div class="psum-copy rv">
-        <span class="badge live"><span class="dot"></span><span>Shipping</span></span>
-        <h3>Historian<em>Link</em></h3>
-        <div class="tagline">OPC UA history · reports · dashboards · alarms</div>
-        <p class="body" id="txt-hl-body">Connects as an OPC UA client to any plant historian that serves history over OPC UA, whatever the vendor, and turns its archive into data you can work with. Browse the tag tree, pull raw history, resample it, and export to Excel or CSV with real quality codes attached.</p>
-        <ul class="feat">
-          <li><b>History export:</b> raw or resampled history to Excel or CSV, with millisecond timestamps and plain-English quality.</li>
-          <li><b>Scheduled reports:</b> repeatable reports run daily, weekly or monthly.</li>
-          <li><b>Live dashboards:</b> current values with sparklines for engineers and read-only viewers.</li>
-          <li><b>Alarms:</b> current alarms over OPC UA, with an optional add-on for WinCC alarm history.</li>
-        </ul>
+        <div class="eyebrow" id="txt-hero-eyebrow">Data extraction tools for OPC systems</div>
+        <h1 id="txt-hero-title">Get the data <em>out</em> of your plant historian.</h1>
+        <p class="lede" id="txt-hero-lede">GW Automation builds Windows software that gets data out of industrial control systems. Install an MSI on a machine that can reach your historian or OPC server, then export history, schedule reports and watch live dashboards from a browser. No cloud accounts, no per-tag pricing, and nothing leaves your network.</p>
         <div class="cta-row">
-          <a href="/historianlink/" class="btn btn-a">Explore HistorianLink</a>
-          <a href="assets/docs/HistorianLink-Datasheet.pdf" class="btn btn-g">Datasheet (PDF)</a>
+          <a href="#products" class="btn btn-a" id="txt-cta-primary">View products</a>
+          <a href="#contact" class="btn btn-g" id="txt-cta-secondary">Request a trial</a>
         </div>
       </div>
-      <div class="psum-media rv">
-        <div class="shot"><img src="assets/hl-dashboard.png?v=1" alt="HistorianLink live dashboard tiles" loading="lazy"></div>
-        <div class="shot-cap">HistorianLink · click to enlarge</div>
+      <div class="hero-media">
+        <div class="shot">
+          <img src="assets/hl-analyser.png?v=1" alt="HistorianLink data analyser plotting several historian tags over seven days" fetchpriority="high">
+        </div>
+        <div class="shot-cap">HistorianLink: data analyser</div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ── OpcDaLink ── -->
-<section id="opcdalink">
-  <div class="wrap">
-    <div class="psum flip">
-      <div class="psum-copy rv">
-        <span class="badge live"><span class="dot"></span><span>Shipping</span></span>
-        <h3>OpcDa<em>Link</em></h3>
-        <div class="tagline">OPC DA → OPC UA bridge</div>
-        <p class="body" id="txt-da-body">Sits in front of a legacy OPC DA server, connects to it as a client over DCOM, and re-publishes the whole address space as a modern OPC UA server, with history from OPC HDA and alarms from OPC AE alongside it. Point UaExpert, a new SCADA package, or HistorianLink at the UA endpoint and leave the old server exactly as it is.</p>
-        <ul class="feat">
-          <li><b>Full address-space mirror:</b> every DA item republished as an OPC UA variable, with types, quality and timestamps carried through.</li>
-          <li><b>Read and write:</b> writes pass back to the DA server for the users you allow.</li>
-          <li><b>History and alarms:</b> OPC HDA history and OPC AE alarms served over OPC UA.</li>
-          <li><b>No Automation Wrapper:</b> talks to the OPC DA custom interface directly.</li>
-        </ul>
-        <div class="cta-row">
-          <a href="/opcdalink/" class="btn btn-a">Explore OpcDaLink</a>
-          <a href="assets/docs/OpcDaLink-Datasheet.pdf" class="btn btn-g">Datasheet (PDF)</a>
+  <!-- ═══ PRODUCTS ═══ -->
+  <section id="products">
+    <div class="wrap">
+      <div class="intro-grid">
+        <div>
+          <div class="st" id="txt-products-eyebrow">Product line</div>
+          <h2 id="txt-products-title">Two products, one problem.</h2>
+          <p class="sub" id="txt-products-sub">Plant data is usually stuck: locked inside a proprietary historian, or behind a twenty-year-old DCOM interface that modern systems cannot reach. One product gets history out. The other gets legacy servers onto a modern protocol.</p>
+        </div>
+        <div class="pcards">
+          <a class="pcard" href="#historianlink"><div class="pn">Historian<em>Link</em></div><div class="pd">Gets history, reports, dashboards and alarm history out of an OPC UA historian.</div><div class="pt">OPC UA client · Shipping</div></a>
+          <a class="pcard" href="#opcdalink"><div class="pn">OpcDa<em>Link</em></div><div class="pd">Puts a legacy OPC DA server onto OPC UA without touching the original server.</div><div class="pt">OPC DA → OPC UA bridge · Shipping</div></a>
         </div>
       </div>
-      <div class="psum-media rv">
-        <div class="shot"><img src="assets/da-dashboard.png?v=1" alt="OpcDaLink dashboard showing DA connection status, UA endpoint and mirrored item count" loading="lazy"></div>
-        <div class="shot-cap">OpcDaLink · click to enlarge</div>
+    </div>
+  </section>
+
+  <!-- ── HistorianLink ── -->
+  <section id="historianlink">
+    <div class="wrap">
+      <div class="psum">
+        <div class="psum-copy rv">
+          <span class="badge live"><span class="dot"></span><span>Shipping</span></span>
+          <h3>Historian<em>Link</em></h3>
+          <div class="tagline">OPC UA history · reports · dashboards · alarms</div>
+          <p class="body" id="txt-hl-body">Connects as an OPC UA client to any plant historian that serves history over OPC UA, whatever the vendor, and turns its archive into data you can work with. Browse the tag tree, pull raw history, resample it, and export to Excel or CSV with real quality codes attached.</p>
+          <ul class="feat">
+            <li><b>History export:</b> raw or resampled history to Excel or CSV, with millisecond timestamps and plain-English quality.</li>
+            <li><b>Scheduled reports:</b> repeatable reports run daily, weekly or monthly.</li>
+            <li><b>Live dashboards:</b> current values with sparklines for engineers and read-only viewers.</li>
+            <li><b>Alarms:</b> current alarms over OPC UA, with an optional add-on for WinCC alarm history.</li>
+          </ul>
+          <div class="cta-row">
+            <a href="/historianlink/" class="btn btn-a">Explore HistorianLink</a>
+            <a href="assets/docs/HistorianLink-Datasheet.pdf" class="btn btn-g">Datasheet (PDF)</a>
+          </div>
+        </div>
+        <div class="psum-media rv">
+          <div class="shot"><img src="assets/hl-dashboard.png?v=1" alt="HistorianLink live dashboard tiles" loading="lazy"></div>
+          <div class="shot-cap">HistorianLink · click to enlarge</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ PLATFORM ═══ -->
-<section id="platform">
-  <div class="wrap">
-    <div class="st" id="txt-platform-eyebrow">Shared platform</div>
-    <h2 id="txt-platform-title">Both products are built the same way.</h2>
-    <p class="sub" id="txt-platform-sub">Same installer, same service model, same licensing, same security posture. Learn one, you know both.</p>
-
-    <div class="cards" id="txt-platform-cards">
-      <div class="card rv"><div class="num">01 / SERVICE</div><h4>Windows service + tray</h4><p>Runs headless as a service and survives reboots. A tray icon gives operators start, stop and status without opening the admin UI or needing a login.</p></div>
-      <div class="card rv"><div class="num">02 / INTERFACE</div><h4>Browser-based admin</h4><p>No client to roll out. The service hosts its own UI on a local port. It's the same dark, dense, keyboard-friendly interface shown in the screenshots.</p></div>
-      <div class="card rv"><div class="num">03 / SECURITY</div><h4>Encrypted config at rest</h4><p>Credentials and connection settings are encrypted with Windows DPAPI, tied to the machine. Nothing sensitive sits in plain text on disk.</p></div>
-      <div class="card rv"><div class="num">04 / NETWORK</div><h4>TLS where it matters</h4><p>Network-facing endpoints run HTTPS with a minimum of TLS 1.2. Admin access stays on loopback, so it is never exposed to the network.</p></div>
-      <div class="card rv"><div class="num">05 / LICENSING</div><h4>Fully offline activation</h4><p>A digitally signed licence file for your site, checked on the machine. No activation server, no internet, no phone-home. Designed for air-gapped plant networks.</p></div>
-      <div class="card rv"><div class="num">06 / DEPLOYMENT</div><h4>Standard MSI install</h4><p>A standard MSI your IT team can review, deploy and uninstall cleanly. Silent install supported for managed rollouts.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SPECS ═══ -->
-<section id="specs">
-  <div class="wrap">
-    <div class="st" id="txt-specs-eyebrow">At a glance</div>
-    <h2 id="txt-specs-title">Technical specifications.</h2>
-
-    <table class="spec">
-      <thead>
-        <tr><th>&nbsp;</th><th>HistorianLink</th><th>OpcDaLink</th></tr>
-      </thead>
-      <tbody id="txt-spec-rows">
-        <tr><td>Role</td><td data-label="HistorianLink">OPC UA client</td><td data-label="OpcDaLink">OPC DA client + OPC UA server</td></tr>
-        <tr><td>Talks to</td><td data-label="HistorianLink">Any server that provides history over OPC UA</td><td data-label="OpcDaLink">OPC DA 2.0 servers, including DA 3.0 servers that expose the 2.0 interfaces, plus optional OPC HDA and AE servers</td></tr>
-        <tr><td>UA security</td><td data-label="HistorianLink">Basic256Sha256, Sign or SignAndEncrypt</td><td data-label="OpcDaLink">Basic256Sha256, Sign or Sign and Encrypt</td></tr>
-        <tr><td>Data out</td><td data-label="HistorianLink">.xlsx, .csv, live dashboard tiles, scheduled reports</td><td data-label="OpcDaLink">Live UA address space, read and write; history via HDA</td></tr>
-        <tr><td>Alarms</td><td data-label="HistorianLink">Current alarms over OPC UA; optional agent for WinCC alarm history</td><td data-label="OpcDaLink">OPC AE or OPC UA alarms and conditions; optional agent for an OLE DB alarm archive</td></tr>
-        <tr><td>User roles</td><td data-label="HistorianLink">Admin, engineer, viewer</td><td data-label="OpcDaLink">One admin account, plus OPC UA users with per-user write permission</td></tr>
-        <tr><td>Licence</td><td data-label="HistorianLink">Signed licence file, per site</td><td data-label="OpcDaLink">Signed licence file, per site</td></tr>
-        <tr><td>Platform</td><td data-label="HistorianLink">Windows Server 2016+ / Windows 10+</td><td data-label="OpcDaLink">Windows Server 2016+ / Windows 10+</td></tr>
-        <tr><td>Footprint</td><td data-label="HistorianLink">Self-contained; no database server required</td><td data-label="OpcDaLink">Self-contained; no database server required</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ═══ TRIAL ═══ -->
-<section id="trial">
-  <div class="wrap">
-    <div class="st">Trial</div>
-    <h2>How a trial works.</h2>
-    <p class="sub">Free for 90 days, full feature set, no tag limit. Most trials are running the same day.</p>
-    <div class="steps">
-      <div class="step rv"><div class="num">01</div><h4>Tell us what you run</h4><p>Email us the historian or DA server make and version, a rough tag count, and whether alarm history is in scope.</p></div>
-      <div class="step rv"><div class="num">02</div><h4>Get the install pack</h4><p>You receive the installer, the installation manual and a 90-day trial licence file for your site.</p></div>
-      <div class="step rv"><div class="num">03</div><h4>Install it yourself</h4><p>Run the MSI on a spare VM and add the licence file on the admin page. It runs as a Windows service and never needs internet access. If required, we can talk you through it by phone or video call.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ ABOUT ═══ -->
-<section id="about">
-  <div class="wrap">
-    <div class="st">About</div>
-    <h2>Built and supported by the engineer who wrote it.</h2>
-    <div class="about-grid">
-      <div class="about">
-        <p class="sub">GW Automation is a small Australian software studio building tools for industrial control systems. HistorianLink and OpcDaLink are designed, written and supported in-house, so your questions go straight to the developer. No reseller, no ticket queue.</p>
-        <p class="sub">Both products are built for plant networks first: they run fully offline, keep credentials encrypted on the machine, and install as a standard Windows service your IT team can review.</p>
-      </div>
-      <div class="cbox rv">
-        <div class="row"><span class="k">Business</span><span class="v">GW Automation</span></div>
-        <div class="row"><span class="k">ABN</span><span class="v">81 848 968 209</span></div>
-        <div class="row"><span class="k">Based in</span><span class="v">Australia</span></div>
-        <div class="row"><span class="k">Products</span><span class="v">HistorianLink, OpcDaLink</span></div>
-        <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:gwautomation@gwstudio.com.au">gwautomation@gwstudio.com.au</a></span></div>
+  <!-- ── OpcDaLink ── -->
+  <section id="opcdalink">
+    <div class="wrap">
+      <div class="psum flip">
+        <div class="psum-copy rv">
+          <span class="badge live"><span class="dot"></span><span>Shipping</span></span>
+          <h3>OpcDa<em>Link</em></h3>
+          <div class="tagline">OPC DA → OPC UA bridge</div>
+          <p class="body" id="txt-da-body">Sits in front of a legacy OPC DA server, connects to it as a client over DCOM, and re-publishes the whole address space as a modern OPC UA server, with history from OPC HDA and alarms from OPC AE alongside it. Point UaExpert, a new SCADA package, or HistorianLink at the UA endpoint and leave the old server exactly as it is.</p>
+          <ul class="feat">
+            <li><b>Full address-space mirror:</b> every DA item republished as an OPC UA variable, with types, quality and timestamps carried through.</li>
+            <li><b>Read and write:</b> writes pass back to the DA server for the users you allow.</li>
+            <li><b>History and alarms:</b> OPC HDA history and OPC AE alarms served over OPC UA.</li>
+            <li><b>No Automation Wrapper:</b> talks to the OPC DA custom interface directly.</li>
+          </ul>
+          <div class="cta-row">
+            <a href="/opcdalink/" class="btn btn-a">Explore OpcDaLink</a>
+            <a href="assets/docs/OpcDaLink-Datasheet.pdf" class="btn btn-g">Datasheet (PDF)</a>
+          </div>
+        </div>
+        <div class="psum-media rv">
+          <div class="shot"><img src="assets/da-dashboard.png?v=1" alt="OpcDaLink dashboard showing DA connection status, UA endpoint and mirrored item count" loading="lazy"></div>
+          <div class="shot-cap">OpcDaLink · click to enlarge</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ FAQ ═══ -->
-<section id="faq">
-  <div class="wrap">
-    <div class="st">Questions</div>
-    <h2>Frequently asked questions.</h2>
-    <div class="faq">
-      <div class="faq-col">
-        <details class="rv"><summary>Does HistorianLink change anything on our historian?</summary><p>No. HistorianLink is read-only: it connects as an OPC UA client and only reads tags and history. It never writes values or changes the historian's configuration.</p></details>
-        <details class="rv"><summary>Does OpcDaLink change our OPC DA server?</summary><p>No. It connects as an ordinary OPC DA client and leaves the server's configuration exactly as it is. UA clients can only write to items the DA server already allows writes on.</p></details>
-        <details class="rv"><summary>Does it need internet access?</summary><p>No. Licensing is checked on the machine itself, with no activation server and no phone-home, so both products run on fully air-gapped plant networks.</p></details>
-        <details class="rv"><summary>Where does it get installed?</summary><p>On a Windows PC or server that can reach your historian or DA server: the historian machine itself, or a separate machine on the same network. It runs on Windows Server 2016+ and Windows 10+.</p></details>
-        <details class="rv"><summary>Can it run on a virtual machine?</summary><p>Yes. Both products are supported on virtual machines, and most trials start on a spare one.</p></details>
-      </div>
-      <div class="faq-col">
-        <details class="rv"><summary>Which historians does HistorianLink work with?</summary><p>Any server that provides history over OPC UA, whatever the vendor. Siemens Process Historian and WinCC are two examples. Current alarms are read over OPC UA as well. For WinCC sites, an optional satellite agent adds alarm history from the message archive.</p></details>
-        <details class="rv"><summary>How is it licensed?</summary><p>One perpetual licence per site, with fully offline activation and no per-tag pricing: the price doesn't change with the size of your system. The licence isn't tied to one computer, so replacing or moving a server doesn't need a new one. Email us for a quote.</p></details>
-        <details class="rv"><summary>What happens after the 90-day trial?</summary><p>You get a permanent licence for your site. Add it on the admin page and everything you set up during the trial carries straight over, with no reinstall. The software shows how many trial days are left, so it never stops by surprise.</p></details>
-        <details class="rv"><summary>Is there an installation manual?</summary><p>Yes, a full installation and commissioning manual for each product, covering planning, firewall rules, security hardening, upgrades and troubleshooting. It's sent with every trial, or <a href="mailto:gwautomation@gwstudio.com.au?subject=Installation%20manual%20request">email to request a copy</a> for your IT or security team to review first.</p></details>
-        <details class="rv"><summary>How do updates work?</summary><p>A new version is a new installer run over the top of the old one. Your configuration, licence and reports are kept.</p></details>
+  <!-- ═══ PLATFORM ═══ -->
+  <section id="platform">
+    <div class="wrap">
+      <div class="st" id="txt-platform-eyebrow">Shared platform</div>
+      <h2 id="txt-platform-title">Both products are built the same way.</h2>
+      <p class="sub" id="txt-platform-sub">Same installer, same service model, same licensing, same security posture. Learn one, you know both.</p>
+
+      <div class="cards" id="txt-platform-cards">
+        <div class="card rv"><div class="num">01 / SERVICE</div><h4>Windows service + tray</h4><p>Runs headless as a service and survives reboots. A tray icon gives operators start, stop and status without opening the admin UI or needing a login.</p></div>
+        <div class="card rv"><div class="num">02 / INTERFACE</div><h4>Browser-based admin</h4><p>No client to roll out. The service hosts its own UI on a local port. It's the same dark, dense, keyboard-friendly interface shown in the screenshots.</p></div>
+        <div class="card rv"><div class="num">03 / SECURITY</div><h4>Encrypted config at rest</h4><p>Credentials and connection settings are encrypted with Windows DPAPI, tied to the machine. Nothing sensitive sits in plain text on disk.</p></div>
+        <div class="card rv"><div class="num">04 / NETWORK</div><h4>TLS where it matters</h4><p>Network-facing endpoints run HTTPS with a minimum of TLS 1.2. Admin access stays on loopback, so it is never exposed to the network.</p></div>
+        <div class="card rv"><div class="num">05 / LICENSING</div><h4>Fully offline activation</h4><p>A digitally signed licence file for your site, checked on the machine. No activation server, no internet, no phone-home. Designed for air-gapped plant networks.</p></div>
+        <div class="card rv"><div class="num">06 / DEPLOYMENT</div><h4>Standard MSI install</h4><p>A standard MSI your IT team can review, deploy and uninstall cleanly. Silent install supported for managed rollouts.</p></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ CONTACT ═══ -->
-<section id="contact">
-  <div class="wrap">
-    <div class="st" id="txt-contact-eyebrow">Get in touch</div>
-    <h2 id="txt-contact-title">Trials, quotes and support.</h2>
-    <p class="sub" id="txt-contact-sub">Both products install in minutes on a spare VM, with no internet access needed on the plant network. Tell us what historian or DA server you are running and we will send the installer, the manual and a 90-day trial licence.</p>
+  <!-- ═══ SPECS ═══ -->
+  <section id="specs">
+    <div class="wrap">
+      <div class="st" id="txt-specs-eyebrow">At a glance</div>
+      <h2 id="txt-specs-title">Technical specifications.</h2>
 
-    <div class="contact-grid">
-      <div class="cbox rv" id="txt-contact-rows">
-        <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:gwautomation@gwstudio.com.au">gwautomation@gwstudio.com.au</a></span></div>
-        <div class="row"><span class="k">Trial licence</span><span class="v">Free for 90 days, full feature set, no tag limit</span></div>
-        <div class="row"><span class="k">Install help</span><span class="v">By phone or video call if required. Nobody needs access to your network</span></div>
-        <div class="row"><span class="k">Licensing</span><span class="v">Per site, perpetual, no per-tag pricing</span></div>
-        <div class="row"><span class="k">Install manuals</span><span class="v"><a href="mailto:gwautomation@gwstudio.com.au?subject=Installation%20manual%20request">Available on request</a> for both products</span></div>
-        <div class="row"><span class="k">Datasheets</span><span class="v"><a href="assets/docs/HistorianLink-Datasheet.pdf">HistorianLink (PDF)</a> · <a href="assets/docs/OpcDaLink-Datasheet.pdf">OpcDaLink (PDF)</a></span></div>
-        <div class="row"><span class="k">Licence terms</span><span class="v"><a href="licence/">Read the licence terms</a></span></div>
-        <div class="row"><span class="k">Support</span><span class="v">Direct to the developer, no ticket queue</span></div>
-        <div class="row"><span class="k">Location</span><span class="v">Australia, supporting sites worldwide</span></div>
-      </div>
+      <table class="spec">
+        <thead>
+          <tr><th>&nbsp;</th><th>HistorianLink</th><th>OpcDaLink</th></tr>
+        </thead>
+        <tbody id="txt-spec-rows">
+          <tr><td>Role</td><td data-label="HistorianLink">OPC UA client</td><td data-label="OpcDaLink">OPC DA client + OPC UA server</td></tr>
+          <tr><td>Talks to</td><td data-label="HistorianLink">Any server that provides history over OPC UA</td><td data-label="OpcDaLink">OPC DA 2.0 servers, including DA 3.0 servers that expose the 2.0 interfaces, plus optional OPC HDA and AE servers</td></tr>
+          <tr><td>UA security</td><td data-label="HistorianLink">Basic256Sha256, Sign or SignAndEncrypt</td><td data-label="OpcDaLink">Basic256Sha256, Sign or Sign and Encrypt</td></tr>
+          <tr><td>Data out</td><td data-label="HistorianLink">.xlsx, .csv, live dashboard tiles, scheduled reports</td><td data-label="OpcDaLink">Live UA address space, read and write; history via HDA</td></tr>
+          <tr><td>Alarms</td><td data-label="HistorianLink">Current alarms over OPC UA; optional agent for WinCC alarm history</td><td data-label="OpcDaLink">OPC AE or OPC UA alarms and conditions; optional agent for an OLE DB alarm archive</td></tr>
+          <tr><td>User roles</td><td data-label="HistorianLink">Admin, engineer, viewer</td><td data-label="OpcDaLink">One admin account, plus OPC UA users with per-user write permission</td></tr>
+          <tr><td>Licence</td><td data-label="HistorianLink">Signed licence file, per site</td><td data-label="OpcDaLink">Signed licence file, per site</td></tr>
+          <tr><td>Platform</td><td data-label="HistorianLink">Windows Server 2016+ / Windows 10+</td><td data-label="OpcDaLink">Windows Server 2016+ / Windows 10+</td></tr>
+          <tr><td>Footprint</td><td data-label="HistorianLink">Self-contained; no database server required</td><td data-label="OpcDaLink">Self-contained; no database server required</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-      <div class="cbox rv">
-        <div class="k" style="margin-bottom:14px">What to include</div>
-        <ul class="feat" style="margin-top:0" id="txt-contact-includes">
-          <li>Historian or DA server make and version</li>
-          <li>Rough tag count</li>
-          <li>Whether alarm history is in scope</li>
-          <li>Any network or air-gap constraints</li>
-        </ul>
-        <a href="mailto:gwautomation@gwstudio.com.au?subject=GW%20Automation%20trial%20request" id="txt-contact-button" class="btn btn-a" style="margin-top:22px">Email GW Automation</a>
+  <!-- ═══ TRIAL ═══ -->
+  <section id="trial">
+    <div class="wrap">
+      <div class="st">Trial</div>
+      <h2>How a trial works.</h2>
+      <p class="sub">Free for 90 days, full feature set, no tag limit. Most trials are running the same day.</p>
+      <div class="steps">
+        <div class="step rv"><div class="num">01</div><h4>Tell us what you run</h4><p>Email us the historian or DA server make and version, a rough tag count, and whether alarm history is in scope.</p></div>
+        <div class="step rv"><div class="num">02</div><h4>Get the install pack</h4><p>You receive the installer, the installation manual and a 90-day trial licence file for your site.</p></div>
+        <div class="step rv"><div class="num">03</div><h4>Install it yourself</h4><p>Run the MSI on a spare VM and add the licence file on the admin page. It runs as a Windows service and never needs internet access. If required, we can talk you through it by phone or video call.</p></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="wrap fgrid">
-    <div class="fbrand">
-      <div class="row1">
-        <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round"><path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/></svg></div>
-        <span class="brand">GW <em>Automation</em></span>
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about">
+    <div class="wrap">
+      <div class="st">About</div>
+      <h2>Built and supported by the engineer who wrote it.</h2>
+      <div class="about-grid">
+        <div class="about">
+          <p class="sub">GW Automation is a small Australian software studio building tools for industrial control systems. HistorianLink and OpcDaLink are designed, written and supported in-house, so your questions go straight to the developer. No reseller, no ticket queue.</p>
+          <p class="sub">Both products are built for plant networks first: they run fully offline, keep credentials encrypted on the machine, and install as a standard Windows service your IT team can review.</p>
+        </div>
+        <div class="cbox rv">
+          <div class="row"><span class="k">Business</span><span class="v">GW Automation</span></div>
+          <div class="row"><span class="k">ABN</span><span class="v">81 848 968 209</span></div>
+          <div class="row"><span class="k">Based in</span><span class="v">Australia</span></div>
+          <div class="row"><span class="k">Products</span><span class="v">HistorianLink, OpcDaLink</span></div>
+          <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:gwautomation@gwstudio.com.au">gwautomation@gwstudio.com.au</a></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="st">Questions</div>
+      <h2>Frequently asked questions.</h2>
+      <div class="faq">
+        <div class="faq-col">
+          <details class="rv"><summary>Does HistorianLink change anything on our historian?</summary><p>No. HistorianLink is read-only: it connects as an OPC UA client and only reads tags and history. It never writes values or changes the historian's configuration.</p></details>
+          <details class="rv"><summary>Does OpcDaLink change our OPC DA server?</summary><p>No. It connects as an ordinary OPC DA client and leaves the server's configuration exactly as it is. UA clients can only write to items the DA server already allows writes on.</p></details>
+          <details class="rv"><summary>Does it need internet access?</summary><p>No. Licensing is checked on the machine itself, with no activation server and no phone-home, so both products run on fully air-gapped plant networks.</p></details>
+          <details class="rv"><summary>Where does it get installed?</summary><p>On a Windows PC or server that can reach your historian or DA server: the historian machine itself, or a separate machine on the same network. It runs on Windows Server 2016+ and Windows 10+.</p></details>
+          <details class="rv"><summary>Can it run on a virtual machine?</summary><p>Yes. Both products are supported on virtual machines, and most trials start on a spare one.</p></details>
+        </div>
+        <div class="faq-col">
+          <details class="rv"><summary>Which historians does HistorianLink work with?</summary><p>Any server that provides history over OPC UA, whatever the vendor. Siemens Process Historian and WinCC are two examples. Current alarms are read over OPC UA as well. For WinCC sites, an optional satellite agent adds alarm history from the message archive.</p></details>
+          <details class="rv"><summary>How is it licensed?</summary><p>One perpetual licence per site, with fully offline activation and no per-tag pricing: the price doesn't change with the size of your system. The licence isn't tied to one computer, so replacing or moving a server doesn't need a new one. Email us for a quote.</p></details>
+          <details class="rv"><summary>What happens after the 90-day trial?</summary><p>You get a permanent licence for your site. Add it on the admin page and everything you set up during the trial carries straight over, with no reinstall. The software shows how many trial days are left, so it never stops by surprise.</p></details>
+          <details class="rv"><summary>Is there an installation manual?</summary><p>Yes, a full installation and commissioning manual for each product, covering planning, firewall rules, security hardening, upgrades and troubleshooting. It's sent with every trial, or <a href="mailto:gwautomation@gwstudio.com.au?subject=Installation%20manual%20request">email to request a copy</a> for your IT or security team to review first.</p></details>
+          <details class="rv"><summary>How do updates work?</summary><p>A new version is a new installer run over the top of the old one. Your configuration, licence and reports are kept.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="st" id="txt-contact-eyebrow">Get in touch</div>
+      <h2 id="txt-contact-title">Trials, quotes and support.</h2>
+      <p class="sub" id="txt-contact-sub">Both products install in minutes on a spare VM, with no internet access needed on the plant network. Tell us what historian or DA server you are running and we will send the installer, the manual and a 90-day trial licence.</p>
+
+      <div class="contact-grid">
+        <div class="cbox rv" id="txt-contact-rows">
+          <div class="row"><span class="k">Email</span><span class="v"><a href="mailto:gwautomation@gwstudio.com.au">gwautomation@gwstudio.com.au</a></span></div>
+          <div class="row"><span class="k">Trial licence</span><span class="v">Free for 90 days, full feature set, no tag limit</span></div>
+          <div class="row"><span class="k">Install help</span><span class="v">By phone or video call if required. Nobody needs access to your network</span></div>
+          <div class="row"><span class="k">Licensing</span><span class="v">Per site, perpetual, no per-tag pricing</span></div>
+          <div class="row"><span class="k">Install manuals</span><span class="v"><a href="mailto:gwautomation@gwstudio.com.au?subject=Installation%20manual%20request">Available on request</a> for both products</span></div>
+          <div class="row"><span class="k">Datasheets</span><span class="v"><a href="assets/docs/HistorianLink-Datasheet.pdf">HistorianLink (PDF)</a> · <a href="assets/docs/OpcDaLink-Datasheet.pdf">OpcDaLink (PDF)</a></span></div>
+          <div class="row"><span class="k">Licence terms</span><span class="v"><a href="licence/">Read the licence terms</a></span></div>
+          <div class="row"><span class="k">Support</span><span class="v">Direct to the developer, no ticket queue</span></div>
+          <div class="row"><span class="k">Location</span><span class="v">Australia, supporting sites worldwide</span></div>
+        </div>
+
+        <div class="cbox rv">
+          <div class="k" style="margin-bottom:14px">What to include</div>
+          <ul class="feat" style="margin-top:0" id="txt-contact-includes">
+            <li>Historian or DA server make and version</li>
+            <li>Rough tag count</li>
+            <li>Whether alarm history is in scope</li>
+            <li>Any network or air-gap constraints</li>
+          </ul>
+          <a href="mailto:gwautomation@gwstudio.com.au?subject=GW%20Automation%20trial%20request" id="txt-contact-button" class="btn btn-a" style="margin-top:22px">Email GW Automation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap fgrid">
+      <div class="fbrand">
+        <div class="row1">
+          <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round"><path d="M2 17l5-6 4 4 4-8 5 5"/><circle cx="7" cy="11" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="11" cy="15" r="1.4" fill="#00c8ff" stroke="none"/><circle cx="15" cy="7" r="1.4" fill="#00ff9d" stroke="none"/></svg></div>
+          <span class="brand">GW <em>Automation</em></span>
+    </a>
       </div>
       <p>Data extraction tools for OPC systems. Windows-native, offline licensing, no cloud. Built in Australia.</p>
     </div>
