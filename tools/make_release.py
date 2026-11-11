@@ -122,8 +122,8 @@ def render_page(releases: dict) -> str:
     <div class="cbox" style="margin-bottom:22px">
       <h2 style="margin-top:0">{esc(product)} <span style="color:var(--muted,#7a8a99);font-weight:400">{esc(r['version'])}</span></h2>
       <p>{esc(PRODUCTS[product]['blurb'])}</p>
-      <p><a class="btn btn-a" href="{esc(url)}" download>Download {esc(r['file'])}</a>
-         <span style="margin-left:10px;color:var(--muted,#7a8a99)">{esc(r['size'])} &middot; released {esc(r['date'])}</span></p>
+      <p style="margin-bottom:6px"><a class="btn btn-a" href="{esc(url)}" download>Download {esc(r['file'])}</a></p>
+      <p style="margin-top:0;font-size:13px;color:var(--muted,#7a8a99)">{esc(r['size'])} &middot; released {esc(r['date'])}</p>
       <p style="margin-bottom:4px">Contains the installer ({esc(r['msi'])}), the Quick Start guide and the Installation Manual.</p>
       <p style="font-size:12px;word-break:break-all;margin-top:10px">SHA-256: <code>{esc(r['sha256'])}</code></p>
     </div>""")
