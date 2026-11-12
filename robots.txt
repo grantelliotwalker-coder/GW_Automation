@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /downloads/
 Sitemap: https://opctools.gwstudio.com.au/sitemap.xml
