@@ -1,22 +1,22 @@
 {
   "HistorianLink": {
-    "version": "1.1.1",
-    "file": "HistorianLink-1.1.1.zip",
-    "msi": "HistorianLink-1.1.1-x64.msi",
-    "size": "74.8 MB",
-    "sha256": "38FEA34F549E6FE4E7F8E13FFD3C96FDD4714E6F4966A2596099DD99A8F44B56",
-    "tag": "historianlink-v1.1.1",
-    "url": "https://github.com/grantelliotwalker-coder/gw_automation/releases/download/historianlink-v1.1.1/HistorianLink-1.1.1.zip",
-    "date": "11 November 2026"
+    "version": "1.1.2",
+    "file": "HistorianLink-1.1.2.zip",
+    "msi": "HistorianLink-1.1.2-x64.msi",
+    "size": "75.1 MB",
+    "sha256": "3F8E8BDCB8D3070F0B1FDED36D7CE7467B54DEC6C47AD15FC3E02E71ACDAE185",
+    "tag": "historianlink-v1.1.2",
+    "url": "https://github.com/grantelliotwalker-coder/gw_automation/releases/download/historianlink-v1.1.2/HistorianLink-1.1.2.zip",
+    "date": "13 November 2026"
   },
   "OpcDaLink": {
-    "version": "1.2.3",
-    "file": "OpcDaLink-1.2.3.zip",
-    "msi": "OpcDaLink-1.2.3-x64.msi",
+    "version": "1.2.4",
+    "file": "OpcDaLink-1.2.4.zip",
+    "msi": "OpcDaLink-1.2.4-x64.msi",
     "size": "124.6 MB",
-    "sha256": "EEE7520D343EA712F8232B938B30E70A27DFED13DAD2706AEB55A07B8A7006E8",
-    "tag": "opcdalink-v1.2.3",
-    "url": "https://github.com/grantelliotwalker-coder/gw_automation/releases/download/opcdalink-v1.2.3/OpcDaLink-1.2.3.zip",
-    "date": "12 November 2026"
+    "sha256": "2C33C57B07A7488EC355E51E42A889AAC0C647AFE76AE6987571A2128A4BF6B8",
+    "tag": "opcdalink-v1.2.4",
+    "url": "https://github.com/grantelliotwalker-coder/gw_automation/releases/download/opcdalink-v1.2.4/OpcDaLink-1.2.4.zip",
+    "date": "13 November 2026"
   }
 }

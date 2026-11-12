@@ -1,2 +1,2 @@
-38fea34f549e6fe4e7f8e13ffd3c96fdd4714e6f4966a2596099dd99a8f44b56  HistorianLink-1.1.1.zip
-eee7520d343ea712f8232b938b30e70a27dfed13dad2706aeb55a07b8a7006e8  OpcDaLink-1.2.3.zip
+3f8e8bdcb8d3070f0b1fded36d7ce7467b54dec6c47ad15fc3e02e71acdae185  HistorianLink-1.1.2.zip
+2c33c57b07a7488ec355e51e42a889aac0c647afe76ae6987571a2128a4bf6b8  OpcDaLink-1.2.4.zip
